@@ -286,15 +286,20 @@ class CompanyController extends Controller
     }
 
     public function show_training(){
-        $trainings=TrainingPost::orderBy('id', 'desc')->get();
+        $trainings=TrainingPost::orderBy('id', 'desc')->paginate(10);
         $arr=[];
         foreach ($trainings as $data){
             $training_data=new TrainingData($data->id);
             array_push($arr,$training_data->getTrainingData());
         }
+
+        $ads=new AdsController();
+        $ads=$ads->ads_by_page(5);
         
         return view('user.training')->with([
-            'training_posts'=>$arr
+            'training_posts'=>$arr,
+            'paginate'=>$trainings,
+            'ads'=>$ads
             ]);
     }
 

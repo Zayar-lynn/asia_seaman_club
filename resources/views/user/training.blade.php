@@ -40,27 +40,16 @@
 				
 			</div>
 			<div class="col-md-3">
-				<br><br>
-				<img src="img/about.jpg" alt="" class="img-responsive">
-				<br><br>
-				<img src="img/about.jpg" alt="" class="img-responsive">
-				<br><br>
-				<img src="img/about.jpg" alt="" class="img-responsive">
-				<br><br>
-				<img src="img/about.jpg" alt="" class="img-responsive">
+				@foreach($ads as $item)
+					<br>
+					<img src="{{$item['photo_url']}}" alt="" style="height: 150px;" class="img-responsive">
+
+				@endforeach
 			</div>
  		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<ul class="pagination pagination-lg">
-				   <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-				   <li class="active"><a href="#">1</a></li>
-				   <li><a href="#">2</a></li>
-				   <li><a href="#">3</a></li>
-				   <li><a href="#">4</a></li>
-				   <li><a href="#">5</a></li>
-				   <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-				</ul>
+				{{$paginate->links()}}
 			</div>
 		</div>
 	</div>

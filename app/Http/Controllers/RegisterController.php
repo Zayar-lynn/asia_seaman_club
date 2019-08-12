@@ -80,16 +80,22 @@ class RegisterController extends Controller
                 'type' => $type,
                 'data_id' => $company,
             ]);
-            for ($i=1; $i <= 8; $i++) { 
+            for ($i=1; $i <= 8; $i++) {
                 CompanyPhoto::create([
                     'title' => '',
                     'company_id' => $company,
                 ]);
             }
-            
-        
+
+
         }
-        return redirect('/login');
+        $device = $request->get('device');
+        if (empty($device)) {
+            return redirect('/login');
+        }
+
+
+
     }
 
     public function freeagentregister(Request $request)
@@ -123,7 +129,7 @@ class RegisterController extends Controller
                 'type' => $type,
                 'data_id' => $agentcompany,
             ]);
-            
+
         }
         return redirect('/login');
     }
@@ -135,6 +141,8 @@ class RegisterController extends Controller
         $password = $request->get('password');
         $password_confirmation = $request->get('password_confirmation');
         $seafarer_type = 'seafarer';
+
+        $device = $request->get('device');
 
         if($password == $password_confirmation){
             $user=User::where('email',$email)->get();
@@ -154,10 +162,19 @@ class RegisterController extends Controller
                 ]);
             }
             else{
-                return redirect('/seafarerregister')->with(['error_msg'=>'Already Email!']);
+                if (empty($device)) {
+                  return redirect('/employee-register')->with(['error_msg'=>'Already Email!']);
+                }
             }
+        }else {
+          if (empty($device)) {
+            return redirect('/employee-register')->with(['error_msg'=>'Passowd does not match!']);
+          }
         }
-        return redirect('/seafarerregister')->with(['error_msg'=>'Passowd does not match!']);
+        if (empty($device)) {
+            return redirect('/login');
+        }
+
     }
 
 

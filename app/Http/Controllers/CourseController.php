@@ -68,7 +68,7 @@ class CourseController extends Controller
                 ]);
             }
     }
-  
+
 
     /**
      * Display the specified resource.
@@ -170,6 +170,17 @@ class CourseController extends Controller
         }
          return json_encode($arr);
      }
+     public function get_all_course_android($type){
+       if ($type == 'ascandroid') {
+         $courses=Course::all();
+         $arr=[];
+         foreach ($courses as $data){
+             $course_data=new CourseData($data->id);
+             array_push($arr,$course_data->getCourseData());
+         }
+          return json_encode($arr);
+       }
+     }
 
     public function show_course(){
         $courses=Course::orderBy('id', 'desc')->paginate(10);
@@ -178,7 +189,7 @@ class CourseController extends Controller
             $course_data=new CourseData($data->id);
             array_push($arr,$course_data->getCourseData());
         }
-        
+
         return view('user.e-learning')->with([
             'arrs'=>$arr,
             'paginate'=>$courses
@@ -193,5 +204,13 @@ class CourseController extends Controller
         return view('user.e-learning-detail')->with([
             'course_detail'=>$course_detail
             ]);
+    }
+    public function course_detail_android($type,$course_id){
+      if ($type == 'ascandroid') {
+        $course_obj = new CourseData($course_id);
+        $categories=[];
+        $course_detail = $course_obj->getCourseData();
+        return json_encode($course_detail);
+      }
     }
 }

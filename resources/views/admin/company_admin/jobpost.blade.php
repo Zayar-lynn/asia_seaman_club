@@ -118,29 +118,24 @@
 
                 <div class="col-md-9">
                     <div class="card  mt-0 p-3">
-                        <table id="show" class="table table-responsive table-hover">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Rank</th>
-                                    <th>Salary</th>
-                                    <th>Contract Time</th>
-                                    <th>Vessel Name</th>
-                                    <th>Shiptype</th>
-                                    <th>GRT</th>
-                                    <th>Flag of vessel</th>
-                                    <th>Navigation Area</th>
-                                    <th>Request Certificates</th>
-                                    <th>Description</th>
-                                    <th>English level</th>
-                                    <th>Delete</th>
-                                    <th>Edit</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tbody">
-                                
-                            </tbody>
-                        </table>
+                      <div class="table-responsive">
+                          <table class="table" id="show">
+                              <thead class=" text-primary">
+                                <th>No</th>
+                                <th>Rank</th>
+                                <th>Salary</th>
+                                <th>Contract Time</th>
+                                <th>Shiptype</th>
+                                <th>English level</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                              </thead>
+                              <tbody>
+
+                              </tbody>
+                          </table>
+                      </div>
                     </div>
                 </div>
 
@@ -156,7 +151,7 @@
                                 <button data-dismiss="modal" class="close">&times;</button>
                             </div>
                             <div class="modal-body">
-                               
+
 
                                 <form id="update_data">
                                     {{csrf_field()}}
@@ -203,7 +198,7 @@
                                         <label for="update_request_certificates">Request Certificate</label>
                                         <input type="text" name="request_certificates" id="update_request_certificates" class="form-control" required>
                                     </div>
-    
+
                                     <div class="form-group">
                                         <label for="update_description">Description</label>
                                         <textarea class="form-control" name="description" id="update_description" required></textarea>
@@ -250,8 +245,13 @@
             $(document).ready(function(){
 
                 var dt = $('#show').DataTable({
-                    "bInfo" : false,
-                    "bLengthChange": false
+                  "ordering": false,
+                  // "paging": false,
+                  "bInfo" : false,
+                  // "bPaginate": false,
+                  "bLengthChange": false
+                  // "bFilter": true,
+                  // "bAutoWidth": false
                 });
 
                 function reset(){
@@ -264,27 +264,23 @@
                     $.ajax({
                     type: "POST",
                     url: "{{url('get_all_jobpost')}}",
-                    
+
                     cache: false,
                     success: function(data){
                         var data_return=JSON.parse(data);
                         //console.log(data);
                         dt.clear();
-                        var no = 1;                   
+                        var no = 1;
                         for(var i = 0;i<data_return.length;i++){
+                          var link=window.location.href+"../../../job_detail/"+data_return[i]['id'];
                             dt.row.add( [
                                 no++,
                                 data_return[i]['rank'],
                                 data_return[i]['salary'],
                                 data_return[i]['contract_time'],
-                                data_return[i]['vessel_name'],
                                 data_return[i]['shiptype_id'],
-                                data_return[i]['grt'],
-                                data_return[i]['flag_of_vessel'],
-                                data_return[i]['navigation_area'],
-                                data_return[i]['request_certificates'],
-                                data_return[i]['description'].substr(0,70),
                                 data_return[i]['english_level'],
+                                '<a href="'+link+'" class="btn btn-primary btn-sm" target="_blank">Detail</a>',
                                 '<button class="btn btn-danger btn-sm" onclick="delete_data('+data_return[i]['id']+')">Delete</button>',
                                 '<button class="btn btn-info btn-sm" onclick="edit_data('+data_return[i]['id']+')" data-target="#modalBox" data-toggle="modal" data-keyboard="false" data-backdrop="static">Edit</button>'
                             ] ).draw( false );
@@ -324,7 +320,7 @@
                         $.ajax({
                             type: "POST",
                             url: "../delete/jobpost/"+id,
-                            
+
                             cache: false,
                             success: function(data){
                                 alert('Success');
@@ -333,20 +329,20 @@
                           });
                     }else{
                         return false;
-                    }  
+                    }
                 }
 
                 edit_data=function(id){
-                
+
                     $.ajax({
                       type: "POST",
                       url: "../edit/jobpost/"+id,
-                      
+
                       cache: false,
                       success: function(data){
                         reset();
                         var jobpost=JSON.parse(data);
-                        
+
                         //console.log(jobpost['photo']);
                         $('#id_edit').val(jobpost['id']);
                         $('#update_rank').val(jobpost['rank']);
@@ -360,7 +356,7 @@
                         $('#update_request_certificates').val(jobpost['request_certificates']);
                         $('#update_description').val(jobpost['description']);
                         $('#update_english_level').val(jobpost['english_level']);
-    
+
                         $('#modalBox').modal('show');
                       }
                     });

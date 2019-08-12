@@ -45,7 +45,7 @@ Route::get('/register',function(){
 Route::get('/company-register',function(){
 	return view('user/company-register');
 });
-Route::get('/seafarerregister',function(){
+Route::get('/employee-register',function(){
 	return view('user/employee-register');
 });
 Route::get('/free_agent-register',function(){
@@ -87,7 +87,7 @@ Route::post('/contact','ContactController@store');
 Route::get('/teacher_dashboard',function(){
     return view('admin.teacher_admin.dashboard')->with(['url'=>'dashboard']);
  });
- 
+
  Route::get('/teacher_dashboard/company_profile',function(){
      return view('admin.teacher_admin.company_profile')->with(['url'=>'company_profile']);
  //    return 'aa';
@@ -124,14 +124,23 @@ Route::post('/update/course','CourseController@update');
 Route::get('/admin',function(){
     return view('admin.site_admin.dashboard')->with(['url'=>'dashboard']);
  });
- 
+
 Route::get('/admin/company_profile',function(){
      return view('admin.site_admin.company_profile')->with(['url'=>'company_profile']);
  //    return 'aa';
  });
-Route::get('/admin/company_list',function(){
-     return view('admin.site_admin.company_list')->with(['url'=>'company_list']);
- });
+// Route::get('/admin/company_list',function(){
+//      return view('admin.site_admin.company_list')->with(['url'=>'company_list']);
+//  });
+Route::get('/admin/company_list','CompanyController@show_companylist_table');
+Route::post('/get_all_company_list','CompanyController@get_all_company_list');
+Route::post('/get_all_company_training_list','CompanyController@get_all_company_training_list');
+Route::post('/get_all_company_freeagent_list','CompanyController@get_all_company_freeagent_list');
+
+Route::post('/admin/edit/company_list/{id}','CompanyController@company_edit');
+Route::post('/update/company_list','CompanyController@company_update');
+Route::post('/admin/delete/company_list/{id}','CompanyController@company_delete');
+
 Route::get('/admin/category',function(){
      return view('admin.site_admin.category')->with(['url'=>'category']);
  });
@@ -312,3 +321,21 @@ Route::get('/freeagent_dashboard/blog',function(){
 Route::get('/freeagent_dashboard/feedback',function(){
     return view('admin.freeagent_admin.feedback')->with(['url'=>'feedback']);
 });
+
+
+
+// for api
+
+Route::post('api/ascandroid/businessregister/','RegisterController@businessregister');
+Route::post('api/ascandroid/seafarerregister/','RegisterController@seafarerregister');
+Route::post('api/ascandroid/teacherregister/','RegisterController@teacherregister');
+
+Route::get('api/{ascandroid}/get_all_jobpost/','CompanyController@get_all_jobpost_android');
+Route::get('api/{ascandroid}/get_all_trainingcourse','TrainingController@get_all_trainingcourse_android');
+Route::get('api/{ascandroid}/get_all_course','CourseController@get_all_course_android');
+Route::get('api/{ascandroid}/get_all_blog','AdminBlogController@get_all_blog_android');
+Route::get('api/{ascandroid}/job_detail/{job_id}','CompanyController@job_detail_android');
+Route::get('api/{ascandroid}/company_profile/{company_id}','CompanyController@company_profile_android');
+Route::get('api/{ascandroid}/training_detail/{training_id}','CompanyController@training_detail_android');
+Route::get('api/{ascandroid}/course_detail/{course_id}','CourseController@course_detail_android');
+Route::get('api/{ascandroid}/blog_detail/{blog_id}','AdminBlogController@blog_detail_android');

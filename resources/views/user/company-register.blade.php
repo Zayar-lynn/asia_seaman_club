@@ -5,14 +5,14 @@
     <h3>Company Register</h3>
   </div>
 </div>
-<!--inner heading end--> 
+<!--inner heading end-->
 
 
 
 
 <!--Inner Content start-->
 <div class="inner-content loginWrp">
-  <div class="container"> 
+  <div class="container">
     <!--Register Start-->
     <div class="row">
       <div class="col-md-3 col-sm-2"></div>
@@ -80,11 +80,11 @@
       </div>
       <div class="col-md-3 col-sm-2"></div>
     </div>
-    
-    <!--Register End--> 
+
+    <!--Register End-->
 </div>
 </div>
-<!--Inner Content End--> 
+<!--Inner Content End-->
 
 <!--footer start-->
 @include('user.include.footer')

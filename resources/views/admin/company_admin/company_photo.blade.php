@@ -33,7 +33,7 @@
             <div class="row">
                @foreach($company_photos as $company_photo)
                <div class="col-md-3">
-                   
+
                    <div class="card">
                        <img style="height: 180px" class="card-img-top" src="{{$company_photo['photo_url']}}" alt="Card image cap">
                        <div class="card-body">
@@ -45,7 +45,7 @@
                            </button>
                        </div>
                    </div>
-                   
+
                     {{-- <div class="card">
                        <img style="height: 180px" class="card-img-top" src="{{asset('/upload/company_project/no_images.jpg')}}" alt="Card image cap">
                        <div class="card-body">
@@ -57,7 +57,7 @@
                            </button>
                        </div>
                     </div> --}}
-                   
+
                </div>
               @endforeach
             </div>
@@ -77,7 +77,7 @@
                     <button data-dismiss="modal" class="close">&times;</button>
                 </div>
                 <div class="modal-body">
-                   
+
 
                     <form action="{{url('update/company_photo')}}" id="update_data" enctype="multipart/form-data" class="" method="POST">
                         {{csrf_field()}}
@@ -88,7 +88,7 @@
                            <div class="card-body">
                               <label for="upload_photo" class="btn btn-success up_load_photo"><i class="fa fa-photo"></i> &nbsp;Upload photo</label>
                               <input class="form-control upload_photo" type="file" accept="image/*" name="photo" placeholder="Text Here..." id="upload_photo" onchange="displaySelectedPhoto('upload_photo','image')" style="visibility: hidden">
-                              <input class="form-control" type="text" id="title" name="title" placeholder="Text Here..." required>
+                              <input class="form-control" type="text" id="title" name="title" placeholder="Text Here...">
                            </div>
                         </div>
                         <div class="modal-footer model-footer-1">
@@ -115,7 +115,7 @@
         $(document).ready(function() {
             show_edit_model=function(id){
                 //if insert
-                
+
                     $.ajax({
                         type: 'post',
                         url: '../company/photo_detail/'+id,
@@ -134,7 +134,7 @@
 //                            load_data();
                         },
                     });
-                
+
 
             }
 
@@ -154,7 +154,7 @@
                     console.log(data);
                     //alert(data);
 		            $('#modalBox').modal('hide');
-				  	
+
 				  }
 		        });
 		        return false;

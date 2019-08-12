@@ -16,7 +16,7 @@
       <div class="col-md-3 col-sm-4">
         @foreach($ads as $item)
           <br>
-          <img src="{{$item['photo_url']}}" alt="" class="img-responsive" style="height: 150px;">
+          <img src="{{$item['photo_url']}}" alt="" class="img-responsive" style="max-height: 150px;width:100%">
 
         @endforeach
       </div>

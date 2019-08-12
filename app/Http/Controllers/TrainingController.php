@@ -175,6 +175,18 @@ class TrainingController extends Controller
         }
          return json_encode($arr);
      }
+     public function get_all_trainingcourse_android($type){
+       if ($type == 'ascandroid') {
+         $training_course=TrainingPost::all();
+         $arr=[];
+         foreach ($training_course as $data){
+             $training_data=new TrainingData($data->id);
+             array_push($arr,$training_data->getTrainingData());
+         }
+          return json_encode($arr);
+       }
+
+     }
 
 //     public function edit_company_photo(){
 //        $user = Auth::user();

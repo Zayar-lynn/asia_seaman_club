@@ -134,13 +134,18 @@ class AdminBlogController extends Controller
     }
 
     public function get_all_blog(){
-       $blogs=Admin_blog::orderBy('id', 'desc')->get();
-       $arr=[];
-       foreach ($blogs as $data){
-           $blog_data=new BlogData($data->id);
-           array_push($arr,$blog_data->getBlogData());
-       }
-        return json_encode($arr);
+      $blogs=Admin_blog::orderBy('id', 'desc')->get();
+      $arr=[];
+      foreach ($blogs as $data){
+          $blog_data=new BlogData($data->id);
+          array_push($arr,$blog_data->getBlogData());
+      }
+       return json_encode($arr);
+    }
+    public function get_all_blog_android($type){
+      if ($type == 'ascandroid') {
+        return $this->get_all_blog();
+      }
     }
 
     public function show_blog(){
@@ -158,11 +163,17 @@ class AdminBlogController extends Controller
 
      public function blog_detail($blog_id){
         $blog_obj = new BlogData($blog_id);
-
         $blog_post = $blog_obj->getBlogData();
         return view('user.blog-details')->with([
             'blog_post'=>$blog_post
             ]);
+    }
+    public function blog_detail_android($type,$blog_id){
+      if ($type == 'ascandroid') {
+        $blog_obj = new BlogData($blog_id);
+        $blog_post = $blog_obj->getBlogData();
+        return json_encode($blog_post);
+      }
     }
 
 }

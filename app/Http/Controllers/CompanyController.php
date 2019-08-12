@@ -14,6 +14,7 @@ use App\JobPost;
 use App\TrainingPost;
 use App\Company;
 use App\User;
+use App\Seafarer_request;
 
 class CompanyController extends Controller
 {
@@ -114,7 +115,7 @@ class CompanyController extends Controller
             'description'=>$description,
             'english_level'=>$english_level
         ]);
-        
+
     }
 
     /**
@@ -266,6 +267,15 @@ class CompanyController extends Controller
             'company_photos'=>$company_photo
             ]);
     }
+    public function company_profile_android($type,$company_id){
+      if ($type == 'ascandroid') {
+        $company_obj = new CompanyData($company_id);
+        $company_info = $company_obj->getCompany_info();
+        $company_photo = $company_obj->getCompany_photo();
+        $company_post = $company_obj->getCompany_post();
+        return json_encode([$company_info, $company_photo,$company_post]);
+      }
+    }
 
     public function show_jobpost(){
         $jobs=JobPost::orderBy('id', 'desc')->paginate(10);
@@ -277,7 +287,7 @@ class CompanyController extends Controller
 
         $ads=new AdsController();
         $area3_ads=$ads->ads_by_page(3);
-        
+
         return view('user.job-listing')->with([
             'company_jobs'=>$arr,
             'ads'=>$area3_ads,
@@ -295,7 +305,7 @@ class CompanyController extends Controller
 
         $ads=new AdsController();
         $ads=$ads->ads_by_page(5);
-        
+
         return view('user.training')->with([
             'training_posts'=>$arr,
             'paginate'=>$trainings,
@@ -326,7 +336,7 @@ class CompanyController extends Controller
             $company_data=new CompanyData($data->id);
             array_push($arr,$company_data->getCompany_info());
         }
-        
+
         return view('user.freeagent')->with([
             'freeagents'=>$arr
             ]);
@@ -334,31 +344,183 @@ class CompanyController extends Controller
 
     public function job_detail($job_id){
         $job_obj = new JobData($job_id);
-
         $job_detail = $job_obj->getJobData();
         return view('user.job-details')->with([
             'job_detail'=>$job_detail
             ]);
     }
+    public function job_detail_android($type,$job_id){
+      if ($type == 'ascandroid') {
+        $job_obj = new JobData($job_id);
+        $job_detail = $job_obj->getJobData();
+        return json_encode($job_detail);
+      }
+    }
 
     public function training_detail($training_id){
         $training_obj = new TrainingData($training_id);
-
         $training_detail = $training_obj->getTrainingData();
         return view('user.training-detail')->with([
             'training_detail'=>$training_detail
             ]);
     }
+    public function training_detail_android($type,$training_id){
+      if ($type == 'ascandroid') {
+        $training_obj = new TrainingData($training_id);
+        $training_detail = $training_obj->getTrainingData();
+        return json_encode($training_detail);
+      }
+    }
 
     public function get_all_jobpost(){
-        $user = Auth::user();
-        $company_id = $user->data_id;
-        $jobs=JobPost::where('company_id',$company_id)->orderBy('id', 'desc')->get();
+      $user = Auth::user();
+      $company_id = $user->data_id;
+      $jobs=JobPost::where('company_id',$company_id)->orderBy('id', 'desc')->get();
+
         $arr=[];
         foreach ($jobs as $data){
             $job_data=new JobData($data->id);
             array_push($arr,$job_data->getJobData());
         }
         return json_encode($arr);
+     }
+     public function get_all_jobpost_android($type){
+       if ($type == 'ascandroid') {
+         $jobs=JobPost::all();
+         $arr=[];
+         foreach ($jobs as $data){
+             $job_data=new JobData($data->id);
+             array_push($arr,$job_data->getJobData());
+         }
+         return json_encode($arr);
+       }
+     }
+
+     public function show_companylist_table(){
+       $companytype = Company::all();
+       return view('admin.site_admin.company_list')->with(['url'=>'company_list','companytype'=>$companytype]);
+     }
+
+     public function get_all_company_list(){
+       $companies=Company::where('company_type','company')->orderBy('id', 'desc')->get();
+       $arr=[];
+       foreach ($companies as $data){
+           $company_data=new CompanyData($data->id);
+           array_push($arr,$company_data->getCompany_info());
+       }
+        return json_encode($arr);
+     }
+     public function get_all_company_training_list(){
+       $companies=Company::where('company_type','training')->orderBy('id', 'desc')->get();
+       $arr=[];
+       foreach ($companies as $data){
+           $company_data=new CompanyData($data->id);
+           array_push($arr,$company_data->getCompany_info());
+       }
+        return json_encode($arr);
+     }
+     public function get_all_company_freeagent_list(){
+       $companies=Company::where('company_type','freeagent')->orderBy('id', 'desc')->get();
+       $arr=[];
+       foreach ($companies as $data){
+           $company_data=new CompanyData($data->id);
+           array_push($arr,$company_data->getCompany_info());
+       }
+        return json_encode($arr);
+     }
+
+     public function company_edit($id){
+       $data = Company::find($id);
+       $data['photo_url']=ASC::$domain_url."upload/company_logo/".$data->photo;
+       return json_encode($data);
+     }
+
+     public function company_update(Request $request){
+       $id = $request->get('id');
+       $companyname = $request->get('name');
+       $phone = $request->get('phone');
+       $email = $request->get('email');
+       $address = $request->get('address');
+       $whatwedo = $request->get('whatwedo');
+       $whyjoinus = $request->get('whyjoinus');
+       $workplace = $request->get('workplaceandculture');
+       $facebook_url = $request->get('facebook');
+       $website_url = $request->get('website');
+       $photo = $request->file('photo');
+      if($request->hasFile('photo')){
+        $photo = $request->file('photo');
+        $photo_name = uniqid().'_'.$photo->getClientOriginalName();
+        $photo->move(public_path('upload/company_logo/'),$photo_name);
+        $company = Company::find($id);
+        $image_path=public_path().'/upload/company_logo/'.$company->photo;
+        if(file_exists($image_path)){
+            unlink($image_path);
+        }
+        Company::findOrFail($id)->update([
+          'company_name' => $companyname,
+          'phone' => $phone,
+          'email' => $email,
+          'photo' => $photo_name,
+          'address' => $address,
+          'what_we_do' => $whatwedo,
+          'why_join_us' => $whyjoinus,
+          'workplace_and_culture' => $workplace,
+          'facebook_url' => $facebook_url,
+          'website_url' => $website_url
+        ]);
+      }else {
+        Company::findOrFail($id)->update([
+          'company_name' => $companyname,
+          'phone' => $phone,
+          'email' => $email,
+          'address' => $address,
+          'what_we_do' => $whatwedo,
+          'why_join_us' => $whyjoinus,
+          'workplace_and_culture' => $workplace,
+          'facebook_url' => $facebook_url,
+          'website_url' => $website_url
+        ]);
+      }
+     }
+
+     public function company_delete($id){
+       $company=Company::findOrFail($id);
+       $type = $company->company_type;
+       $image_path=public_path().'/upload/company_logo/'.$company->photo;
+       if(file_exists($image_path)){
+           unlink($image_path);
+       }
+       $company->delete();
+
+       User::where('data_id',$id)->delete();
+
+       $company_photos = CompanyPhoto::where('company_id',$id)->get();
+       foreach ($company_photos as $company_photo) {
+         $company_photo_path=public_path().'/upload/company_photo/'.$company_photo->photo;
+         if(file_exists($company_photo_path)){
+             unlink($company_photo_path);
+         }
+         $company_photo->delete();
+       }
+      $seafarer_requests = Seafarer_request::where('company_id',$id)->get();
+      //return $seafarer_requests;
+      foreach ($seafarer_requests as $seafarer_request) {
+        $seafarer_request->delete();
+      }
+       if ($type == 'company' || $type == 'freeagent') {
+         $jobposts = JobPost::where('company_id',$id)->get();
+         foreach ($jobposts as $jobpost) {
+           $jobpost->delete();
+         }
+       }elseif ($type == 'training') {
+         $trainingposts = TrainingPost::where('company_id',$id)->get();
+         foreach ($trainingposts as $trainingpost) {
+           $training_post_path=public_path().'/upload/post/'.$trainingpost->photo;
+           if(file_exists($training_post_path)){
+               unlink($training_post_path);
+           }
+           $trainingpost->delete();
+         }
+       }
      }
 }

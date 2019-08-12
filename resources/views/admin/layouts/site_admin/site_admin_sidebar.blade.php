@@ -23,12 +23,6 @@
                     <p>Manage Website</p>
                 </a>
             </li>
-            <li class="nav-item @if($url=="company_list") active @endif">
-                <a class="nav-link" href="{{url('admin/company_list')}}">
-                    <i class="material-icons">content_paste</i>
-                    <p>Company List</p>
-                </a>
-            </li>
             <li class="nav-item @if($url=="category") active @endif">
                 <a class="nav-link" href="{{url('admin/category')}}">
                     <i class="material-icons">library_books</i>
@@ -69,6 +63,12 @@
                 <a class="nav-link" href="{{url('admin/contact')}}">
                     <i class="material-icons">language</i>
                     <p>Contact</p>
+                </a>
+            </li>
+            <li class="nav-item @if($url=="company_list") active @endif">
+                <a class="nav-link" href="{{url('admin/company_list')}}">
+                    <i class="material-icons">content_paste</i>
+                    <p>Company List</p>
                 </a>
             </li>
             <li class="nav-item">

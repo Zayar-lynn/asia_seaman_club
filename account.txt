@@ -13,7 +13,7 @@ company
 star@gmail.com	
 testadmin
 
-trining
+training
 ========
 diamond@gmail.com	
 testadmin

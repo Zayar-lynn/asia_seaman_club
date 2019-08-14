@@ -26,17 +26,56 @@
                 <input type="text" placeholder="Company Name*" required class="form-control" name="companyname">
               </div>
               <div class="input-wrap">
+                <select name="type" class="form-control" required>
+                  <option>--Select Type-- </option>
+                  <?php
+                    $arr = ['Shipping Company','SRPS/Crewing Company','Maritime Unversity','Maritime Training School','Maritime Training Center','Maritime Organization','Maritime Institute','Customize'];
+                    foreach ($arr as $data) {
+                  ?>
+                    <option value="{{$data}}">{{$data}}</option>
+                  <?php
+                    }
+                  ?>
+                </select>
+              </div>
+              <div class="input-wrap">
+                <input type="text" placeholder="Contact Person Name*" required class="form-control" name="contact_person_name">
+              </div>
+              <div class="input-wrap">
+                <input type="text" placeholder="Position*" required class="form-control" name="position">
+              </div>
+              <div class="input-wrap">
                 <input type="tel" placeholder="Phone*" required class="form-control" name="phone">
               </div>
               <div class="input-wrap">
-                <input type="email" placeholder="Email*" required class="form-control" name="email">
+                <textarea name="address" id="" cols="30" rows="10" required class="form-control" placeholder="Office Address No.*"></textarea>
               </div>
               <div class="input-wrap">
-                <select name="type" class="form-control">
-                  <option>--Select Company-- </option>
-                  <option value="training">Maritine training </option>
-                  <option value="company">SRPS</option>
+                <input type="text" placeholder="Street*" required class="form-control" name="street">
+              </div>
+              <div class="input-wrap">
+                <input type="text" placeholder="City*" required class="form-control" name="city">
+              </div>
+              <div class="input-wrap">
+                <input type="text" placeholder="State*" required class="form-control" name="state">
+              </div>
+              <div class="input-wrap">
+                <select name="country" class="form-control" required>
+                  <option>--Select Country-- </option>
+                  <?php
+                    foreach ($countries as $country) {
+                  ?>
+                    <option value="{{$country->id}}">{{$country->country_name}}</option>
+                  <?php
+                    }
+                  ?>
                 </select>
+              </div>
+              <div class="input-wrap">
+                <input type="text" placeholder="Website URL*" required class="form-control" name="website">
+              </div>
+              <div class="input-wrap">
+                <input type="email" placeholder="Email*" required class="form-control" name="email">
               </div>
               <!-- <div class="input-wrap">
                 <input type="text" name="code" placeholder="Zip code" class="form-control">
@@ -48,28 +87,13 @@
                 <input type="password" placeholder="Retype-Password*" required class="form-control" name="password_confirmation">
               </div>
               <div class="input-wrap">
-                <textarea name="address" id="" cols="30" rows="10" required class="form-control" placeholder="Address*"></textarea>
+                <input type="text" placeholder="Referral Code*" required class="form-control" name="referral_code">
               </div>
-              <div class="input-wrap">
-                <textarea name="whatwedo" id="" cols="30" rows="10" required class="form-control" placeholder="What we do*"></textarea>
-              </div>
-              <div class="input-wrap">
-                <textarea name="whyjoinus" id="" cols="30" rows="10" required class="form-control" placeholder="Why join us*"></textarea>
-              </div>
-              <div class="input-wrap">
-                <textarea name="workplace" id="" cols="30" rows="10" required class="form-control" placeholder="Workplace and culture*"></textarea>
-              </div>
-              <div class="input-wrap">
-                <input type="text" placeholder="Facebook URL*" required class="form-control" name="facebook">
-              </div>
-              <div class="input-wrap">
-                <input type="text" placeholder="Website URL*" required class="form-control" name="website">
-              </div>
-              <div class="input-wrap">
+              {{-- <div class="input-wrap">
                 <label class="btn btn-primary upload_btn btn-block">
                   Upload<input type="file" required id="upload_photo" name="photo" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
                 </label>
-              </div>
+              </div> --}}
               <div class="sub-btn">
                 <input type="submit" class="sbutn" value="Register Now" name="register">
               </div>

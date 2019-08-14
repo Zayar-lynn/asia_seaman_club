@@ -4,22 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model
+class Freeman extends Model
 {
     protected $fillable = [
         'id',
-        'company_name',
-        'contact_person_name',
-        'position',
+        'name',
+        'occupation',
+        'id_card',
+        'front_photo',
+        'back_photo',
         'phone',
-        'email',
-        'business_type',
         'address',
         'street',
         'city',
         'state',
-        'country_id',
-        'website_url',
+        'email',
         'referral_code'
     ];
 }

@@ -26,7 +26,33 @@
                 <input type="text" placeholder="Agent Name*" required class="form-control" name="agentcompany">
               </div>
               <div class="input-wrap">
+                <input type="text" placeholder="Occupation*" required class="form-control" name="occupation">
+              </div>
+              <div class="input-wrap">
+                <input type="text" placeholder="Identification card*" required class="form-control" name="id_card">
+              </div>
+              <div class="input-wrap">
+                <label for="">Front Photo</label>
+                <input type="file"required name="front_photo">
+              </div>
+              <div class="input-wrap">
+                  <label for="">Back Photo</label>
+                  <input type="file"required name="back_photo">
+                </div>
+              <div class="input-wrap">
                 <input type="tel" placeholder="Phone*" required class="form-control" name="phone">
+              </div>
+              <div class="input-wrap">
+                <textarea name="address" id="" cols="30" rows="5" required class="form-control" placeholder="Address*"></textarea>
+              </div>
+              <div class="input-wrap">
+                <input type="text" placeholder="Street*" required class="form-control" name="street">
+              </div>
+              <div class="input-wrap">
+                <input type="text" placeholder="City*" required class="form-control" name="city">
+              </div>
+              <div class="input-wrap">
+                <input type="text" placeholder="State*" required class="form-control" name="state">
               </div>
               <div class="input-wrap">
                 <input type="email" placeholder="Email*" required class="form-control" name="email">
@@ -38,16 +64,13 @@
                 <input type="password" placeholder="Retype-Password*" required class="form-control" name="password_confirmation">
               </div>
               <div class="input-wrap">
-                <textarea name="address" id="" cols="30" rows="5" required class="form-control" placeholder="Address*"></textarea>
+                <input type="text" placeholder="Referral Code*" required class="form-control" name="referral_code">
               </div>
-              <div class="input-wrap">
-                <textarea name="whatwedo" id="" cols="30" rows="5" required class="form-control" placeholder="What We Do*"></textarea>
-              </div>
-              <div class="input-wrap">
+              {{-- <div class="input-wrap">
                 <label class="btn btn-primary upload_btn btn-block">
                   Upload<input type="file" id="upload_photo" name="photo" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
                 </label>
-              </div>
+              </div> --}}
               <div class="sub-btn">
                 <input type="submit" class="sbutn" value="Register Now" name="register">
               </div>
@@ -63,6 +86,16 @@
 </div>
 </div>
 <!--Inner Content End--> 
+
+<script>
+  $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN':$('meta[name="csrf_token"]').attr('content')
+      }
+  });
+
+  
+</script>
 
 <!--footer start-->
 @include('user.include.footer')

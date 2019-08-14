@@ -50,42 +50,43 @@ class RegisterController extends Controller
         $password = $request->get('password');
         $password_confirmation = $request->get('password_confirmation');
         $address = $request->get('address');
-        $whatwedo = $request->get('whatwedo');
-        $whyjoinus = $request->get('whyjoinus');
-        $workplace = $request->get('workplace');
-        $facebook_url = $request->get('facebook');
+        $contact_person_name = $request->get('contact_person_name');
+        $position = $request->get('position');
+        $street = $request->get('street');
+        $city = $request->get('city');
+        $state = $request->get('state');
+        $country = $request->get('country');
         $website_url = $request->get('website');
-        $photo = $request->file('photo');
-        $photo_name = uniqid().'_'.$photo->getClientOriginalName();
-        $photo->move(public_path('upload/company_logo'),$photo_name);
+        $referral_code = $request->get('referral_code');
 
         if($password == $password_confirmation){
                 $company = Company::create([
-                                'company_name' => $companyname,
-                                'phone' => $phone,
-                                'email' => $email,
-                                'company_type' => $type,
-                                'photo' => $photo_name,
-                                'address' => $address,
-                                'what_we_do' => $whatwedo,
-                                'why_join_us' => $whyjoinus,
-                                'workplace_and_culture' => $workplace,
-                                'facebook_url' => $facebook_url,
-                                'website_url' => $website_url,
-                            ])->id;
+                            'company_name' => $companyname,
+                            'contact_person_name' => $contact_person_name,
+                            'position' => $position,
+                            'phone' => $phone,
+                            'email' => $email,
+                            'business_type' => $type,
+                            'address' => $address,
+                            'street' => $street,
+                            'city' => $city,
+                            'state' => $state,
+                            'country_id' => $country,
+                            'website_url' => $website_url,
+                            'referral_code' => $referral_code
+                        ])->id;
             User::create([
                 'email' => $email,
                 'password' => Hash::make($password),
-//                'password' => $password,
                 'type' => $type,
                 'data_id' => $company,
             ]);
-            for ($i=1; $i <= 8; $i++) {
-                CompanyPhoto::create([
-                    'title' => '',
-                    'company_id' => $company,
-                ]);
-            }
+            // for ($i=1; $i <= 8; $i++) {
+            //     CompanyPhoto::create([
+            //         'title' => '',
+            //         'company_id' => $company,
+            //     ]);
+            // }
 
 
         }

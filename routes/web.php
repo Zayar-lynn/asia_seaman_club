@@ -42,9 +42,8 @@ Route::get('/contact-us', function () {
 Route::get('/register',function(){
 	return view('user/register');
 });
-Route::get('/company-register',function(){
-	return view('user/company-register');
-});
+Route::get('/company-register','Controller@company_register');
+
 Route::get('/employee-register',function(){
 	return view('user/employee-register');
 });

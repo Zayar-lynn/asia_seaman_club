@@ -17,3 +17,15 @@ training
 ========
 diamond@gmail.com	
 testadmin
+
+
+free agent
+=======
+zayy@outlook.com	
+testadmin
+
+
+seafarer
+=====
+saiarkar@outlook.com
+testadmin

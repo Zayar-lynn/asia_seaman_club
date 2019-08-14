@@ -20,6 +20,8 @@
 
 <link rel="stylesheet" href="../fancybox-master/dist/jquery.fancybox.min.css">
 
+<meta name="csrf_token" content="{{csrf_token()}}">
+
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesnt work if you view the page via file:// -->
 <!--[if lt IE 9]>

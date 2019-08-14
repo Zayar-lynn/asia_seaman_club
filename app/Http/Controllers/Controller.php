@@ -21,6 +21,7 @@ use App\JobPost;
 use App\CustomClass\JobData;
 use App\Ads;
 use App\CustomClass\ASC;
+use App\Country;
 
 class Controller extends BaseController
 {
@@ -123,5 +124,13 @@ class Controller extends BaseController
             'company_job'=>$arr_job,
             'adss'=>$adss
             ]);
+    }
+
+    public function company_register(){
+        $country = Country::all();
+
+        return view('user/company-register')->with([
+            'countries'=>$country
+        ]);
     }
 }

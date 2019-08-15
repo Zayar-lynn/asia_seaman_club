@@ -11,6 +11,8 @@ use App\Account;
 use App\CompanyPhoto;
 //use Illuminate\Foundation\Auth\User;
 use App\User;
+use App\CustomClass\ASC;
+use App\Freeman;
 
 class RegisterController extends Controller
 {
@@ -78,7 +80,7 @@ class RegisterController extends Controller
             User::create([
                 'email' => $email,
                 'password' => Hash::make($password),
-                'type' => $type,
+                'type' => 'company',
                 'data_id' => $company,
             ]);
             // for ($i=1; $i <= 8; $i++) {
@@ -99,40 +101,67 @@ class RegisterController extends Controller
 
     }
 
+    public function insert_photo_file(Request $request)
+    {
+        $front_photo = $request->file('front_photo');
+        $front_photo_name = uniqid().'_'.$front_photo->getClientOriginalName();
+        $front_photo->move(public_path('upload/freeman_photo'),$front_photo_name);
+        $front_photo_link = ASC::$domain_url.'upload/freeman_photo/'.$front_photo_name;
+
+        $back_photo = $request->file('back_photo');
+        $back_photo_name = uniqid().'_'.$back_photo->getClientOriginalName();
+        $back_photo->move(public_path('upload/freeman_photo'),$back_photo_name);
+        $back_photo_link = ASC::$domain_url.'upload/freeman_photo/'.$back_photo_name;
+
+        $photo_link_arr = [$front_photo_link,$back_photo_link];
+        return $photo_link_arr;
+    }
+
     public function freeagentregister(Request $request)
     {
         $agentcompany = $request->get('agentcompany');
+        $occupation = $request->get('occupation');
+        $id_card = $request->get('id_card');
         $phone = $request->get('phone');
         $email = $request->get('email');
-        $type = 'freeagent';
+        $type = 'freeman';
         $password = $request->get('password');
         $password_confirmation = $request->get('password_confirmation');
         $address = $request->get('address');
-        $whatwedo = $request->get('whatwedo');
-        $photo = $request->file('photo');
-        $photo_name = uniqid().'_'.$photo->getClientOriginalName();
-        $photo->move(public_path('upload/company_logo'),$photo_name);
+        $street = $request->get('street');
+        $city = $request->get('city');
+        $state = $request->get('state');
+        $referral_code = $request->get('referral_code');
+
+        $front_photo_link = $request->get('front_photo_link');
+        $back_photo_link = $request->get('back_photo_link');
+
+        //return $occupation;
 
         if($password == $password_confirmation){
-                $agentcompany = Company::create([
-                                'company_name' => $agentcompany,
+                $freeman = Freeman::create([
+                                'name' => $agentcompany,
+                                'occupation' => $occupation,
+                                'id_card' => $id_card,
+                                'front_photo' => $front_photo_link,
+                                'back_photo' => $back_photo_link,
                                 'phone' => $phone,
-                                'email' => $email,
-                                'company_type' => $type,
-                                'what_we_do' => $whatwedo,
-                                'photo' => $photo_name,
                                 'address' => $address,
+                                'street' => $street,
+                                'city' => $city,
+                                'state' => $state,
+                                'email' => $email,
+                                'referral_code' => $referral_code,
                             ])->id;
-            User::create([
-                'email' => $email,
-                'password' => Hash::make($password),
-//                'password' => $password,
-                'type' => $type,
-                'data_id' => $agentcompany,
-            ]);
+                            User::create([
+                                'email' => $email,
+                                'password' => Hash::make($password),
+                                'type' => $type,
+                                'data_id' => $freeman,
+                            ]);
 
         }
-        return redirect('/login');
+//         return redirect('/login');
     }
 
     public function seafarerregister(Request $request){

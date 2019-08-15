@@ -226,32 +226,46 @@ class CompanyController extends Controller
         $user = Auth::user();
         $company_id = $user->data_id;
 
-        $rank = $request->get('rank');
+        $position = $request->get('position');
+        $vancant = $request->get('vancant');
         $salary = $request->get('salary');
-        $contract_time = $request->get('contract_time');
+        $join_date = $request->get('join_date');
+        $contract_duration = $request->get('contract_duration');
+        $requirement = $request->get('requirement');
         $vessel_name = $request->get('vessel_name');
-        $ship_type = $request->get('ship_type');
-        $grt = $request->get('grt');
-        $flag_of_vessel = $request->get('flag_of_vessel');
-        $navigation_area = $request->get('navigation_area');
-        $request_certificates = $request->get('request_certificates');
+        $vessel_type = $request->get('vessel_type');
+        $build_year = $request->get('build_year');
+        $dwt = $request->get('dwt');
+        $flage = $request->get('flage');
+        $main_engine = $request->get('main_engine');
+        $crew_onboard = $request->get('crew_onboard');
+        $sailing_area = $request->get('sailing_area');
         $description = $request->get('description');
         $english_level = $request->get('english_level');
 
+        $photo = $request->file('photo');
+        $photo_name = uniqid().'_'.$photo->getClientOriginalName();
+        $photo->move(public_path('upload/company_photo'),$photo_name);
 
             JobPost::create([
                 'company_id'=>$company_id,
-                'rank'=>$rank,
+                'job_position_id'=>$position,
+                'vancant'=>$vancant,
+                'join_date'=>$join_date,
                 'salary'=>$salary,
-                'contract_time'=>$contract_time,
+                'contract_duration'=>$contract_duration,
+                'requirement'=>$requirement,
                 'vessel_name'=>$vessel_name,
-                'shiptype_id'=>$ship_type,
-                'grt'=>$grt,
-                'flag_of_vessel'=>$flag_of_vessel,
-                'navigation_area'=>$navigation_area,
-                'request_certificates'=>$request_certificates,
+                'vessel_type_id'=>$vessel_type,
+                'build_year'=>$build_year,
+                'dwt'=>$dwt,
+                'flage'=>$flage,
+                'main_engine'=>$main_engine,
+                'crew_onboard'=>$crew_onboard,
+                'sailing_area'=>$sailing_area,
                 'description'=>$description,
-                'english_level'=>$english_level
+                'english_level'=>$english_level,
+                'photo'=>$photo_name
             ]);
     }
 

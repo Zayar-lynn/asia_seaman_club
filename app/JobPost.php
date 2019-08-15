@@ -9,16 +9,23 @@ class JobPost extends Model
     protected $fillable = [
         'id',
         'company_id',
-        'rank',
+        'job_position_id',
+        'vancant',
         'salary',
-        'contract_time',
+        'join_date',
+        'contract_duration',
+        'requirement',
         'vessel_name',
-        'shiptype_id',
-        'grt',
-        'flag_of_vessel',
-        'navigation_area',
-        'request_certificates',
+        'vessel_type_id',
+        'build_year',
+        'dwt',
+        'flage',
+        'main_engine',
+        'crew_onboard',
+        'sailing_area',
         'description',
-        'english_level'
+        'english_level',
+        'photo',
+        'status'
     ];
 }

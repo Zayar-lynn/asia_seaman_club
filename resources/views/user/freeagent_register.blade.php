@@ -20,7 +20,7 @@
         <div class="login">
           <div class="contctxt">Free Agent Register</div>
           <div class="formint conForm">
-            <form method="post" action="{{url('/freeagentregister')}}" enctype="multipart/form-data">
+            <form id="insert_freeman" enctype="multipart/form-data">
               {{csrf_field()}}
               <div class="input-wrap">
                 <input type="text" placeholder="Agent Name*" required class="form-control" name="agentcompany">
@@ -33,11 +33,11 @@
               </div>
               <div class="input-wrap">
                 <label for="">Front Photo</label>
-                <input type="file"required name="front_photo">
+                <input type="file"required name="front_photo" id="front_photo" value="">
               </div>
               <div class="input-wrap">
                   <label for="">Back Photo</label>
-                  <input type="file"required name="back_photo">
+                  <input type="file"required name="back_photo" id="back_photo" value="">
                 </div>
               <div class="input-wrap">
                 <input type="tel" placeholder="Phone*" required class="form-control" name="phone">
@@ -66,6 +66,8 @@
               <div class="input-wrap">
                 <input type="text" placeholder="Referral Code*" required class="form-control" name="referral_code">
               </div>
+              <input type="hidden" name="front_photo_link" id="front_photo_link" value="">
+              <input type="hidden" name="back_photo_link" id="back_photo_link" value="">
               {{-- <div class="input-wrap">
                 <label class="btn btn-primary upload_btn btn-block">
                   Upload<input type="file" id="upload_photo" name="photo" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
@@ -86,16 +88,6 @@
 </div>
 </div>
 <!--Inner Content End--> 
-
-<script>
-  $.ajaxSetup({
-      headers: {
-          'X-CSRF-TOKEN':$('meta[name="csrf_token"]').attr('content')
-      }
-  });
-
-  
-</script>
 
 <!--footer start-->
 @include('user.include.footer')

@@ -107,14 +107,14 @@ class CompanyData{
     {
         
         $company = $this->getCompany_info();
-        $company_type = $company->company_type;
-        if($company_type == 'company'){
+        $business_type = $company->business_type;
+        if($business_type == 'Shipping Company'){
            $post = JobPost::where('company_id',$company_id)->get();
            //$post="business company";
-        }elseif ($company_type == 'training') {
+        }elseif ($business_type == 'training') {
             $post = TrainingPost::where('company_id',$company_id)->get();
             //$post="training";
-        }elseif ($company_type == 'freeagent') {
+        }elseif ($business_type == 'freeman') {
             $post = JobPost::where('company_id',$company_id)->get();
             //$post="freeagent";
         }

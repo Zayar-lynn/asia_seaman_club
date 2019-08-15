@@ -79,6 +79,7 @@ Route::post('/businessregister','RegisterController@businessregister');
 Route::post('/seafarerregister','RegisterController@seafarerregister');
 
 Route::post('/freeagentregister','RegisterController@freeagentregister');
+Route::post('/insert_photo_file','RegisterController@insert_photo_file');
 
 Route::post('/contact','ContactController@store');
 

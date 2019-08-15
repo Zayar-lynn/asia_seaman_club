@@ -8,31 +8,30 @@
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
-    {{--<style>--}}
-        {{--.imagePreview {--}}
-            {{--width: 100%;--}}
-            {{--height: 150px;--}}
-            {{--background-position: center center;--}}
-            {{--background:url('http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg');--}}
-            {{--background-color:#fff;--}}
-            {{--background-size: cover;--}}
-            {{--background-repeat:no-repeat;--}}
-            {{--display: inline-block;--}}
-            {{--box-shadow:0px -3px 6px 2px rgba(0,0,0,0.2);--}}
-        {{--}--}}
-        {{--.upload_btn--}}
-        {{--{--}}
-            {{--display:block;--}}
-            {{--border-radius:0px;--}}
-            {{--box-shadow:0px 4px 6px 2px rgba(0,0,0,0.2);--}}
-            {{--margin-top:-5px;--}}
-            {{--margin-bottom: 15px;--}}
-        {{--}--}}
-        {{--.imgUp--}}
-        {{--{--}}
-            {{--margin-bottom:15px;--}}
-        {{--}--}}
-    {{--</style>--}}
+    <style>
+        .imagePreview {
+            width: 100%;
+            height: 150px;
+            background-position: center center;
+            background:url('http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg');
+            background-color:#fff;
+            background-size: cover;
+            background-repeat:no-repeat;
+            display: inline-block;
+            box-shadow:0px -3px 6px 2px rgba(0,0,0,0.2);
+        }
+        .upload_btn
+        {
+            display:block;
+            border-radius:10px;
+            box-shadow:0px 4px 6px 2px rgba(0,0,0,0.2);
+            margin-bottom: 15px;
+        }
+        .imgUp
+        {
+            margin-bottom:15px;
+        }
+    </style>
 
     @endsection
 @section('nav_bar_text')
@@ -42,109 +41,197 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-12">
                     <div class="card">
-
-
-                        <div class="card-title p-2 mb-0 pb-0">
-                            <h4>
-                                Create New Job Post
-                            </h4>
+                        <div class="card-header card-header-primary">
+                            <button type="button" name="button" class="btn btn-success pull-right" data-target="#modalBox" data-toggle="modal" data-keyboard="false" data-backdrop="static">Add</button>
                         </div>
-                        <div class="card-body mt-0 pt-0">
-                            <form action="" id="insert_jobpost">
-                                    {{csrf_field()}}
-                                    {{--<div class="row">--}}
-                                        {{--<div class="col-sm-12 imgUp">--}}
-                                            {{--<img id="image" class="imagePreview">--}}
-                                            {{--<label class="btn btn-primary upload_btn">--}}
-                                                {{--Upload<input type="file" onchange="displaySelectedPhoto('upload_photo','image')" id="upload_photo" name="photo" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">--}}
-                                            {{--</label>--}}
-                                        {{--</div><!-- col-2 -->--}}
-                                        {{--<i class="fa fa-plus imgAdd"></i>--}}
-                                    {{--</div>--}}
-                                <div class="form-group">
-                                    <input type="text" name="rank" placeholder="Rank" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="salary" placeholder="Salary" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="contract_time" placeholder="Contract-Time" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="vessel_name" placeholder="Vessel-Name" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <select name="ship_type" id="" class="form-control">
-                                        <option value="">Ship Type</option>
-                                        @foreach($shiptypes as $shiptype)
-                                            <option value="{{$shiptype->id}}">{{$shiptype->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="grt" placeholder="GRT" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="flag_of_vessel" placeholder="Flag-of-vessel" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="navigation_area" placeholder="Navigation-area" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="request_certificates" placeholder="Request-certificates" class="form-control">
-                                </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table" id="datatable">
+                                    <thead class=" text-success">
+                                        <th>
+                                            No
+                                        </th>
+                                        <th>
+                                            Photo
+                                        </th>
+                                        <th>
+                                            Title
+                                        </th>
+                                        <th>
+                                            Description
+                                        </th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </thead>
+                                    <tbody>
 
-                                <div class="form-group">
-                                    <textarea class="form-control" placeholder="Description" name="description"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <select name="english_level" id="" class="form-control">
-                                        <option value="">English Level</option>
-                                        <option value="lowlevel">Low Level</option>
-                                        <option value="mediumlevel">medium Level</option>
-                                        <option value="hightlevel">Hight Level</option>
-                                    </select>
-                                </div>
-
-                                <input type="submit" value="send" class="btn btn-success">
-                            </form>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-
-
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="col-md-9">
-                    <div class="card  mt-0 p-3">
-                      <div class="table-responsive">
-                          <table class="table" id="show">
-                              <thead class=" text-primary">
-                                <th>No</th>
-                                <th>Rank</th>
-                                <th>Salary</th>
-                                <th>Contract Time</th>
-                                <th>Shiptype</th>
-                                <th>English level</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                              </thead>
-                              <tbody>
+        {{-- insert_model --}}
+        <div class="modal fade" id="modalBox">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Insert Form</h4>
+                        <button data-dismiss="modal" class="close">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="insert_jobpost" enctype="multipart/form-data" class="md-form">
+                              {{csrf_field()}}
 
-                              </tbody>
-                          </table>
-                      </div>
+                              <div class="row">
+                                  <div class="col-sm-4 imgUp">
+                                      <img src="{{asset('images/default.jpg')}}" class="img-thumbnail" id="image" class="imagePreview">
+                                      <label class="btn btn-primary upload_btn">
+                                          Upload<input type="file" onchange="displaySelectedPhoto('upload_photo','image')" id="upload_photo" name="photo" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;" required>
+                                      </label>
+                                  </div>
+                                  <div class="col-sm-8">
+                                      <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <input list="position" name="position" class="form-control" placeholder="Position">
+                                                <datalist id="position">
+                                                    <option value="Internet Explorer">
+                                                    <option value="Firefox">
+                                                    <option value="Chrome">
+                                                    <option value="Opera">
+                                                    <option value="Safari">
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                {{-- <label for="vancant">Vancant</label> --}}
+                                                <input type="text" name="vancant" id="vancant" class="form-control" required placeholder="Vancant">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                {{-- <label for="salary">Salary</label> --}}
+                                                <input type="text" name="salary" id="salary" class="form-control" required placeholder="Salary">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <input list="join_date" name="join_date" class="form-control" placeholder="Join Date">
+                                                <datalist id="join_date">
+                                                    <option value="Internet Explorer">
+                                                    <option value="Firefox">
+                                                    <option value="Chrome">
+                                                    <option value="Opera">
+                                                    <option value="Safari">
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" name="contract_duration" id="contract_duration" class="form-control" required placeholder="Duration of contract">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" name="english_level" id="english_level" class="form-control" required placeholder="Level of English">
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea name="requirement" rows="5" class="form-control" id="requirement" required placeholder="Requriement"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="vessel_name" id="vessel_name" class="form-control" required placeholder="Vessel Name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input list="vessel_type" name="vessel_type" class="form-control" placeholder="Vessel Type">
+                                        <datalist id="join_date">
+                                            <option value="Internet Explorer">
+                                            <option value="Firefox">
+                                            <option value="Chrome">
+                                            <option value="Opera">
+                                            <option value="Safari">
+                                        </datalist>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="year" name="build_year" id="build_year" class="form-control" required placeholder="Build Year">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="number" name="dwt" id="dwt" class="form-control" required placeholder="D.W.T">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="flage" id="flage" class="form-control" required placeholder="Flag">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="main_engine" id="main_engine" class="form-control" required placeholder="Main Engine">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="crew_onboard" id="crew_onboard" class="form-control" required placeholder="Crew Onboard">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input list="sailing_area" name="sailing_area" class="form-control" placeholder="Sailing Area">
+                                        <datalist id="sailing_area">
+                                            <option value="Internet Explorer">
+                                            <option value="Firefox">
+                                            <option value="Chrome">
+                                            <option value="Opera">
+                                            <option value="Safari">
+                                        </datalist>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {{-- <label for="des">Description</label> --}}
+                                        <textarea name="description" rows="5" class="form-control" id="description" required placeholder="Description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                              <button type="submit" class="btn btn-primary pull-right" id="btn_submit">Create</button>
+                              <div class="clearfix"></div>
+                          </form>
                     </div>
                 </div>
-
             </div>
         </div>
 
         <!-- edit modal -->
-                <div class="modal fade" id="modalBox">
-                    <div class="modal-dialog modal-sm">
+                <div class="modal fade" id="edit_modalBox">
+                    <div class="modal-dialog modal-md">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h4 class="modal-title">Edit Form</h4>
@@ -155,69 +242,52 @@
 
                                 <form id="update_data">
                                     {{csrf_field()}}
-                                    <input type="hidden" name="id" class="form-control" id="id_edit" value="" required>
 
-                                    <div class="form-group">
-                                        <label for="update_rank">Rank</label>
-                                        <input type="text" name="rank" id="update_rank" class="form-control" required>
+                                    <div class="row">
+                                      <div class="col-sm-6">
+                                        <input type="hidden" name="id" class="form-control" id="id_edit" value="">
+                                        <img src="{{asset('images/default.jpg')}}" class="img-thumbnail" alt="" id="imgs" class="imagePreview" style="width: 100%;height: 150px;">
+                                        <label class="btn btn-primary upload_btn">
+                                            Upload<input type="file" onchange="displaySelectedPhoto('update_photo','imgs')" id="update_photo" name="photo" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+                                        </label>
+                                      </div>
+                                      <div class="col-sm-6">
+                                          <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="update_title">Title</label>
+                                                  <textarea name="title" id="update_title" class="form-control" rows="1"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                  <select name="deparment_type" id="update_dep" class="form-control">
+                                                      <option value="">Department Type</option>
+                                                      
+                                                  </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="update_author">Author</label>
+                                                    <textarea name="author" rows="1" class="form-control" id="update_author" required></textarea>
+                                                </div>
+                                            </div>
+                                          </div>
+                                      </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="update_salary">Salary</label>
-                                        <input type="text" name="salary" id="update_salary" class="form-control" required>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                {{-- <label for="update_des
+                                                ">Description</label> --}}
+                                                <textarea name="des" rows="8" class="form-control" id="update_des"></textarea>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="update_contract_time">Contract Time</label>
-                                        <input type="text" name="contract_time" id="update_contract_time" class="form-control" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="update_vessel_name">Vessel Name</label>
-                                        <input type="text" name="vessel_name" id="update_vessel_name" class="form-control" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="update_shiptype">Ship Type</label>
-                                        <select name="ship_type" id="update_shiptype" class="form-control" required>
-                                            <option value="">Ship Type</option>
-                                            @foreach($shiptypes as $shiptype)
-                                                <option value="{{$shiptype->id}}">{{$shiptype->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="update_grt">GRT</label>
-                                        <input type="text" name="grt" id="update_grt" class="form-control" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="update_flag_of_vessel">Flag of vessel</label>
-                                        <input type="text" name="flag_of_vessel" id="update_flag_of_vessel" class="form-control" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="update_navigation_area">Navigation Area</label>
-                                        <input type="text" name="navigation_area" id="update_navigation_area" class="form-control" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="update_request_certificates">Request Certificate</label>
-                                        <input type="text" name="request_certificates" id="update_request_certificates" class="form-control" required>
-                                    </div>
+                                    <button class=" btn btn-primary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary pull-right" id="update_btn">Update</button>
 
-                                    <div class="form-group">
-                                        <label for="update_description">Description</label>
-                                        <textarea class="form-control" name="description" id="update_description" required></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="update_english_level">English level</label>
-                                        <select name="english_level" id="update_english_level" class="form-control" required>
-                                            <option value="">English Level</option>
-                                            <option value="lowlevel">Low Level</option>
-                                            <option value="mediumlevel">medium Level</option>
-                                            <option value="hightlevel">Hight Level</option>
-                                        </select>
-                                    </div>
-                                    <div class="modal-footer">
-										<div class="form-group">
-											<button type="submit" class="btn btn-primary" id="update_btn">Update</button>
-											<button class=" btn btn-primary" data-dismiss="modal">Close</button>
-										</div>
-									</div>
                                 </form>
                             </div>
                         </div>
@@ -307,7 +377,7 @@
                         contentType: false,
                         success: function(data){
                         alert('Success');
-                        //console.log(data);
+                        console.log(data);
                         load();
                         $('#insert_jobpost')[0].reset();
                     }

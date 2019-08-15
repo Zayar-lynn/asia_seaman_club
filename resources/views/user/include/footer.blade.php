@@ -95,5 +95,58 @@
 <script src="{{url('js/owl.carousel.js')}}"></script> 
 <script src="{{url('fancybox-master/dist/jquery.fancybox.min.js')}}"></script>
 <script type="text/javascript" src="{{url('js/script.js')}}"></script>
+
+<!-- for freeman register -->
+<script>
+  $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN':$('meta[name="csrf_token"]').attr('content')
+      }
+  });
+
+  $('#insert_freeman').on('submit',function (e)
+  {
+    e.preventDefault();
+    var alldata = new FormData(this);
+    $.ajax
+    ({
+        type: "POST",
+        url: "{{url('/insert_photo_file')}}",
+        data:alldata,
+        cache:false,
+        processData: false,
+        contentType: false,
+        success: function(data){
+        var front_photo = data['0'];
+        var back_photo = data['1'];
+        $('#front_photo_link').val(front_photo);
+        $('#back_photo_link').val(back_photo);
+        //console.log(front_photo);
+        //$('#insert_freeman')[0].reset();
+
+        alldata.append('front_photo_link',$('#front_photo_link').val());
+        alldata.append('back_photo_link',$('#back_photo_link').val());
+        $.ajax
+            ({
+                type: "POST",
+                url: "{{url('/freeagentregister')}}",
+                data:alldata,
+                cache:false,
+                processData: false,
+                contentType: false,
+                success: function(data){
+                  //console.log(data);
+                  $('#insert_freeman')[0].reset();
+                  alert('Success');
+              }
+            });
+        
+    }
+    });
+    
+    return false;
+  });
+</script>
+
 </body>
 </html>

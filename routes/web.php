@@ -79,7 +79,7 @@ Route::post('/businessregister','RegisterController@businessregister');
 Route::post('/seafarerregister','RegisterController@seafarerregister');
 
 Route::post('/freeagentregister','RegisterController@freeagentregister');
-Route::post('/insert_photo_file','RegisterController@insert_photo_file');
+Route::post('/upload_freeman_photo','RegisterController@upload_freeman_photo');
 
 Route::post('/contact','ContactController@store');
 
@@ -195,6 +195,16 @@ Route::post('/create_or_edit_ads','AdsController@create_or_edit_ads');
 Route::post('api/all_ads','AdsController@all_ads');
 Route::post('delete_ads/{id}','AdsController@delete');
 
+Route::get('/admin/post_confirm','PostConfirmController@index');
+Route::post('/get_all_confirm_post','PostConfirmController@get_all_confirm_post');
+Route::post('/active/pending_post/{id}','PostConfirmController@active_post');
+Route::post('/delete/pending_post/{id}','PostConfirmController@destroy');
+
+Route::get('/admin/post','PostController@view_admin_post');
+Route::post('/insert/admin_post','PostController@insert_admin_post');
+Route::post('/upload_admin_post_photo','PostController@upload_admin_post_photo');
+Route::post('/get_all_admin_post','PostController@get_all_admin_post');
+
 //Company Dashboard
 Route::get('/company_dashboard','CompanyController@index');
 
@@ -217,7 +227,54 @@ Route::post('/delete/jobpost/{id}','CompanyController@destroy');
 Route::post('/edit/jobpost/{id}','CompanyController@edit');
 
 Route::post('/update/jobpost','CompanyController@update');
+//*****************************************
+//*****************************************
+//*****************************************
+//*****************************************
+//*****************************************
+//*****************************************
+//*****************************************
+//*****************************************
+// TrainingPost*******************************
+//start training post
+Route::post('api/insert/training_post','CompanyController@insert_training_post');
+Route::post('api/edit_training_post/{id}','CompanyController@edit_training_post');
+Route::get('api/confirm_training_post/{post_id}','CompanyController@confirm_training_post');
+Route::get('api/delete_training_post/{post_id}','CompanyController@delete_training_post');
+Route::get('api/pending_training_posts','CompanyController@pending_training_posts');
+Route::post('/upload_training_post_photo','CompanyController@upload_training_post_photo');
+Route::get('api/post/{post_id}','CompanyController@post_detail');
+//end
 
+//*****************************************
+//*****************************************
+//*****************************************
+//*****************************************
+//*****************************************
+//*****************************************
+//*****************************************
+//*****************************************
+//start application
+Route::get('active_job_posts','ApplicationController@active_job_posts');
+Route::get('active_training_posts','ApplicationController@active_training_posts');
+Route::get('active_posts','ApplicationController@active_posts');
+Route::get('shipmate','ApplicationController@shipmate');
+
+Route::get('job_post_detail/{id}','ApplicationController@JobPostDetail');
+Route::get('training_post_detail/{id}','ApplicationController@TrainingPostDetail');
+Route::get('normal_post_detail/{id}','ApplicationController@NormalPostDetail');
+//*****************************************
+//comment
+Route::post('api/create_comment','ApplicationController@create_comment');
+Route::post('api/edit_comment/{id}','ApplicationController@edit_comment');
+Route::get('delete_comment/{id}','ApplicationController@delete_comment');
+//*****************************************
+//*****************************************
+//*****************************************
+//*****************************************
+//*****************************************
+//*****************************************
+//*****************************************
 Route::get('/company_dashboard/company_list',function(){
     return view('admin.company_admin.company_list')->with(['url'=>'company_list']);
 });
@@ -288,6 +345,9 @@ Route::get('/serfarer_coin-history',function(){
     return view('user.coin-history');
 });
 
+Route::post('/upload_seafarer_post_photo','PostController@upload_seafarer_post_photo');
+Route::post('/insert/seafarer_post','PostController@insert_seafarer_post');
+
 
 //Freeagent Dashboard
 Route::get('/freeagent_dashboard',function(){
@@ -339,3 +399,7 @@ Route::get('api/{ascandroid}/company_profile/{company_id}','CompanyController@co
 Route::get('api/{ascandroid}/training_detail/{training_id}','CompanyController@training_detail_android');
 Route::get('api/{ascandroid}/course_detail/{course_id}','CourseController@course_detail_android');
 Route::get('api/{ascandroid}/blog_detail/{blog_id}','AdminBlogController@blog_detail_android');
+
+
+
+Route::get('test','ApplicationController@active_training_posts');

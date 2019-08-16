@@ -29,10 +29,16 @@
                     <p>Manage Category</p>
                 </a>
             </li>  --}}
-            <li class="nav-item @if($url=="blog") active @endif">
+            {{-- <li class="nav-item @if($url=="blog") active @endif">
                 <a class="nav-link" href="{{url('admin/blog')}}">
                     <i class="material-icons">bubble_chart</i>
                     <p>Manage Blog</p>
+                </a>
+            </li> --}}
+            <li class="nav-item @if($url=="admin_post") active @endif">
+                <a class="nav-link" href="{{url('admin/post')}}">
+                    <i class="material-icons">bubble_chart</i>
+                    <p>Manage Post</p>
                 </a>
             </li>
             <li class="nav-item @if($url=="testimonial") active @endif">
@@ -69,6 +75,12 @@
                 <a class="nav-link" href="{{url('admin/company_list')}}">
                     <i class="material-icons">content_paste</i>
                     <p>Company List</p>
+                </a>
+            </li>
+            <li class="nav-item @if($url=="post_confirm") active @endif">
+                <a class="nav-link" href="{{url('admin/post_confirm')}}">
+                    <i class="material-icons">content_paste</i>
+                    <p>Post Confirm</p>
                 </a>
             </li>
             <li class="nav-item">

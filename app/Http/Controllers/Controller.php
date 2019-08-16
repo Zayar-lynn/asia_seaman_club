@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\CustomClass\JobPostData;
+use App\CustomClass\NormalPostData;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -30,7 +32,7 @@ class Controller extends BaseController
     function login(Request $request){
     	$email=$request->get('email');
         $password=$request->get('password');
-        
+
         $company_id=$request->get('company_id');
         $post_id=$request->get('post_id');
         //return json_encode($request->all());
@@ -132,5 +134,13 @@ class Controller extends BaseController
         return view('user/company-register')->with([
             'countries'=>$country
         ]);
+    }
+
+
+
+
+    function test(){
+        $post=new NormalPostData();
+        return $post->post_detail(1);
     }
 }

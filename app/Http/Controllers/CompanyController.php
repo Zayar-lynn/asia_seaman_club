@@ -13,8 +13,11 @@ use App\ShipType;
 use App\JobPost;
 use App\TrainingPost;
 use App\Company;
+use App\CustomClass\TrainingPostData;
+use App\JobPosition;
 use App\User;
 use App\Seafarer_request;
+use App\VesselType;
 
 class CompanyController extends Controller
 {
@@ -75,9 +78,13 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        $data = JobPost::find($id);
-        $data['photo_url']=ASC::$domain_url."upload/post/".$data->photo;
-        return json_encode($data);
+        // $data = JobPost::find($id);
+        // $data['photo_url']=ASC::$domain_url."upload/post/".$data->photo;
+        // return json_encode($data);
+
+        $obj=new JobData($id);
+        $jobpost_obj = $obj->getJobData();
+        return json_encode($jobpost_obj);
     }
 
     /**
@@ -216,10 +223,16 @@ class CompanyController extends Controller
         }
 
         $shiptype = ShipType::all();
+        $deck_position = JobPosition::where('header','Deck')->get();
+        $engine_position = JobPosition::where('header','Engine')->get();
+        $bulk_vesseltype = VesselType::where('header','Bulk Carriers')->get();
         return view('admin.company_admin.jobpost')
             ->with(['url'=>'jobpost'])
             ->with('shiptypes',$shiptype)
-            ->with(['company_name'=>$account_name->company_name]);
+            ->with(['company_name'=>$account_name->company_name])
+            ->with(['deck_positions'=>$deck_position])
+            ->with(['engine_positions'=>$engine_position])
+            ->with(['bulk_vesseltypes'=>$bulk_vesseltype]);
     }
 
     public function insert_jobpost(Request $request){
@@ -245,7 +258,7 @@ class CompanyController extends Controller
 
         $photo = $request->file('photo');
         $photo_name = uniqid().'_'.$photo->getClientOriginalName();
-        $photo->move(public_path('upload/company_photo'),$photo_name);
+        $photo->move(public_path('upload/post'),$photo_name);
 
             JobPost::create([
                 'company_id'=>$company_id,
@@ -537,4 +550,55 @@ class CompanyController extends Controller
          }
        }
      }
+
+
+
+
+
+
+
+     
+//training post
+function upload_training_post_photo(Request $request){
+  return ASC::insert_photo_file($request,'upload/post/job_post');
+}
+
+public function insert_training_post(Request $request){
+  $user= Auth::user();
+  //$company_id=$user->data_id;
+  $company_id=1;
+ $arr=array_merge($request->all(),['company_id'=>$company_id]);
+ $obj=new TrainingPostData();
+ return $obj->create_post($arr);
+}
+
+function confirm_training_post($id){
+  $obj=new TrainingPostData();
+  return $obj->confirm_post($id);
+}
+
+function delete_training_post($id){
+  $obj=new TrainingPostData();
+  return $obj->delete_post($id);
+}
+
+function edit_training_post(Request $request,$id){
+  $company_id=1;
+  $new_post_data=$request->all()+['company_id'=>$company_id];
+ $obj=new TrainingPostData();
+ return $obj->edit_post($id,$new_post_data);
+}
+
+function pending_training_posts(){
+  $obj=new TrainingPostData();
+  $posts=$obj->get_pending_post('training_post');
+  return $posts;
+}
+
+function post_detail($id){
+    $obj=new TrainingPostData();
+    return $obj->post_detail($id);
+}
+
+
 }

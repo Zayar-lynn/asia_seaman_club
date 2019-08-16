@@ -85,7 +85,8 @@
 
 //yyk
 <script src="{{url('admin_js/function.js')}}"></script>
-
+<!-- Toastr notification -->
+<script type="text/javascript" src="{{asset('admin_js/toastr.min.js')}}"></script>
 
 <script>
     $(document).ready(function() {

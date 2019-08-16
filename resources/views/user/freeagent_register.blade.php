@@ -33,11 +33,11 @@
               </div>
               <div class="input-wrap">
                 <label for="">Front Photo</label>
-                <input type="file"required name="front_photo" id="front_photo" value="">
+                <input type="file"required name="photo[]" id="front_photo" value="">
               </div>
               <div class="input-wrap">
                   <label for="">Back Photo</label>
-                  <input type="file"required name="back_photo" id="back_photo" value="">
+                  <input type="file"required name="photo[]" id="back_photo" value="">
                 </div>
               <div class="input-wrap">
                 <input type="tel" placeholder="Phone*" required class="form-control" name="phone">

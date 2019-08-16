@@ -101,20 +101,9 @@ class RegisterController extends Controller
 
     }
 
-    public function insert_photo_file(Request $request)
+    public function upload_freeman_photo(Request $request)
     {
-        $front_photo = $request->file('front_photo');
-        $front_photo_name = uniqid().'_'.$front_photo->getClientOriginalName();
-        $front_photo->move(public_path('upload/freeman_photo'),$front_photo_name);
-        $front_photo_link = ASC::$domain_url.'upload/freeman_photo/'.$front_photo_name;
-
-        $back_photo = $request->file('back_photo');
-        $back_photo_name = uniqid().'_'.$back_photo->getClientOriginalName();
-        $back_photo->move(public_path('upload/freeman_photo'),$back_photo_name);
-        $back_photo_link = ASC::$domain_url.'upload/freeman_photo/'.$back_photo_name;
-
-        $photo_link_arr = [$front_photo_link,$back_photo_link];
-        return $photo_link_arr;
+        return ASC::insert_photo_file($request,'upload/freeman_photo');
     }
 
     public function freeagentregister(Request $request)

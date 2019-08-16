@@ -49,7 +49,7 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table" id="datatable">
-                                    <thead class=" text-success">
+                                    <thead class=" text-primary">
                                         <th>
                                             No
                                         </th>
@@ -57,10 +57,13 @@
                                             Photo
                                         </th>
                                         <th>
-                                            Title
+                                            Position
                                         </th>
                                         <th>
-                                            Description
+                                            Vancant
+                                        </th>
+                                        <th>
+                                            Salary
                                         </th>
                                         <th></th>
                                         <th></th>
@@ -100,14 +103,19 @@
                                       <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <input list="position" name="position" class="form-control" placeholder="Position">
-                                                <datalist id="position">
-                                                    <option value="Internet Explorer">
-                                                    <option value="Firefox">
-                                                    <option value="Chrome">
-                                                    <option value="Opera">
-                                                    <option value="Safari">
-                                                </datalist>
+                                                <select name="position" class="form-control">
+                                                    <optgroup label="DECK">
+                                                        <option value="" id="update_position"></option>
+                                                    @foreach ($deck_positions as $deck_position)
+                                                        <option value="{{$deck_position->id}}">{{$deck_position->position_name}}</option>
+                                                    @endforeach
+                                                    </optgroup>
+                                                    <optgroup label="ENGINE">
+                                                        @foreach ($engine_positions as $engine_position)
+                                                            <option value="{{$deck_position->id}}">{{$engine_position->position_name}}</option>
+                                                        @endforeach
+                                                    </optgroup>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -126,11 +134,11 @@
                                             <div class="form-group">
                                                 <input list="join_date" name="join_date" class="form-control" placeholder="Join Date">
                                                 <datalist id="join_date">
-                                                    <option value="Internet Explorer">
-                                                    <option value="Firefox">
-                                                    <option value="Chrome">
-                                                    <option value="Opera">
-                                                    <option value="Safari">
+                                                    <option value="Customize">
+                                                    <option value="Urgent">
+                                                    <option value="within ONE week">
+                                                    <option value="within TWO week">
+                                                    <option value="within ONE month">
                                                 </datalist>
                                             </div>
                                         </div>
@@ -145,7 +153,13 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="english_level" id="english_level" class="form-control" required placeholder="Level of English">
+                                            <input list="english_level" name="english_level" class="form-control" placeholder="Level of english">
+                                            <datalist id="english_level">
+                                                <option value="Customize">
+                                                <option value="Elementary">
+                                                <option value="Intermediate">
+                                                <option value="Upper-Intermediate">
+                                            </datalist>
                                         </div>
                                     </div>
                             </div>
@@ -164,14 +178,13 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input list="vessel_type" name="vessel_type" class="form-control" placeholder="Vessel Type">
-                                        <datalist id="join_date">
-                                            <option value="Internet Explorer">
-                                            <option value="Firefox">
-                                            <option value="Chrome">
-                                            <option value="Opera">
-                                            <option value="Safari">
-                                        </datalist>
+                                        <select name="vessel_type" class="form-control">
+                                            <optgroup label="BULK CARRIERS">
+                                            @foreach ($bulk_vesseltypes as $bulk_vesseltype)
+                                                <option value="{{$bulk_vesseltype->id}}">{{$bulk_vesseltype->vessel_name}}</option>
+                                            @endforeach
+                                            </optgroup>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -203,11 +216,10 @@
                                     <div class="form-group">
                                         <input list="sailing_area" name="sailing_area" class="form-control" placeholder="Sailing Area">
                                         <datalist id="sailing_area">
-                                            <option value="Internet Explorer">
-                                            <option value="Firefox">
-                                            <option value="Chrome">
-                                            <option value="Opera">
-                                            <option value="Safari">
+                                            <option value="Customize">
+                                            <option value="Coastal">
+                                            <option value="International">
+                                            <option value="Worldwide">
                                         </datalist>
                                     </div>
                                 </div>
@@ -231,7 +243,7 @@
 
         <!-- edit modal -->
                 <div class="modal fade" id="edit_modalBox">
-                    <div class="modal-dialog modal-md">
+                    <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h4 class="modal-title">Edit Form</h4>
@@ -242,46 +254,144 @@
 
                                 <form id="update_data">
                                     {{csrf_field()}}
-
+                                    <input type="hidden" name="id" class="form-control" id="id_edit" value="">
                                     <div class="row">
-                                      <div class="col-sm-6">
-                                        <input type="hidden" name="id" class="form-control" id="id_edit" value="">
-                                        <img src="{{asset('images/default.jpg')}}" class="img-thumbnail" alt="" id="imgs" class="imagePreview" style="width: 100%;height: 150px;">
-                                        <label class="btn btn-primary upload_btn">
-                                            Upload<input type="file" onchange="displaySelectedPhoto('update_photo','imgs')" id="update_photo" name="photo" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
-                                        </label>
-                                      </div>
-                                      <div class="col-sm-6">
-                                          <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label for="update_title">Title</label>
-                                                  <textarea name="title" id="update_title" class="form-control" rows="1"></textarea>
+                                        <div class="col-sm-4 imgUp">
+                                            <img src="" class="img-thumbnail" id="imgs" class="imagePreview">
+                                            <label class="btn btn-primary upload_btn">
+                                                Upload<input type="file" onchange="displaySelectedPhoto('update_upload_photo','imgs')" id="update_upload_photo" name="photo" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;" required>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <select name="position" class="form-control" value="">
+                                                                <option value="" id="update_position"></option>
+                                                            <optgroup label="DECK">
+                                                            @foreach ($deck_positions as $deck_position)
+                                                                <option value="{{$deck_position->id}}">{{$deck_position->position_name}}</option>
+                                                            @endforeach
+                                                            </optgroup>
+                                                            <optgroup label="ENGINE">
+                                                                @foreach ($engine_positions as $engine_position)
+                                                                    <option value="{{$deck_position->id}}">{{$engine_position->position_name}}</option>
+                                                                @endforeach
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        {{-- <label for="vancant">Vancant</label> --}}
+                                                        <input type="text" name="vancant" id="update_vancant" class="form-control" required placeholder="Vancant">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        {{-- <label for="salary">Salary</label> --}}
+                                                        <input type="text" name="salary" id="update_salary" class="form-control" required placeholder="Salary">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input list="join_date" name="join_date" class="form-control" placeholder="Join Date" id="update_join_date">
+                                                        <datalist id="join_date">
+                                                            <option value="Customize">
+                                                            <option value="Urgent">
+                                                            <option value="within ONE week">
+                                                            <option value="within TWO week">
+                                                            <option value="within ONE month">
+                                                        </datalist>
+                                                    </div>
+                                                </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
-                                                  <select name="deparment_type" id="update_dep" class="form-control">
-                                                      <option value="">Department Type</option>
-                                                      
-                                                  </select>
+                                                    <input type="text" name="contract_duration" id="update_contract_duration" class="form-control" required placeholder="Duration of contract">
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="update_author">Author</label>
-                                                    <textarea name="author" rows="1" class="form-control" id="update_author" required></textarea>
+                                                    <input list="english_level" name="english_level" class="form-control" placeholder="Level of english" id="update_english_level">
+                                                    <datalist id="english_level">
+                                                        <option value="Customize">
+                                                        <option value="Elementary">
+                                                        <option value="Intermediate">
+                                                        <option value="Upper-Intermediate">
+                                                    </datalist>
                                                 </div>
                                             </div>
-                                          </div>
-                                      </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                {{-- <label for="update_des
-                                                ">Description</label> --}}
-                                                <textarea name="des" rows="8" class="form-control" id="update_des"></textarea>
+                                                <textarea name="requirement" rows="5" class="form-control" id="update_requirement" required placeholder="Requriement"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" name="vessel_name" id="update_vessel_name" class="form-control" required placeholder="Vessel Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <select name="vessel_type" class="form-control">
+                                                    <optgroup label="BULK CARRIERS">
+                                                    @foreach ($bulk_vesseltypes as $bulk_vesseltype)
+                                                        <option value="{{$bulk_vesseltype->id}}">{{$bulk_vesseltype->vessel_name}}</option>
+                                                    @endforeach
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="year" name="build_year" id="update_build_year" class="form-control" required placeholder="Build Year">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="number" name="dwt" id="update_dwt" class="form-control" required placeholder="D.W.T">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" name="flage" id="update_flage" class="form-control" required placeholder="Flag">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" name="main_engine" id="update_main_engine" class="form-control" required placeholder="Main Engine">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" name="crew_onboard" id="update_crew_onboard" class="form-control" required placeholder="Crew Onboard">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input list="sailing_area" name="sailing_area" class="form-control" placeholder="Sailing Area" id="update_sailing_area">
+                                                <datalist id="sailing_area">
+                                                    <option value="Customize">
+                                                    <option value="Coastal">
+                                                    <option value="International">
+                                                    <option value="Worldwide">
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                {{-- <label for="des">Description</label> --}}
+                                                <textarea name="description" rows="5" class="form-control" id="update_description" required placeholder="Description"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -314,7 +424,7 @@
 
             $(document).ready(function(){
 
-                var dt = $('#show').DataTable({
+                var dt = $('#datatable').DataTable({
                   "ordering": false,
                   // "paging": false,
                   "bInfo" : false,
@@ -345,19 +455,18 @@
                           var link=window.location.href+"../../../job_detail/"+data_return[i]['id'];
                             dt.row.add( [
                                 no++,
-                                data_return[i]['rank'],
+                                '<img src="'+data_return[i]['photo_url']+'" alt="" style="width:100px;height:100px">',
+                                data_return[i]['position_name'],
+                                data_return[i]['vancant'],
                                 data_return[i]['salary'],
-                                data_return[i]['contract_time'],
-                                data_return[i]['shiptype_id'],
-                                data_return[i]['english_level'],
                                 '<a href="'+link+'" class="btn btn-primary btn-sm" target="_blank">Detail</a>',
                                 '<button class="btn btn-danger btn-sm" onclick="delete_data('+data_return[i]['id']+')">Delete</button>',
-                                '<button class="btn btn-info btn-sm" onclick="edit_data('+data_return[i]['id']+')" data-target="#modalBox" data-toggle="modal" data-keyboard="false" data-backdrop="static">Edit</button>'
+                                '<button class="btn btn-info btn-sm" onclick="edit_data('+data_return[i]['id']+')" data-target="#edit_modalBox" data-toggle="modal" data-keyboard="false" data-backdrop="static">Edit</button>'
                             ] ).draw( false );
                         }
 
                         $('#insert_jobpost')[0].reset();
-                        $('#image').attr('src','http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg');
+                        $('#image').attr('src','http://localhost/asia_seaman_club/public/images/default.jpg');
 
                     }
                     });
@@ -376,10 +485,10 @@
                         processData: false,
                         contentType: false,
                         success: function(data){
-                        alert('Success');
-                        console.log(data);
-                        load();
-                        $('#insert_jobpost')[0].reset();
+                            console.log(data);
+                            $('#modalBox').modal('hide');
+                            toastr.success('Insert data successful');
+                            load();
                     }
                     });
                     return false;
@@ -393,7 +502,7 @@
 
                             cache: false,
                             success: function(data){
-                                alert('Success');
+                                toastr.success('Delete data successful');
                                 load();
                             }
                           });
@@ -414,20 +523,26 @@
                         var jobpost=JSON.parse(data);
 
                         //console.log(jobpost['photo']);
+                        $("#imgs").attr("src", jobpost['photo_url']);
                         $('#id_edit').val(jobpost['id']);
-                        $('#update_rank').val(jobpost['rank']);
-                        $('#update_salary').val(jobpost['salary']);
-                        $('#update_contract_time').val(jobpost['contract_time']);
+                        $('#update_position').val(jobpost['position_name']);
+                        $('#update_vancant').val(jobpost['vancant']);
+                        $('#update_salary').val(jobpost['position_name']);
+                        $('#update_join_date').val(jobpost['join_date']);
+                        $('#update_contract_duration').val(jobpost['contract_duration']);
+                        $('#update_requirement').val(jobpost['requirement']);
                         $('#update_vessel_name').val(jobpost['vessel_name']);
-                        $('#update_shiptype').val(jobpost['shiptype_id']);
-                        $('#update_grt').val(jobpost['grt']);
-                        $('#update_flag_of_vessel').val(jobpost['flag_of_vessel']);
-                        $('#update_navigation_area').val(jobpost['navigation_area']);
-                        $('#update_request_certificates').val(jobpost['request_certificates']);
+                        $('#update_vessel_type').val(jobpost['vessel_type']);
+                        $('#update_build_year').val(jobpost['build_year']);
+                        $('#update_dwt').val(jobpost['dwt']);
+                        $('#update_flage').val(jobpost['flage']);
+                        $('#update_main_engine').val(jobpost['main_engine']);
+                        $('#update_crew_onboard').val(jobpost['crew_onboard']);
+                        $('#update_sailing_area').val(jobpost['sailing_area']);
                         $('#update_description').val(jobpost['description']);
                         $('#update_english_level').val(jobpost['english_level']);
 
-                        $('#modalBox').modal('show');
+                        $('#edit_modalBox').modal('show');
                       }
                     });
                 }
@@ -447,7 +562,7 @@
 		            success: function(data){
                     console.log(data);
                     //alert(data);
-		            $('#modalBox').modal('hide');
+		            $('#edit_modalBox').modal('hide');
 				  	load();
 				  }
 		        });

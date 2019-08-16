@@ -36,7 +36,7 @@
 
               <div class="input-wrap">
                 <label class="input-group-addon">Email</label>
-                <input type="text" name="email" placeholder="User Name" class="form-control" required
+                <input type="text" name="email" placeholder="User Name" class="form-control" required>
               </div>
               <div class="input-wrap">
                 <label class="input-group-addon">Password</label>

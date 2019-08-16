@@ -28,4 +28,22 @@ class JobPost extends Model
         'photo',
         'status'
     ];
+
+    public function company(){
+        return $this->belongsTo('App\Company');
+    }
+
+    public function vessel_type(){
+        return $this->belongsTo('App\VesselType');
+    }
+
+    public function job_position(){
+        return $this->belongsTo('App\JobPosition');
+    }
+
+    public function comment()
+    {
+        return $this->hasMany('App\Comment','post_id');
+    }
+
 }

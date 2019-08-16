@@ -1,0 +1,80 @@
+
+
+create training post
+=====================
+img upload link=>http://localhost/asia_seaman_club/public/upload_training_post_photo
+method=>post
+parameter=>photo
+
+jobpost upload link=>http://localhost/asia_seaman_club/public/api/insert/training_post
+method=>post
+paramete=>
+title
+description
+training_for
+requirement
+duration
+photo
+start_date
+end_date
+start_time
+end_time
+training_fee_amount
+fee_type
+enroll_limit
+contact_no
+online_banking
+benificiary_name
+account_number
+post_start_date
+post_end_date
+fee_point
+
+
+
+comment
+*******
+create comment=>http://localhost/asia_seaman_club/public/api/create_comment
+method => post
+parameter =>post_id,post_type,comment
+
+edit comment=>http://localhost/asia_seaman_club/public/api/edit_comment/{id}
+method => post
+parameter =>comment
+
+delete comment=>http://localhost/asia_seaman_club/public/delete_comment/{id}
+method => get
+
+
+main pages
+==========
+newfeeds => http://localhost/asia_seaman_club/public/active_posts
+job post=> http://localhost/asia_seaman_club/public/active_job_posts
+training post => http://localhost/asia_seaman_club/public/active_training_posts
+shipmate => http://localhost/asia_seaman_club/public/shipmate
+
+job post detail=> http://localhost/asia_seaman_club/public/job_post_detail/{id}
+training post detail=> http://localhost/asia_seaman_club/public/training_post_detail/{id}
+normal post detail => http://localhost/asia_seaman_club/public/normal_post_detail/{id}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -8,8 +8,21 @@
 
 namespace App\CustomClass;
 
+use Illuminate\Http\Request;
 
 class ASC
 {
     static public $domain_url="http://localhost/asia_seaman_club/public/";
+
+    public static function insert_photo_file(Request $request,$storage_location){
+        $photolinks=[];
+        $photos = $request->file('photo');
+        foreach ($photos as $photo){
+            $photo_name = uniqid().'_'.$photo->getClientOriginalName();
+            $photo->move(public_path($storage_location),$photo_name);
+            $photo_link = ASC::$domain_url.$storage_location.'/'.$photo_name;
+            array_push($photolinks,$photo_link);
+        }
+        return $photolinks;
+    }
 }

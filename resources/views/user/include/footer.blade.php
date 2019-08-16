@@ -95,6 +95,8 @@
 <script src="{{url('js/owl.carousel.js')}}"></script> 
 <script src="{{url('fancybox-master/dist/jquery.fancybox.min.js')}}"></script>
 <script type="text/javascript" src="{{url('js/script.js')}}"></script>
+//yyk
+<script src="{{url('js/function.js')}}"></script>
 
 <!-- for freeman register -->
 <script>
@@ -111,7 +113,7 @@
     $.ajax
     ({
         type: "POST",
-        url: "{{url('/insert_photo_file')}}",
+        url: "{{url('/upload_freeman_photo')}}",
         data:alldata,
         cache:false,
         processData: false,
@@ -138,6 +140,48 @@
                   //console.log(data);
                   $('#insert_freeman')[0].reset();
                   alert('Success');
+              }
+            });
+        
+    }
+    });
+    
+    return false;
+  });
+
+  $('#insert_seafarer_post').on('submit',function (e)
+  {
+    e.preventDefault();
+    var alldata = new FormData(this);
+    $.ajax
+    ({
+        type: "POST",
+        url: "{{url('/upload_seafarer_post_photo')}}",
+        data:alldata,
+        cache:false,
+        processData: false,
+        contentType: false,
+        success: function(data){
+        var seafarer_post_photo = data['0'];
+        $('#seafarer_post_photo_link').val(seafarer_post_photo);
+        //console.log(front_photo);
+        //$('#insert_freeman')[0].reset();
+
+        alldata.append('seafarer_post_photo_link',$('#seafarer_post_photo_link').val());
+        $.ajax
+            ({
+                type: "POST",
+                url: "{{url('/insert/seafarer_post')}}",
+                data:alldata,
+                cache:false,
+                processData: false,
+                contentType: false,
+                success: function(data){
+                  //console.log(data);
+                  $('#insert_seafarer_post')[0].reset();
+                  $('#image').attr('src','http://localhost/asia_seaman_club/public/images/default.jpg');
+                  alert('Success');
+                  $('#modalBox').modal('hide');
               }
             });
         

@@ -6,9 +6,11 @@ namespace App\CustomClass;
  use App\JobPost;
  use App\Company;
  use App\CustomClass\ASC;
- use App\ShipType;
+use App\JobPosition;
+use App\ShipType;
+use App\VesselType;
 
- class JobData {
+class JobData {
   
     private $id;
     private $job_data;
@@ -28,11 +30,18 @@ namespace App\CustomClass;
          $company = Company::findOrFail($company_id);
           $this->job_data['company_name']=$company->company_name;
           $this->job_data['company_address']=$company->address;
-          $this->job_data['company_about']=$company->what_we_do;
           $this->job_data['photo_url']=ASC::$domain_url.'upload/post/'.$this->job_data['photo'];
-        $shiptype_id = $this->job_data['shiptype_id'];
-        $shiptype = ShipType::findOrFail($shiptype_id);
-          $this->job_data['shiptype_name']=$shiptype->name;
+
+          $job_id = $this->job_data['job_position_id'];
+          $job_position = JobPosition::findOrFail($job_id);
+        $this->job_data['position_name']=$job_position->position_name;
+
+        $vessel_id = $this->job_data['vessel_type_id'];
+        $vessel = VesselType::findOrFail($vessel_id);
+        $this->job_data['vessel_type']=$vessel->vessel_name;
+        // $shiptype_id = $this->job_data['shiptype_id'];
+        // $shiptype = ShipType::findOrFail($shiptype_id);
+        //   $this->job_data['shiptype_name']=$shiptype->name;
          return $this->job_data;
      }
 

@@ -49,38 +49,61 @@
                       </tr>
                     </thead> --}}
                     <tbody>
-                        
+                      <tr>
+                        <td><b>Position</b></td>
+                        <td>{{$job_detail->position_name}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>Vancant</b></td>
+                        <td>{{$job_detail->vancant}}</td>
+                      </tr>
                       <tr>
                         <td><b>Salary</b></td>
                         <td>{{$job_detail->salary}}</td>
                       </tr>
                       <tr>
-                        <td><b>Contract Time</b></td>
-                        <td>{{$job_detail->contract_time}}</td>
+                        <td><b>Join Date</b></td>
+                        <td>{{$job_detail->join_date}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>Duration of Contract</b></td>
+                        <td>{{$job_detail->contract_duration}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>Requirement</b></td>
+                        <td>{{$job_detail->requirement}}</td>
                       </tr>
                       <tr>
                         <td><b>Vessel Name</b></td>
                         <td>{{$job_detail->vessel_name}}</td>
                       </tr>
                       <tr>
-                        <td><b>Ship Type</b></td>
-                        <td>{{$job_detail->shiptype_name}}</td>
+                        <td><b>Vessel Type</b></td>
+                        <td>{{$job_detail->vessel_type}}</td>
                       </tr>
                       <tr>
-                        <td><b>GRT</b></td>
-                        <td>{{$job_detail->grt}}</td>
+                        <td><b>Build Year</b></td>
+                        <td>{{$job_detail->build_year}}</td>
                       </tr>
                       <tr>
-                        <td><b>Flag of Vessel</b></td>
-                        <td>{{$job_detail->flag_of_vessel}}</td>
+                        <td><b>D.W.T</b></td>
+                        <td>{{$job_detail->dwt}}</td>
                       </tr>
                       <tr>
-                        <td><b>Navigation Area</b></td>
-                        <td>{{$job_detail->navigation_area}}</td>
+                        <td><b>Flage</b></td>
+                        <td>{{$job_detail->flage}}</td>
                       </tr>
                       <tr>
-                        <td><b>Request Certificates</b></td>
-                        <td>{{$job_detail->request_certificates}}</td>
+                        <td><b>Main Engine</b></td>
+                        <td>{{$job_detail->main_engine}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>Crew Onboard</b></td>
+                        <td>{{$job_detail->crew_onboard}}</td>
+                      </tr>
+                      <tr>
+                        <td><b>Sailing Area</b></td>
+                        <td>{{$job_detail->sailing_area}}</td>
                       </tr>
                       <tr>
                         <td><b>English level</b></td>

@@ -79,17 +79,18 @@ class AdsController extends Controller
         return json_encode($ads);
     }
 
-    function ads_by_page($page_id){
+    static function ads_by_page($page_id){
         $ads_webpage=Ads_webpage::where('webpage_id',$page_id)->get();
         $ads_arr=[];
         foreach ($ads_webpage as $data){
             $ads=Ads::findOrFail($data->ads_id);
             array_push($ads_arr,$ads);
         }
-        $ads_arr=$this->show_ads($ads_arr);
+        $ads_arr=AdsController::show_ads($ads_arr);
         $active_ads=self::filter_active_ads($ads_arr);
         return $active_ads;
     }
+
     public static function filter_active_ads($arr){
         $active_ads=[];
         foreach ($arr as $ads){
@@ -100,7 +101,7 @@ class AdsController extends Controller
         return $active_ads;
     }
 
-    function show_ads($ads){
+    private static function show_ads($ads){
         foreach ($ads as $data){
             $data['photo_url']=ASC::$domain_url.'upload/ads/'.$data->photo;
 
@@ -131,29 +132,29 @@ class AdsController extends Controller
         }
         return $ads;
     }
-    function test($id){
-//        $data=Ads::find($id);
-//        $data['photo_url']=RenoMyanmar::$domain_url.'upload/ads/'.$data->photo;
-//        $status='success';
+//    function test($id){
+////        $data=Ads::find($id);
+////        $data['photo_url']=RenoMyanmar::$domain_url.'upload/ads/'.$data->photo;
+////        $status='success';
+////
+////        $today = date('Y-m-d');
+////        if($today>=$data['start_date'] && $today<=$data['end_date']){
+////            if(Date('y:m:d', strtotime("+10 days"))>=$data['end_date']){
+////                $status="warning";
+////            }
+////            else{
+////                $status='success';
+////            }
+////        }
+////        else{
+////            $status='danger';
+////        }
+////
+////        $data['status']=$status;
+//        $data=date('Y-m-d',strtotime("+1 day"));
+//        return $data;
 //
-//        $today = date('Y-m-d');
-//        if($today>=$data['start_date'] && $today<=$data['end_date']){
-//            if(Date('y:m:d', strtotime("+10 days"))>=$data['end_date']){
-//                $status="warning";
-//            }
-//            else{
-//                $status='success';
-//            }
-//        }
-//        else{
-//            $status='danger';
-//        }
-//
-//        $data['status']=$status;
-        $data=date('Y-m-d',strtotime("+1 day"));
-        return $data;
-
-    }
+//    }
 
 
 

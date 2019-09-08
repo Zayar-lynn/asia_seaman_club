@@ -45,7 +45,11 @@ class JobPostData extends Post
     public function post_detail($post_id)
     {
        $post=JobPost::find($post_id);
+       $post['company']=$post->company;
+       $post['vessel_type']=$post->vessel_type;
+       $post['job_position']=$post->job_position;
        $post['comments']=CommentData::Comment($post->comment);
+
        return $post;
 
 //       return $post->company;

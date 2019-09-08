@@ -479,7 +479,7 @@
                     $.ajax
                     ({
                         type: "POST",
-                        url: "{{url('insert/jobpost')}}",
+                        url: "{{url('api/insert/jobpost')}}",
                         data:alldata,
                         cache:false,
                         processData: false,
@@ -498,7 +498,7 @@
                     if(confirm('Are you sure You want to delete!')==true){
                         $.ajax({
                             type: "POST",
-                            url: "../delete/jobpost/"+id,
+                            url: "../api/delete/jobpost/"+id,
 
                             cache: false,
                             success: function(data){

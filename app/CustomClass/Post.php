@@ -38,21 +38,27 @@ abstract class Post
         return $post_data;
     }
 
-    public function get_active_post($post_type){
+    public function get_active_post($post_type,$paginate_count){
+        $posts='';
+        $post_data='';
         if($post_type=="training_post"){
-            $posts=TrainingPost::where('status','active')->orderBy('id', 'DESC')->get();
+            $posts=TrainingPost::where('status','active')->orderBy('id', 'DESC')->paginate($paginate_count);
             $post_data=TrainingPostData::post_format($posts);
         }
         if($post_type=="job_post"){
-            $posts=JobPost::where('status','active')->orderBy('id', 'DESC')->get();
+            $posts=JobPost::where('status','active')->orderBy('id', 'DESC')->paginate($paginate_count);
             $post_data=JobPostData::post_format($posts);
         }
         if($post_type=="normal_post"){
-            $posts=NormalPost::where('status','active')->orderBy('id', 'DESC')->get();
+            $posts=NormalPost::where('status','active')->orderBy('id', 'DESC')->paginate($paginate_count);
             $post_data=NormalPostData::post_format($posts);
         }
+        $arr=[
+            'paginate'=>$posts,
+            'posts'=>$post_data
+        ];
         // $posts=TrainingPost::all();
-        return $post_data;
+        return $arr;
     }
 
 

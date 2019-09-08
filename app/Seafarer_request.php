@@ -10,6 +10,7 @@ class Seafarer_request extends Model
         'id',
         'company_id',
         'seafarer_id',
-        'post_id'
+        'post_id',
+        'post_type'
     ];
 }

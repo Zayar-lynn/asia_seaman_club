@@ -45,6 +45,7 @@ class NormalPostData extends Post
     public function post_detail($post_id)
     {
         $post=NormalPost::find($post_id);
+        $post['user']=$post->user;
         $post['comments']=CommentData::Comment($post->comment);
         return $post;
         //       return $post->user
@@ -54,7 +55,7 @@ class NormalPostData extends Post
     {
         $arr=[];
         foreach ($posts as $post){
-            $data=new JobPostData();
+            $data=new NormalPostData();
             array_push($arr,$data->post_detail($post->id));
         }
         return $arr;

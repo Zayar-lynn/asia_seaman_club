@@ -131,7 +131,7 @@
         $.ajax
             ({
                 type: "POST",
-                url: "{{url('/freeagentregister')}}",
+                url: "{{url('api/freeagentregister')}}",
                 data:alldata,
                 cache:false,
                 processData: false,

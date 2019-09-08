@@ -13,6 +13,7 @@ use App\ShipType;
 use App\JobPost;
 use App\TrainingPost;
 use App\Company;
+use App\CustomClass\JobPostData;
 use App\CustomClass\TrainingPostData;
 use App\JobPosition;
 use App\User;
@@ -76,15 +77,20 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request,$id)
     {
         // $data = JobPost::find($id);
         // $data['photo_url']=ASC::$domain_url."upload/post/".$data->photo;
         // return json_encode($data);
 
-        $obj=new JobData($id);
-        $jobpost_obj = $obj->getJobData();
-        return json_encode($jobpost_obj);
+        // $obj=new JobData($id);
+        // $jobpost_obj = $obj->getJobData();
+        // return json_encode($jobpost_obj);
+
+        $company_id=1; //to change auth
+        $new_post_data=$request->all()+['company_id'=>$company_id];
+        $obj=new JobPostData();
+        return $obj->edit_post($id,$new_post_data);
     }
 
     /**
@@ -133,12 +139,12 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        $jobpost = JobPost::find($id);
-        $image_path=public_path().'/upload/post/'.$jobpost->photo;
-        if(file_exists($image_path)){
-            unlink($image_path);
-        }
-        $jobpost->delete();
+        $obj=new JobPostData();
+        // $image_path=public_path().'/upload/post/'.$obj->photo;
+        // if(file_exists($image_path)){
+        //     unlink($image_path);
+        // }
+        return $obj->delete_post($id);
     }
 
     public function edit_company_profile(){
@@ -237,49 +243,12 @@ class CompanyController extends Controller
 
     public function insert_jobpost(Request $request){
         $user = Auth::user();
-        $company_id = $user->data_id;
+        //$company_id = $user->data_id;
+        $company_id=1;
 
-        $position = $request->get('position');
-        $vancant = $request->get('vancant');
-        $salary = $request->get('salary');
-        $join_date = $request->get('join_date');
-        $contract_duration = $request->get('contract_duration');
-        $requirement = $request->get('requirement');
-        $vessel_name = $request->get('vessel_name');
-        $vessel_type = $request->get('vessel_type');
-        $build_year = $request->get('build_year');
-        $dwt = $request->get('dwt');
-        $flage = $request->get('flage');
-        $main_engine = $request->get('main_engine');
-        $crew_onboard = $request->get('crew_onboard');
-        $sailing_area = $request->get('sailing_area');
-        $description = $request->get('description');
-        $english_level = $request->get('english_level');
-
-        $photo = $request->file('photo');
-        $photo_name = uniqid().'_'.$photo->getClientOriginalName();
-        $photo->move(public_path('upload/post'),$photo_name);
-
-            JobPost::create([
-                'company_id'=>$company_id,
-                'job_position_id'=>$position,
-                'vancant'=>$vancant,
-                'join_date'=>$join_date,
-                'salary'=>$salary,
-                'contract_duration'=>$contract_duration,
-                'requirement'=>$requirement,
-                'vessel_name'=>$vessel_name,
-                'vessel_type_id'=>$vessel_type,
-                'build_year'=>$build_year,
-                'dwt'=>$dwt,
-                'flage'=>$flage,
-                'main_engine'=>$main_engine,
-                'crew_onboard'=>$crew_onboard,
-                'sailing_area'=>$sailing_area,
-                'description'=>$description,
-                'english_level'=>$english_level,
-                'photo'=>$photo_name
-            ]);
+       $arr=array_merge($request->all(),['company_id'=>$company_id]);
+       $obj=new JobPostData();
+       return $obj->create_post($arr);
     }
 
     public function company_profile($company_id){
@@ -583,7 +552,7 @@ function delete_training_post($id){
 }
 
 function edit_training_post(Request $request,$id){
-  $company_id=1;
+  $company_id=1; //to change auth
   $new_post_data=$request->all()+['company_id'=>$company_id];
  $obj=new TrainingPostData();
  return $obj->edit_post($id,$new_post_data);
@@ -594,6 +563,12 @@ function pending_training_posts(){
   $posts=$obj->get_pending_post('training_post');
   return $posts;
 }
+
+// function active_training_posts(){
+//   $obj=new TrainingPostData();
+//   $posts=$obj->get_active_post('training_post');
+//   return $posts;
+// }
 
 function post_detail($id){
     $obj=new TrainingPostData();

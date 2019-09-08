@@ -5568,7 +5568,8 @@
 								"$ref": "AAAAAAFqr/+j4P8eJ5M="
 							},
 							"name": "data_id",
-							"length": 0
+							"length": 0,
+							"foreignKey": true
 						}
 					]
 				},

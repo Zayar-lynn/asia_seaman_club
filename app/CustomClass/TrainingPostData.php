@@ -14,6 +14,7 @@ use App\Comment;
 use App\Company;
 use App\TrainingPost;
 use App\CustomClass\CommentData;
+
 class TrainingPostData extends Post
 {
 

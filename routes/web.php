@@ -65,7 +65,7 @@ Route::get('/company_profile/{company_id}','CompanyController@company_profile');
 
 Route::get('/apply/{company_id}/{post_id}','SeafarerController@request');
 
-Route::post('/login','Controller@login');
+Route::post('api/login','Controller@login');
 Route::get('/logout','Controller@logout');
 
 Route::post('/teacherregister','RegisterController@teacherregister');
@@ -74,11 +74,11 @@ Route::post('/get_all_teacher_acc','RegisterController@get_all_teacher_acc');
 
 Route::post('/delete/teacher_acc/{id}','RegisterController@destroy');
 
-Route::post('/businessregister','RegisterController@businessregister');
+Route::post('api/businessregister','RegisterController@businessregister');
 
 Route::post('/seafarerregister','RegisterController@seafarerregister');
 
-Route::post('/freeagentregister','RegisterController@freeagentregister');
+Route::post('api/freeagentregister','RegisterController@freeagentregister');
 Route::post('/upload_freeman_photo','RegisterController@upload_freeman_photo');
 
 Route::post('/contact','ContactController@store');
@@ -216,17 +216,7 @@ Route::post('/company/photo_detail/{id}','CompanyController@company_photo_detail
 
 Route::post('/update/company_photo','CompanyController@update_companyphoto');
 
-Route::get('/company_dashboard/jobpost','CompanyController@company_jobpost');
 
-Route::post('/insert/jobpost','CompanyController@insert_jobpost');
-
-Route::post('/get_all_jobpost','CompanyController@get_all_jobpost');
-
-Route::post('/delete/jobpost/{id}','CompanyController@destroy');
-
-Route::post('/edit/jobpost/{id}','CompanyController@edit');
-
-Route::post('/update/jobpost','CompanyController@update');
 //*****************************************
 //*****************************************
 //*****************************************
@@ -244,6 +234,8 @@ Route::get('api/delete_training_post/{post_id}','CompanyController@delete_traini
 Route::get('api/pending_training_posts','CompanyController@pending_training_posts');
 Route::post('/upload_training_post_photo','CompanyController@upload_training_post_photo');
 Route::get('api/post/{post_id}','CompanyController@post_detail');
+
+// Route::get('api/active_training_posts','CompanyController@active_training_posts');
 //end
 
 //*****************************************
@@ -255,14 +247,38 @@ Route::get('api/post/{post_id}','CompanyController@post_detail');
 //*****************************************
 //*****************************************
 //start application
+Route::get('active_normal_posts','ApplicationController@active_normal_posts');//newfeed
 Route::get('active_job_posts','ApplicationController@active_job_posts');
 Route::get('active_training_posts','ApplicationController@active_training_posts');
-Route::get('active_posts','ApplicationController@active_posts');
+// Route::get('active_posts','ApplicationController@active_posts');
+
 Route::get('shipmate','ApplicationController@shipmate');
 
 Route::get('job_post_detail/{id}','ApplicationController@JobPostDetail');
 Route::get('training_post_detail/{id}','ApplicationController@TrainingPostDetail');
 Route::get('normal_post_detail/{id}','ApplicationController@NormalPostDetail');
+
+Route::get('newfeed_ads','ApplicationController@newfeed_ads');
+Route::get('training_ads','ApplicationController@training_ads');
+Route::get('job_ads','ApplicationController@jobpost_ads');
+Route::get('shipmate_ads','ApplicationController@shipmate_ads');
+
+// jobpost
+Route::get('/company_dashboard/jobpost','CompanyController@company_jobpost');
+//Route::post('/upload_training_post_photo','CompanyController@upload_training_post_photo');
+Route::post('api/insert/jobpost','CompanyController@insert_jobpost');
+Route::post('/get_all_jobpost','CompanyController@get_all_jobpost');
+Route::post('api/delete/jobpost/{id}','CompanyController@destroy');
+Route::post('api/edit/jobpost/{id}','CompanyController@edit');
+
+// seafarer
+Route::post('/upload_seafarer_post_photo','PostController@upload_seafarer_post_photo');
+Route::post('api/insert/seafarer_post','PostController@insert_seafarer_post');
+Route::get('api/delete_normal_post/{post_id}','PostController@delete_normal_post');
+Route::post('api/edit_normal_post/{id}','PostController@edit_normal_post');
+
+Route::post('api/insert/seafarer_request','SeafarerController@seafarer_request');
+//Route::post('/update/jobpost','CompanyController@update');
 //*****************************************
 //comment
 Route::post('api/create_comment','ApplicationController@create_comment');
@@ -345,8 +361,7 @@ Route::get('/serfarer_coin-history',function(){
     return view('user.coin-history');
 });
 
-Route::post('/upload_seafarer_post_photo','PostController@upload_seafarer_post_photo');
-Route::post('/insert/seafarer_post','PostController@insert_seafarer_post');
+
 
 
 //Freeagent Dashboard

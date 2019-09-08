@@ -20,7 +20,7 @@
         <div class="login">
           <div class="contctxt">Company Register</div>
           <div class="formint conForm">
-            <form method="post" action="{{url('/businessregister')}}" enctype="multipart/form-data">
+            <form method="post" action="{{url('api/businessregister')}}" enctype="multipart/form-data">
               {{csrf_field()}}
               <div class="input-wrap">
                 <input type="text" placeholder="Company Name*" required class="form-control" name="companyname">

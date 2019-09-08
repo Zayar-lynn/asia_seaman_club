@@ -1,3 +1,25 @@
+﻿
+main pages
+==========
+//*****************use post's comment => arr['comments'] , don't use arr['comment']************
+newfeeds => http://localhost/asia_seaman_club/public/active_normal_posts
+job post=> http://localhost/asia_seaman_club/public/active_job_posts
+training post => http://localhost/asia_seaman_club/public/active_training_posts
+shipmate => http://localhost/asia_seaman_club/public/shipmate
+
+job post detail=> http://localhost/asia_seaman_club/public/job_post_detail/{id}
+training post detail=> http://localhost/asia_seaman_club/public/training_post_detail/{id}
+normal post detail => http://localhost/asia_seaman_club/public/normal_post_detail/{id}
+
+
+select ads
+========
+newfeed ads=> http://localhost/asia_seaman_club/public/newfeed_ads
+training post ads=> http://localhost/asia_seaman_club/public/training_ads
+job post ads=> http://localhost/asia_seaman_club/public/job_ads
+shipmate post ads=> http://localhost/asia_seaman_club/public/shipmate_ads
+
+
 
 
 create training post
@@ -36,7 +58,7 @@ comment
 *******
 create comment=>http://localhost/asia_seaman_club/public/api/create_comment
 method => post
-parameter =>post_id,post_type,comment
+parameter =>post_id,post_type,comment 
 
 edit comment=>http://localhost/asia_seaman_club/public/api/edit_comment/{id}
 method => post
@@ -46,29 +68,122 @@ delete comment=>http://localhost/asia_seaman_club/public/delete_comment/{id}
 method => get
 
 
-main pages
+create jobpost
 ==========
-newfeeds => http://localhost/asia_seaman_club/public/active_posts
-job post=> http://localhost/asia_seaman_club/public/active_job_posts
-training post => http://localhost/asia_seaman_club/public/active_training_posts
-shipmate => http://localhost/asia_seaman_club/public/shipmate
+job post link=> http://localhost/asia_seaman_club/public/api/insert/jobpost
+method=>post
+paramete=>
+job_position_id
+vancant
+salary
+join_date
+contract_duration
+requirement
+vessel_name
+vessel_type_id
+build_year
+dwt
+flage
+main_engine
+crew_onboard
+sailing_area
+description
+english_level
+photo
 
-job post detail=> http://localhost/asia_seaman_club/public/job_post_detail/{id}
-training post detail=> http://localhost/asia_seaman_club/public/training_post_detail/{id}
-normal post detail => http://localhost/asia_seaman_club/public/normal_post_detail/{id}
+
+job post delete=> http://localhost/asia_seaman_club/public/api/delete/jobpost/{id}
+job post update=> http://localhost/asia_seaman_club/public/api/edit/jobpost/{id}
+
+create normal post
+=========
+img upload link=>http://localhost/asia_seaman_club/public/upload_seafarer_post_photo
+method=>post
+parameter=>photo
+
+normal post create=>http://localhost/asia_seaman_club/public/api/insert/seafarer_post
+method=>post
+parameter=>
+title
+photo
+description
+
+normal post delete=>http://localhost/asia_seaman_club/public/api/delete_normal_post/{post_id}
+normal post edit=>http://localhost/asia_seaman_club/public/api/edit_normal_post/{id}
+
+business register
+===========
+register link=>http://localhost/asia_seaman_club/public/api/businessregister
+method=>post
+parameter=>
+company_name
+contact_person_name
+position
+phone
+email
+business_type
+address
+street
+city
+state
+country_id
+website_url
+referral_code
+password
+password_confirmation
+
+
+freeman register
+===========
+register link=>http://localhost/asia_seaman_club/public/api/freeagentregister
+method=>post
+parameter=>
+agentcompany
+occupation
+id_card
+photo
+phone
+address
+street
+city
+state
+email
+referral_code
+password
+password_confirmation
+
+
+img upload link=>http://localhost/asia_seaman_club/public/upload_freeman_photo
+method=>post
+parameter=>photo
+
+
+login
+=====
+login link=>http://localhost/asia_seaman_club/public/api/login
+method=>post
+peremeter=>
+email
+password
+
+seafarer requset
+===========
+seafarer requset link=>http://localhost/asia_seaman_club/public/api/insert/seafarer_request
+method=>post
+parameter=>
+company_id
+seafarer_id
+post_id
+post_type
 
 
 
 
 
-
-
-
-
-
-
-
-
+to do
+====
+1. normal post detail တြင္ user type အေပၚမူတည္ျပီး post owener profile ဆြဲထုတ္ျပရန္
+2. insert မ်ားမွာ auth id ကို default id ထား တာျပင္ရန္။
 
 
 

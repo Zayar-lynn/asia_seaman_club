@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 17, 2019 at 12:24 AM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.8
+-- Generation Time: Sep 08, 2019 at 05:23 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -136,7 +136,7 @@ INSERT INTO `ads_webpages` (`id`, `webpage_id`, `ads_id`, `created_at`, `updated
 (32, 2, 11, '2019-04-14 11:09:28', '2019-04-14 11:09:28'),
 (33, 3, 11, '2019-04-14 11:09:29', '2019-04-14 11:09:29'),
 (34, 4, 11, '2019-04-14 11:09:29', '2019-04-14 11:09:29'),
-(35, 1, 12, '2019-04-14 11:09:45', '2019-04-14 11:09:45'),
+(35, 5, 12, '2019-04-14 11:09:45', '2019-04-14 11:09:45'),
 (36, 2, 12, '2019-04-14 11:09:45', '2019-04-14 11:09:45'),
 (37, 3, 12, '2019-04-14 11:09:45', '2019-04-14 11:09:45'),
 (38, 4, 12, '2019-04-14 11:09:45', '2019-04-14 11:09:45');
@@ -166,8 +166,7 @@ INSERT INTO `comments` (`id`, `user_id`, `post_id`, `post_type`, `comment`, `cre
 (3, 1, 1, 'normal_post', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, NULL),
 (4, 4, 2, 'normal_post', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, NULL),
 (5, 5, 6, 'normal_post', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, NULL),
-(6, 3, 1, 'job_post', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, NULL),
-(7, 4, 2, 'job_post', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, NULL);
+(6, 3, 1, 'job_post', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -587,7 +586,8 @@ CREATE TABLE `freemen` (
 --
 
 INSERT INTO `freemen` (`id`, `name`, `occupation`, `id_card`, `front_photo`, `back_photo`, `phone`, `address`, `street`, `city`, `state`, `email`, `referral_code`, `created_at`, `updated_at`) VALUES
-(1, 'testing', 'testing', 'testing123', 'http://localhost/asia_seaman_club/public/upload/freeman_photo/5d5675fe23f2c_Chrysanthemum.jpg', 'http://localhost/asia_seaman_club/public/upload/freeman_photo/5d5675fe242b6_Desert.jpg', '09978699298', 'sasdasdasda', 'testing', 'testing', 'testing', 'lynn9249@gmail.com', '12345', '2019-08-16 02:53:10', '2019-08-16 02:53:10');
+(1, 'testing', 'testing', 'testing123', 'http://localhost/asia_seaman_club/public/upload/freeman_photo/5d5675fe23f2c_Chrysanthemum.jpg', 'http://localhost/asia_seaman_club/public/upload/freeman_photo/5d5675fe242b6_Desert.jpg', '09978699298', 'sasdasdasda', 'testing', 'testing', 'testing', 'lynn9249@gmail.com', '12345', '2019-08-16 02:53:10', '2019-08-16 02:53:10'),
+(2, 'zayy', 'sdasdasd', 'dasd212', 'http://localhost/asia_seaman_club/public/upload/freeman_photo/5d57ac6843835_Desert.jpg', 'http://localhost/asia_seaman_club/public/upload/freeman_photo/5d57ac6843c0d_Desert.jpg', '09978699298', 'sdfsdfsd', 'sdfsdf', 'testing', 'testing', 'fdfd@gmail.com', '12345', '2019-08-17 00:57:36', '2019-08-17 00:57:36');
 
 -- --------------------------------------------------------
 
@@ -674,7 +674,7 @@ CREATE TABLE `job_posts` (
   `sailing_area` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `english_level` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `photo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -685,8 +685,7 @@ CREATE TABLE `job_posts` (
 --
 
 INSERT INTO `job_posts` (`id`, `company_id`, `job_position_id`, `vancant`, `salary`, `join_date`, `contract_duration`, `requirement`, `vessel_name`, `vessel_type_id`, `build_year`, `dwt`, `flage`, `main_engine`, `crew_onboard`, `sailing_area`, `description`, `english_level`, `photo`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'unknown', '$1000', 'within ONE week', '1 year', 'Any seaman diploma', 'unknown', 2, '2019', '1111', 'unknown', 'main engine', 'crew', 'International', 's doubtful that the levels of frontloading seen at the end of 2018 will continue into 2019,” the shipping association said. Additionally, any future fall in container imports by the US and in particular the US West Coast, which is where most of the tariffed goods from China are discharged, “will be particularly harmful for the container shipping industry.” This is because the volume of containers will be reduced on the fronthaul leg of the transpacific trade lane. The fronthaul volumes are the capacity setters as they are much higher than those on the backh', 'Elementary', '5d56c31fa2290_5cb2bb7513df4_car-carrier-320x219.jpg', 'pending', '2019-08-16 08:22:15', '2019-08-16 08:22:15'),
-(2, 1, 3, 'unknown', '$20000', 'within ONE month', '3 years', 'higher seaman diploma', 'unknown', 3, '2019', '1212', 'unknown', 'main engine', 'crew', 'Worldwide', '(2/o တုန္း႐ွိရမည္။age under 40။ sea time gap ျဖစ္ေနသူမ်ားအတြက္သင့္ေတာ္ပါသည္)', 'Upper-Intermediate', '5d56c3d93c9fc_5cb2bb54e6aed_flex-lng-to-buy-five-lng-newbuildings-300x160.jpg', 'active', '2019-08-16 08:25:21', '2019-08-16 08:25:21');
+(3, 1, 1, 'test vancant', '2000', '2019-04-15', 'testy ccc', 'teset req', 'vtest vess', 1, 'tesyt buik', 'test dwy', 'test f', 'test me', 'test c', 'test sa', 'test des', 'tesy eng', 'https://scontent.fmdl2-1.fna.fbcdn.net/v/t1.0-9/70069000_682004325609106_8158005278822891520_n.jpg?_nc_cat=106&_nc_oc=AQkvMH_Ii57T2uF-eOJIdVgmcK3HTuel2KTqLx5I14ipcpbhxzu44yd2DuaVR5lLucI&_nc_ht=scontent.fmdl2-1.fna&oh=b0b568afa0a275c92e0f4e01b254f96c&oe=5E0EB3D4', 'pending', '2019-09-08 08:47:19', '2019-09-08 08:47:19');
 
 -- --------------------------------------------------------
 
@@ -747,7 +746,7 @@ CREATE TABLE `normal_posts` (
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `photo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -757,13 +756,14 @@ CREATE TABLE `normal_posts` (
 --
 
 INSERT INTO `normal_posts` (`id`, `user_id`, `title`, `photo`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Maritime Industry Eyes Blockchain for Seafarer Certification', 'http://localhost/asia_seaman_club/public/upload/normal_post/5d56c430429b3_5cb2ba9eb17b3_apm-terminals-gothenburg-320x219.jpg', 'The consortium brings together multiple stakeholders who either rely on, or support crew certification. These include shipping companies, including Danish shipping major, Maersk, tanker operator Heidmar, and PTC Holdings Corp. Also included are technology enablers Hanseaticsoft, maritime platforms providers Navozyme and C-LOG, as well as international seafarer welfare charity The Mission to Seafarers.\r\n\r\nThe demonstrator scope will focus on an end-to-end demonstration of a digital certification and endorsement process utilising a digital repository for verified crew documentation, training logs and approval system.\r\n\r\nSpecifically, the focus will be upon the STCW certificate issuance and relevant supporting documentation from engineering officers located in multiple jurisdictions and the endorsement of recognition from a maritime authority for vessel embarkation and disembarkation.\r\n\r\nUpon validation and scaling, the final solution would enable individual seafarers to manage their certificate repository from original issuance, for maritime administrations to manage the renewal and endorsement across jurisdictions, for crew management organizations to manage seafarers for crewing of vessels and for vessel owners to receive an overview of their crew, certificates and endorsements.\r\n\r\n“Building and maintaining an intuitive and user-friendly platform for the management of crew certification will bring hugely significant benefits to all stakeholders. We are looking forward to developing and building the solutions with the consortium,” Graeme Thomson, Head of Northern Europe Manning Office from Maersk, said.', 'active', '2019-08-16 08:26:48', '2019-08-16 08:26:48'),
-(2, 1, '700 Jobs Safe as Norway Says No to Color Line Reflagging', 'http://localhost/asia_seaman_club/public/upload/normal_post/5d56c4563fa80_5cb2bb1a0b075_stolt-nielsen-foresees-impact-from-houston-ship-channel-fire-320x205.jpg', 'The Norwegian Seafarers Union (NSU), an affiliate of the International Transport Workers’ Federation, won the fight to keep the vessels under the Norwegian Ordinary Ship Register (NOR), securing the jobs and maintaining the wages and conditions of the country’s seafarers.“This result means that Color Line – a profitable shipping company – cannot replace national seafarers with cheaper foreign labour,” Johnny Hansen, NSU president, told the ITF.', 'active', '2019-08-16 08:27:26', '2019-08-16 08:27:26'),
-(3, 1, 'Deal Reached on Higher Seafarer Wages', 'http://localhost/asia_seaman_club/public/upload/normal_post/5d56c46f5ca4d_5cb2bac981336_img34_o-1024x683-1-320x213.jpg', 'Following two days of negotiations, the International Transport Workers’ Federation (ITF) and the International Chamber of Shipping (ICS), convened in Geneva at the Joint Maritime Commission (JMC) subcommittee on seafarers wages to review the International Labour Organization (ILO)’s minimum seafarer wage\r\n\r\nIt has been agreed to update the minimum wage for an able seafarer by USD 27 over the next three years. The wages will provide an overall increase of 4.5 percent on the current rate of USD 614, with an increase of USD 4 as of  July 1, 2019, followed by an increase of USD 7 as of January 1, 2020 and a final increase of USD 16 as of January 1, 2021.\r\n\r\nThe change was ascribed due to the calculation that the USD 614 wage was below the purchasing power stated in the ILO report prepared for the meeting. This is in particular due to economic forecasts and the volatility of the shipping industry.\r\n\r\n“This was a difficult negotiation with two very different assessments about what the future holds for shipping and seafarers,” admitted Mark Dickinson, spokesperson for the seafarers’ group.\r\n\r\n“There was strong opposition from the shipowners’ side for a significant increase. However, I am pleased that at the end pragmatism and common sense prevailed and the social partners worked their way forward to recognise the fundamental role seafarers play within the industry.\r\n\r\n“We will continue to work together to find ways to ensure that the ILO formula used as the basis for these negotiations is fair and reflects the reality for seafarers, but the impact of this session of the JMC negotiation on the global seafaring community is undoubtedly a good and equitable result,” he added.', 'active', '2019-08-16 08:27:51', '2019-08-16 08:27:51'),
-(4, 1, 'APM Terminals Launches The Gothenburg Gateway', 'http://localhost/asia_seaman_club/public/upload/normal_post/5d56c491a7442_5cb2bb54e6aed_flex-lng-to-buy-five-lng-newbuildings-300x160.jpg', 'The Gothenburg Gateway combines fast, efficient freight trains from all over Sweden to Gothenburg, an efficient container port that loads between trains and ships, as well as more ocean-going vessels calling the port.\r\n\r\n“Via The Gothenburg Gateway it should take a maximum of 24 hours to reach Gothenburg by freight train, and a maximum of 48 hours in total to place a container on an ocean-going vessel,” Henrik Kristensen, CEO APM Terminals Gothenburg, said.\r\n\r\nAsian markets one week closer\r\n\r\n“We analyzed how long it takes for a container to reach Shanghai – an important Asian market for Sweden. The Gothenburg Gateway will help reduce this time by at least one week, as well as offering an efficient and climate-smart solution.”\r\n\r\nIn the future, APM Terminals wants to service Sweden with three ocean-going vessels per week in order to provide the most competitive delivery solution.\r\n\r\n“We now want to take the next step and further develop our port, develop logistics to and from the port, and develop logistics solutions around the port,” continues Kristensen.\r\n\r\n“The Gothenburg Gateway is a concept to ensure future growth for Swedish industry and trade,” he concludes.\r\n\r\nDuring the launch of the concept, the mayor of Gothenburg, Axel Josefson, said that he believed the initiative in Gothenburg should be given priority. He emphasised the importance of planned investments for dredging and the rail network happening as soon as possible.', 'active', '2019-08-16 08:28:25', '2019-08-16 08:28:25'),
-(5, 5, 'Pacific Basin to Add Supramax Trio', 'http://localhost/asia_seaman_club/public/upload/normal_post/5d56c50193f6c_5cb2bb7513df4_car-carrier-320x219.jpg', 'During the first quarter of 2018, the shipping company also took delivery of two secondhand vessels – one Handysize and one Supramax. What is more, Pacific Basin accepted delivery of a Supramax bought in late 2018 and completed the sale of an older, small Handysize bulker.\r\n\r\nThese acquisitions will increase the company’s owned fleet to 115 units by July. Including chartered ships, Pacific Basin operated an average of 220 ships overall during the first quarter of this year.\r\n\r\nFrom January to March this year, the company generated average Handysize and Supramax daily time-charter equivalent (TCE) earnings of USD 9,080 and USD 10,400 per day net, representing a 3% and 8% reduction compared to the same period in 2018.\r\n\r\nAs of April 9, Pacific Basin has secured 36% of its 29,410 contracted Handysize revenue days at around USD 9,360 per day net and 58% of its 14,020 contracted Supramax revenue days at around USD 10,690 per day net for the remaining three quarters of 2019.\r\n\r\nAs explained, the dry bulk freight market in 2019 has started weaker than the last two years due to trade war uncertainty and Chinese import policies. This led to weak spot market rates in the first quarter overall.\r\n\r\nHowever, the company’s Handysize and Supramax markets improved significantly during the second half of the quarter with marked increases of 58% in the Baltic Handysize Index (BHSI) and 38% in the Baltic Supramax Index (BSI).\r\n\r\nIn contrast, the larger Capesize vessel segment has seen little recovery and continued to weaken throughout the first quarter.\r\n\r\nReferring to the outlook for 2019 which has been revised downwards due to the softening market, Pacific Basin said that a resolution to the trade conflict between the US and China would provide “a welcome boost to the market”.\r\n\r\nThe company added that IMO 2020 sulphur preparations should lead to increased supply disruptions in H2, which could compound dry bulk market strength that typically builds in Q3 and Q4.\r\n\r\n“Despite short term volatility and in view of the combination of continued healthy growth in minor bulk demand and reducing Handysize and Supramax fleet growth, we continue to believe that the longer term fundamentals for our vessel segments are positive,” Pacific Basin concluded.', 'pending', '2019-08-16 08:30:18', '2019-08-16 08:30:18'),
-(6, 5, 'Port Houston Speeds Up Widening of Houston Ship Channel', 'http://localhost/asia_seaman_club/public/upload/normal_post/5d56c56a2aa26_5cb2baeff10fb_jms1947-768x513-1-320x214.jpg', 'This project will be the eleventh significant widening and deepening of the channel since its conception, Houston port said.\r\n\r\n“The Houston Ship Channel is open for business for all and will continue to be,” said Chairman Ric Campo.\r\n\r\nThe commission was briefed on measures to make sure widening of the entire Galveston Bay reach of the ship channel is part of the next Houston Ship Channel dredging project. The commission also directed staff to bring it proposals for port authority and industry funding to support the accelerated effort.\r\n\r\nIn addition, after careful consideration of interim measures to address growing traffic, the commission adopted a resolution to further maximize current two-way traffic transiting the Houston Ship Channel.\r\n\r\nThe commission also budgeted USD 500,000 to support a traffic efficiency group for the channel.', 'pending', '2019-08-16 08:32:02', '2019-08-16 08:32:02'),
-(7, 5, 'Stolt-Nielsen Foresees Impact from Houston Ship Channel Fire', 'http://localhost/asia_seaman_club/public/upload/normal_post/5d56c5854a149_5cb2bb54e6aed_flex-lng-to-buy-five-lng-newbuildings-300x160.jpg', 'already impacting the local chemical industry, including both transportation and storage,” Niels G. Stolt-Nielsen, CEO of Stolt-Nielsen Limited, commented.\r\n\r\n“We are at a minimum expecting a negative impact on Stolt Tankers, as parts of the Houston Ship Channel have been closed to traffic, causing delays. We continue to follow the situation closely, as the full impact is unclear at this point.”\r\n\r\nThe Oslo-listed company reported USD 501.9 million of revenue for the first quarter ended February 28, 2019, compared to a revenue of USD 515.3 million reported in the same period a year earlier.\r\n\r\nStolt-Nielsen’s net profit dropped to USD 6.6 million in the period from USD 38.8 million delivered in the first quarter of 2018.\r\n\r\n“Stolt-Nielsen Limited’s first-quarter results were in line with expectations,” Stolt-Nielsen said.\r\n\r\n“Freight rates and volumes overall were stable at Stolt Tankers. Results at Stolthaven Terminals were steady when excluding the impairments taken in the prior quarter, reflecting stable market conditions and operations. At Stolt Tank Containers, first-quarter results were down in line with seasonal expectations, though market softness remains, with intensified price competition.”\r\n\r\nStolt Tankers reported an operating profit of USD 14.3 million, up from USD 7.7 million delivered in the previous quarter, mainly reflecting a USD 3.4 million bunker-hedge gain in the quarter.\r\n\r\nStolthaven Terminals’ operating profit was at USD 18 million, up from USD 11.7 million in the fourth quarter of 2018, while Stolt Tank Containers reported an operating profit of USD 15.7 million down from USD 18.1 million quarter-on-quarter.', 'pending', '2019-08-16 08:32:29', '2019-08-16 08:32:29');
+(13, 1, 'Stranded cruise ship passengers and crew all safe', 'http://www.seamenclub.com.mm/upload/normal_post/5d75147551b4a_apm-terminals-gothenburg-320x219.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:17:17', '2019-09-08 08:17:17'),
+(14, 1, 'passage, and going through the cites of the word in classica', 'http://www.seamenclub.com.mm/upload/normal_post/5d75148e2e9df_car-carrier-320x219.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:17:42', '2019-09-08 08:17:42'),
+(15, 1, 'passage, and going through the cites of the word in classica', 'http://www.seamenclub.com.mm/upload/normal_post/5d75149996cc3_containership-320x195.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:17:53', '2019-09-08 08:17:53'),
+(16, 1, 'BIMCO: Tariffs Affect 27.4 Mn Tonnes of US Imports', 'http://www.seamenclub.com.mm/upload/normal_post/5d7514a46621f_flex-lng-to-buy-five-lng-newbuildings-300x160.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:18:04', '2019-09-08 08:18:04'),
+(17, 1, 'ne of the more obscure Latin words, consectetur, from', 'http://www.seamenclub.com.mm/upload/normal_post/5d7514bb96b86_img34_o-1024x683-1-320x213.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:18:27', '2019-09-08 08:18:27'),
+(18, 1, 'ne of the more obscure Latin words, consectetur, from', 'http://www.seamenclub.com.mm/upload/normal_post/5d7514c749ad4_jms1947-768x513-1-320x214.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:18:39', '2019-09-08 08:18:39'),
+(19, 1, 'doubtable source. Lorem Ipsum comes from sections 1.10.32 and', 'http://www.seamenclub.com.mm/upload/normal_post/5d75150b5a93f_seafarers-320x221.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:19:47', '2019-09-08 08:19:47'),
+(20, 1, 'doubtable source. Lorem Ipsum comes from sections 1.10.32 and', 'http://www.seamenclub.com.mm/upload/normal_post/5d7515167d085_stolt-nielsen-foresees-impact-from-houston-ship-channel-fire-320x205.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:19:58', '2019-09-08 08:19:58');
 
 -- --------------------------------------------------------
 
@@ -784,7 +784,7 @@ CREATE TABLE `seafarers` (
   `birthday` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `place_of_birth` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `country_of_residence` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -811,6 +811,13 @@ CREATE TABLE `seafarer_requests` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `seafarer_requests`
+--
+
+INSERT INTO `seafarer_requests` (`id`, `company_id`, `seafarer_id`, `post_id`, `post_type`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 3, 'job_post', '2019-08-17 01:44:37', '2019-08-17 01:44:37');
 
 -- --------------------------------------------------------
 
@@ -887,11 +894,11 @@ INSERT INTO `testimonials` (`id`, `photo`, `name`, `description`, `created_at`, 
 CREATE TABLE `training_posts` (
   `id` int(10) UNSIGNED NOT NULL,
   `company_id` int(11) NOT NULL,
-  `title` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `training_for` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `requirement` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `duration` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` text COLLATE utf8mb4_unicode_ci,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `training_for` text COLLATE utf8mb4_unicode_ci,
+  `requirement` text COLLATE utf8mb4_unicode_ci,
+  `duration` text COLLATE utf8mb4_unicode_ci,
   `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `start_date` date DEFAULT NULL,
   `end_date` date DEFAULT NULL,
@@ -946,7 +953,8 @@ INSERT INTO `users` (`id`, `email`, `email_verified_at`, `password`, `type`, `da
 (1, 'admin@gmail.com', NULL, '$2y$10$/gV.IvigNQ3wamZdc7nPkuBDobVzkrsKaNZxLxgf3O7K29L1s.iXG', 'admin', 0, NULL, '2019-08-15 01:33:37', '2019-08-15 01:33:37'),
 (3, 'testing@gmail.com', NULL, '$2y$10$bnGJh5Hqt9MBxgNZMjOW/OmGnlPMrMH8WGK5wWLezilKOx376RmMC', 'company', 1, NULL, '2019-08-15 01:37:32', '2019-08-15 01:37:32'),
 (4, 'lynn9249@gmail.com', NULL, '$2y$10$13wQW3efvofRqeRijPpWMeFe7hVpQl4mqTnAYfgi0M363xc8TwIym', 'freeman', 1, NULL, '2019-08-16 02:53:11', '2019-08-16 02:53:11'),
-(5, 'mgmg@gmail.com', NULL, '$2y$10$d3t.eN6IbGAf8jtN.VvClezsowARXU5B5OJqmeaOHEkwEOIxw.p2C', 'seafarer', 1, NULL, '2019-08-16 02:58:58', '2019-08-16 02:58:58');
+(5, 'mgmg@gmail.com', NULL, '$2y$10$d3t.eN6IbGAf8jtN.VvClezsowARXU5B5OJqmeaOHEkwEOIxw.p2C', 'seafarer', 1, NULL, '2019-08-16 02:58:58', '2019-08-16 02:58:58'),
+(7, 'fdfd@gmail.com', NULL, '$2y$10$tjOeSqOvMdfcRe.Q1FUHl.TENzMHkhzv3WEMI5eUJ7Xd4qWigJ1eG', 'freeman', 2, NULL, '2019-08-17 00:57:36', '2019-08-17 00:57:36');
 
 -- --------------------------------------------------------
 
@@ -1189,7 +1197,7 @@ ALTER TABLE `ads_webpages`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `companies`
@@ -1237,7 +1245,7 @@ ALTER TABLE `course__course_categories`
 -- AUTO_INCREMENT for table `freemen`
 --
 ALTER TABLE `freemen`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `job_positions`
@@ -1249,7 +1257,7 @@ ALTER TABLE `job_positions`
 -- AUTO_INCREMENT for table `job_posts`
 --
 ALTER TABLE `job_posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1261,7 +1269,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `normal_posts`
 --
 ALTER TABLE `normal_posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `seafarers`
@@ -1273,7 +1281,7 @@ ALTER TABLE `seafarers`
 -- AUTO_INCREMENT for table `seafarer_requests`
 --
 ALTER TABLE `seafarer_requests`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `ship_types`
@@ -1303,7 +1311,7 @@ ALTER TABLE `training_posts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `vessel_types`

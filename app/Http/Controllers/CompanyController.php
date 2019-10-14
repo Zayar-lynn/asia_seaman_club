@@ -31,12 +31,12 @@ class CompanyController extends Controller
     {
         $user = Auth::user();
         $account_id = $user->data_id;
-        $account_data = Company::where('id',$account_id)->get();
-        foreach ($account_data as $data){
-            $job_data=new CompanyData($data->id);
-            $account_name = $job_data->getCompany_info();
-        }
-        return view('admin.company_admin.dashboard')->with(['url'=>'dashboard'])->with(['company_name'=>$account_name->company_name]);
+        $job_data=new CompanyData($account_id);
+        $company_info = $job_data->getCompany_info();
+        return view('admin.company_admin.dashboard')->with([
+            'url'=>'dashboard',
+            'company_name'=>$company_info['company_name']
+        ]);
     }
 
     /**
@@ -529,7 +529,11 @@ class CompanyController extends Controller
      
 //training post
 function upload_training_post_photo(Request $request){
-  return ASC::insert_photo_file($request,'upload/post/job_post');
+  return ASC::insert_photo_file($request,'upload/post/training_post');
+}
+
+function upload_job_post_photo(Request $request){
+    return ASC::insert_photo_file($request,'upload/post/job_post');
 }
 
 public function insert_training_post(Request $request){

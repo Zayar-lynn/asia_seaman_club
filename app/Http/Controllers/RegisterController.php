@@ -13,6 +13,7 @@ use App\CompanyPhoto;
 use App\User;
 use App\CustomClass\ASC;
 use App\Freeman;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -45,7 +46,7 @@ class RegisterController extends Controller
 
     public function businessregister(Request $request)
     {
-        $companyname = $request->get('companyname');
+        $company_name = $request->get('company_name');
         $phone = $request->get('phone');
         $email = $request->get('email');
         $type = $request->get('type');
@@ -57,31 +58,32 @@ class RegisterController extends Controller
         $street = $request->get('street');
         $city = $request->get('city');
         $state = $request->get('state');
-        $country = $request->get('country');
+        $country = $request->get('country_id');
         $website_url = $request->get('website');
         $referral_code = $request->get('referral_code');
 
         if($password == $password_confirmation){
-                $company = Company::create([
-                            'company_name' => $companyname,
-                            'contact_person_name' => $contact_person_name,
-                            'position' => $position,
-                            'phone' => $phone,
-                            'email' => $email,
-                            'business_type' => $type,
-                            'address' => $address,
-                            'street' => $street,
-                            'city' => $city,
-                            'state' => $state,
-                            'country_id' => $country,
-                            'website_url' => $website_url,
-                            'referral_code' => $referral_code
-                        ])->id;
-            User::create([
+            $company = Company::create([
+                        'company_name' => $company_name,
+                        'contact_person_name' => $contact_person_name,
+                        'position' => $position,
+                        'phone' => $phone,
+                        'email' => $email,
+                        'business_type' => $type,
+                        'address' => $address,
+                        'street' => $street,
+                        'city' => $city,
+                        'state' => $state,
+                        'country_id' => $country,
+                        'website_url' => $website_url,
+                        'referral_code' => $referral_code
+                    ])->id;
+            $new_user=User::create([
                 'email' => $email,
                 'password' => Hash::make($password),
                 'type' => 'company',
                 'data_id' => $company,
+                'api_token'=>Str::random(60),
             ]);
             // for ($i=1; $i <= 8; $i++) {
             //     CompanyPhoto::create([
@@ -96,6 +98,15 @@ class RegisterController extends Controller
         if (empty($device)) {
             return redirect('/login');
         }
+        else{
+            $arr=[
+                'email'=>$email,
+                'phone'=>$phone,
+                'name'=>$company_name,
+                'api_token'=>$new_user->api_token
+            ];
+            return $arr;
+        }
 
 
 
@@ -108,46 +119,60 @@ class RegisterController extends Controller
 
     public function freeagentregister(Request $request)
     {
-        $agentcompany = $request->get('agentcompany');
+        $agentcompany = $request->get('name');
         $occupation = $request->get('occupation');
         $id_card = $request->get('id_card');
+        $front_photo_link = $request->get('front_photo');
+        $back_photo_link = $request->get('back_photo');
         $phone = $request->get('phone');
-        $email = $request->get('email');
-        $type = 'freeman';
-        $password = $request->get('password');
-        $password_confirmation = $request->get('password_confirmation');
         $address = $request->get('address');
         $street = $request->get('street');
         $city = $request->get('city');
         $state = $request->get('state');
+        $email = $request->get('email');
         $referral_code = $request->get('referral_code');
-
-        $front_photo_link = $request->get('front_photo_link');
-        $back_photo_link = $request->get('back_photo_link');
+        $type = 'freeman';
+        $password = $request->get('password');
+        $password_confirmation = $request->get('password_confirmation');
 
         //return $occupation;
 
         if($password == $password_confirmation){
-                $freeman = Freeman::create([
-                                'name' => $agentcompany,
-                                'occupation' => $occupation,
-                                'id_card' => $id_card,
-                                'front_photo' => $front_photo_link,
-                                'back_photo' => $back_photo_link,
-                                'phone' => $phone,
-                                'address' => $address,
-                                'street' => $street,
-                                'city' => $city,
-                                'state' => $state,
-                                'email' => $email,
-                                'referral_code' => $referral_code,
-                            ])->id;
-                            User::create([
-                                'email' => $email,
-                                'password' => Hash::make($password),
-                                'type' => $type,
-                                'data_id' => $freeman,
-                            ]);
+            $freeman = Freeman::create([
+                            'name' => $agentcompany,
+                            'occupation' => $occupation,
+                            'id_card' => $id_card,
+                            'front_photo' => $front_photo_link,
+                            'back_photo' => $back_photo_link,
+                            'phone' => $phone,
+                            'address' => $address,
+                            'street' => $street,
+                            'city' => $city,
+                            'state' => $state,
+                            'email' => $email,
+                            'referral_code' => $referral_code,
+                        ])->id;
+            $new_user=User::create([
+                'email' => $email,
+                'password' => Hash::make($password),
+                'type' => $type,
+                'data_id' => $freeman,
+                'api_token'=>Str::random(80)
+            ]);
+            $device = $request->get('device');
+            if (empty($device)) {
+                return redirect('/login');
+            }
+            else{
+                $arr=[
+                    'email'=>$email,
+                    'phone'=>$phone,
+                    'name'=>$agentcompany,
+                    'api_token'=>$new_user->api_token
+                ];
+                return $arr;
+            }
+
 
         }
 //         return redirect('/login');

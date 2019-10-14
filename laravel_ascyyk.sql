@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 08, 2019 at 05:23 PM
+-- Generation Time: Oct 14, 2019 at 05:43 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -198,7 +198,9 @@ CREATE TABLE `companies` (
 --
 
 INSERT INTO `companies` (`id`, `company_name`, `contact_person_name`, `position`, `phone`, `email`, `business_type`, `address`, `street`, `city`, `state`, `country_id`, `website_url`, `referral_code`, `created_at`, `updated_at`) VALUES
-(1, 'testing', 'zayy', 'testing', '09428766473', 'testing@gmail.com', 'Shipping Company', 'yangon', 'testing', 'testing', 'testing', 152, 'http://www.website.com', '12345', '2019-08-15 01:37:32', '2019-08-15 01:37:32');
+(1, 'testing', 'zayy', 'testing', '09428766473', 'testing@gmail.com', 'Shipping Company', 'yangon', 'testing', 'testing', 'testing', 152, 'http://www.website.com', '12345', '2019-08-15 01:37:32', '2019-08-15 01:37:32'),
+(2, 'Google', 'Mr.Apple', 'Developer', '09877788888', 'google@gmail.com', 'SRPS/Crewing Company', 'Myitkyina , Myanmar', 'Bla', 'MKN', 'Kachin', 75, 'https://www.joox.com/mm/mymusic/1549075625', '552211', '2019-10-13 23:16:23', '2019-10-13 23:16:23'),
+(4, 'Apple', 'YeYint', 'WebDeveloper', '098776677', 'apple@gmail.com', 'SRPS/Crewing Company', 'Myitkyina', 'test strees', 'mkn', 'kachin', 1, NULL, '1001', '2019-10-14 04:19:33', '2019-10-14 04:19:33');
 
 -- --------------------------------------------------------
 
@@ -587,7 +589,8 @@ CREATE TABLE `freemen` (
 
 INSERT INTO `freemen` (`id`, `name`, `occupation`, `id_card`, `front_photo`, `back_photo`, `phone`, `address`, `street`, `city`, `state`, `email`, `referral_code`, `created_at`, `updated_at`) VALUES
 (1, 'testing', 'testing', 'testing123', 'http://localhost/asia_seaman_club/public/upload/freeman_photo/5d5675fe23f2c_Chrysanthemum.jpg', 'http://localhost/asia_seaman_club/public/upload/freeman_photo/5d5675fe242b6_Desert.jpg', '09978699298', 'sasdasdasda', 'testing', 'testing', 'testing', 'lynn9249@gmail.com', '12345', '2019-08-16 02:53:10', '2019-08-16 02:53:10'),
-(2, 'zayy', 'sdasdasd', 'dasd212', 'http://localhost/asia_seaman_club/public/upload/freeman_photo/5d57ac6843835_Desert.jpg', 'http://localhost/asia_seaman_club/public/upload/freeman_photo/5d57ac6843c0d_Desert.jpg', '09978699298', 'sdfsdfsd', 'sdfsdf', 'testing', 'testing', 'fdfd@gmail.com', '12345', '2019-08-17 00:57:36', '2019-08-17 00:57:36');
+(2, 'zayy', 'sdasdasd', 'dasd212', 'http://localhost/asia_seaman_club/public/upload/freeman_photo/5d57ac6843835_Desert.jpg', 'http://localhost/asia_seaman_club/public/upload/freeman_photo/5d57ac6843c0d_Desert.jpg', '09978699298', 'sdfsdfsd', 'sdfsdf', 'testing', 'testing', 'fdfd@gmail.com', '12345', '2019-08-17 00:57:36', '2019-08-17 00:57:36'),
+(3, 'YYK', 'aaaaa', 'fdfdfff', 'dsdsd', 'dsdsdsdsd', '45454', 'wwwwww', 'aaaa', 'cccc', 'sssss', 'eeeee', 'rrrr', '2019-10-14 09:08:30', '2019-10-14 09:08:30');
 
 -- --------------------------------------------------------
 
@@ -685,7 +688,8 @@ CREATE TABLE `job_posts` (
 --
 
 INSERT INTO `job_posts` (`id`, `company_id`, `job_position_id`, `vancant`, `salary`, `join_date`, `contract_duration`, `requirement`, `vessel_name`, `vessel_type_id`, `build_year`, `dwt`, `flage`, `main_engine`, `crew_onboard`, `sailing_area`, `description`, `english_level`, `photo`, `status`, `created_at`, `updated_at`) VALUES
-(3, 1, 1, 'test vancant', '2000', '2019-04-15', 'testy ccc', 'teset req', 'vtest vess', 1, 'tesyt buik', 'test dwy', 'test f', 'test me', 'test c', 'test sa', 'test des', 'tesy eng', 'https://scontent.fmdl2-1.fna.fbcdn.net/v/t1.0-9/70069000_682004325609106_8158005278822891520_n.jpg?_nc_cat=106&_nc_oc=AQkvMH_Ii57T2uF-eOJIdVgmcK3HTuel2KTqLx5I14ipcpbhxzu44yd2DuaVR5lLucI&_nc_ht=scontent.fmdl2-1.fna&oh=b0b568afa0a275c92e0f4e01b254f96c&oe=5E0EB3D4', 'pending', '2019-09-08 08:47:19', '2019-09-08 08:47:19');
+(3, 1, 1, 'test vancant', '2000', '2019-04-15', 'testy ccc', 'teset req', 'vtest vess', 1, 'tesyt buik', 'test dwy', 'test f', 'test me', 'test c', 'test sa', 'test des', 'tesy eng', 'https://scontent.fmdl2-1.fna.fbcdn.net/v/t1.0-9/70069000_682004325609106_8158005278822891520_n.jpg?_nc_cat=106&_nc_oc=AQkvMH_Ii57T2uF-eOJIdVgmcK3HTuel2KTqLx5I14ipcpbhxzu44yd2DuaVR5lLucI&_nc_ht=scontent.fmdl2-1.fna&oh=b0b568afa0a275c92e0f4e01b254f96c&oe=5E0EB3D4', 'active', '2019-09-08 08:47:19', '2019-09-08 08:47:19'),
+(5, 1, 1, 'test vancant', '2000', '2019-04-15', 'testy ccc', 'teset req', 'vtest vess', 1, 'tesyt buik', 'test dwy', 'test f', 'test me', 'test c', 'test sa', 'test des', 'tesy eng', 'https://scontent.fmdl2-1.fna.fbcdn.net/v/t1.0-9/70069000_682004325609106_8158005278822891520_n.jpg?_nc_cat=106&_nc_oc=AQkvMH_Ii57T2uF-eOJIdVgmcK3HTuel2KTqLx5I14ipcpbhxzu44yd2DuaVR5lLucI&_nc_ht=scontent.fmdl2-1.fna&oh=b0b568afa0a275c92e0f4e01b254f96c&oe=5E0EB3D4', 'pending', '2019-10-14 08:40:41', '2019-10-14 08:40:41');
 
 -- --------------------------------------------------------
 
@@ -763,7 +767,8 @@ INSERT INTO `normal_posts` (`id`, `user_id`, `title`, `photo`, `description`, `s
 (17, 1, 'ne of the more obscure Latin words, consectetur, from', 'http://www.seamenclub.com.mm/upload/normal_post/5d7514bb96b86_img34_o-1024x683-1-320x213.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:18:27', '2019-09-08 08:18:27'),
 (18, 1, 'ne of the more obscure Latin words, consectetur, from', 'http://www.seamenclub.com.mm/upload/normal_post/5d7514c749ad4_jms1947-768x513-1-320x214.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:18:39', '2019-09-08 08:18:39'),
 (19, 1, 'doubtable source. Lorem Ipsum comes from sections 1.10.32 and', 'http://www.seamenclub.com.mm/upload/normal_post/5d75150b5a93f_seafarers-320x221.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:19:47', '2019-09-08 08:19:47'),
-(20, 1, 'doubtable source. Lorem Ipsum comes from sections 1.10.32 and', 'http://www.seamenclub.com.mm/upload/normal_post/5d7515167d085_stolt-nielsen-foresees-impact-from-houston-ship-channel-fire-320x205.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:19:58', '2019-09-08 08:19:58');
+(20, 1, 'doubtable source. Lorem Ipsum comes from sections 1.10.32 and', 'http://www.seamenclub.com.mm/upload/normal_post/5d7515167d085_stolt-nielsen-foresees-impact-from-houston-ship-channel-fire-320x205.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:19:58', '2019-09-08 08:19:58'),
+(21, 1, 'hello', 'C:\\xampp\\tmp\\phpA989.tmp', 'between trains and ships, as well as more ocean-going vessels calling the port.\\r\\n\\r\\n“Via The Gothenburg Gateway it should take a maximum of 24 hours to reach Gothenburg by freight train, and a maximum of 48 hours in total to place a container on an ocean-going vessel,” Henrik Kristensen, CEO APM Terminals Gothenburg, said.\\r\\n\\r\\nAsian markets one week closer\\r\\n\\r\\n“We analyzed how long it takes for a container to reach Shanghai – an important Asian market for Sweden. The Gothenburg Gateway will help reduce this time by at least one week, as well as offering an efficient and climate-smart solution.”\\r\\n\\r\\nIn the future, APM Terminals wants to service Sweden with three ocea', 'pending', '2019-10-14 08:14:08', '2019-10-14 08:14:08');
 
 -- --------------------------------------------------------
 
@@ -924,8 +929,12 @@ CREATE TABLE `training_posts` (
 --
 
 INSERT INTO `training_posts` (`id`, `company_id`, `title`, `description`, `training_for`, `requirement`, `duration`, `photo`, `start_date`, `end_date`, `start_time`, `end_time`, `training_fee_amount`, `fee_type`, `enroll_limit`, `contact_no`, `online_banking`, `benificiary_name`, `account_number`, `post_start_date`, `post_end_date`, `fee_point`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'hello', 'blabla', 'std', 'blabla', 'blbbb', 'http:///dfjkfjdkfjk', '2019-08-16', '2019-08-16', '14:52:15', '14:52:15', '11111', 'MMK', '10', '09877778', 'yes', 'kdfjkdjfk', '9898998', '2019-08-16', NULL, '2', 'active', '2019-08-16 09:39:16', '2019-08-16 09:44:17'),
-(2, 1, 'hello2', 'blabla', 'std', 'blabla', 'blbbb', 'http:///dfjkfjdkfjk', '2019-08-16', '2019-08-16', '14:52:15', '14:52:15', '11111', 'MMK', '10', '09877778', 'yes', 'kdfjkdjfk', '9898998', '2019-08-16', NULL, '2', 'pending', '2019-08-16 09:39:16', '2019-08-16 09:44:17');
+(1, 1, 'hello', 'blabla', 'std', 'blabla', 'blbbb', 'http:///dfjkfjdkfjk', '2019-08-16', '2019-08-16', '14:52:15', '14:52:15', '11111', 'MMK', '10', '09877778', 'yes', 'kdfjkdjfk', '9898998', '2019-08-16', '2019-12-08', '2', 'active', '2019-08-16 09:39:16', '2019-08-16 09:44:17'),
+(2, 1, 'hello2', 'blabla', 'std', 'blabla', 'blbbb', 'http:///dfjkfjdkfjk', '2019-08-16', '2019-08-16', '14:52:15', '14:52:15', '11111', 'MMK', '10', '09877778', 'yes', 'kdfjkdjfk', '9898998', '2019-08-16', '2019-12-08', '2', 'pending', '2019-08-16 09:39:16', '2019-08-16 09:44:17'),
+(3, 1, 'aaaa', 'bbb', 'ccc', 'dfasdfdsf', 'ddd', 'eeee', '2019-09-08', '2019-09-08', '15:17:19', '15:17:19', '4000', 'card', '33', '09666654', 'eee', 'ssss', '333', '2019-09-08', '2019-12-08', '33', 'pending', '2019-10-14 08:47:21', '2019-10-14 08:47:21'),
+(4, 1, 'aaaa', 'bbb', 'ccc', 'dfasdfdsf', 'ddd', 'eeee', '2019-09-08', '2019-09-08', '15:17:19', '15:17:19', '4000', 'card', '33', '09666654', 'eee', 'ssss', '333', '2019-09-08', '2019-12-08', '33', 'pending', '2019-10-14 08:50:36', '2019-10-14 08:50:36'),
+(5, 1, 'aaaa', 'bbb', 'ccc', 'dfasdfdsf', 'ddd', 'eeee', '2019-09-08', '2019-09-08', '15:17:19', '15:17:19', '4000', 'card', '33', '09666654', 'eee', 'ssss', '333', '2019-09-08', '2019-12-08', '33', 'pending', '2019-10-14 08:52:32', '2019-10-14 08:52:32'),
+(6, 1, 'aaaa', 'bbb', 'ccc', 'dfasdfdsf', 'ddd', 'eeee', '2019-09-08', '2019-09-08', '15:17:19', '15:17:19', '4000', 'card', '33', '09666654', 'eee', 'ssss', '333', '2019-09-08', '2019-12-08', '33', 'pending', '2019-10-14 08:54:33', '2019-10-14 08:54:33');
 
 -- --------------------------------------------------------
 
@@ -940,7 +949,7 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `data_id` int(11) NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `api_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -949,12 +958,15 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `email_verified_at`, `password`, `type`, `data_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin@gmail.com', NULL, '$2y$10$/gV.IvigNQ3wamZdc7nPkuBDobVzkrsKaNZxLxgf3O7K29L1s.iXG', 'admin', 0, NULL, '2019-08-15 01:33:37', '2019-08-15 01:33:37'),
-(3, 'testing@gmail.com', NULL, '$2y$10$bnGJh5Hqt9MBxgNZMjOW/OmGnlPMrMH8WGK5wWLezilKOx376RmMC', 'company', 1, NULL, '2019-08-15 01:37:32', '2019-08-15 01:37:32'),
-(4, 'lynn9249@gmail.com', NULL, '$2y$10$13wQW3efvofRqeRijPpWMeFe7hVpQl4mqTnAYfgi0M363xc8TwIym', 'freeman', 1, NULL, '2019-08-16 02:53:11', '2019-08-16 02:53:11'),
-(5, 'mgmg@gmail.com', NULL, '$2y$10$d3t.eN6IbGAf8jtN.VvClezsowARXU5B5OJqmeaOHEkwEOIxw.p2C', 'seafarer', 1, NULL, '2019-08-16 02:58:58', '2019-08-16 02:58:58'),
-(7, 'fdfd@gmail.com', NULL, '$2y$10$tjOeSqOvMdfcRe.Q1FUHl.TENzMHkhzv3WEMI5eUJ7Xd4qWigJ1eG', 'freeman', 2, NULL, '2019-08-17 00:57:36', '2019-08-17 00:57:36');
+INSERT INTO `users` (`id`, `email`, `email_verified_at`, `password`, `type`, `data_id`, `api_token`, `created_at`, `updated_at`) VALUES
+(1, 'admin@gmail.com', NULL, '$2y$10$/gV.IvigNQ3wamZdc7nPkuBDobVzkrsKaNZxLxgf3O7K29L1s.iXG', 'admin', 0, 'k6d4HHZnHCzUJwjhygtOP86hAhcvjU4D14fHTiFpHpkAzEQxNtmHFybqGXgf', '2019-08-15 01:33:37', '2019-08-15 01:33:37'),
+(3, 'testing@gmail.com', NULL, '$2y$10$bnGJh5Hqt9MBxgNZMjOW/OmGnlPMrMH8WGK5wWLezilKOx376RmMC', 'company', 1, 'k6d4HHZnHCzUJwnyg4HOP86hAhcujhyg14fHTiFpHpkAzEQxNtmHFybqGXgf', '2019-08-15 01:37:32', '2019-08-15 01:37:32'),
+(4, 'lynn9249@gmail.com', NULL, '$2y$10$13wQW3efvofRqeRijPpWMeFe7hVpQl4mqTnAYfgi0M363xc8TwIym', 'freeman', 1, 'k6d4juhygtfrdenyg4HOP86hAhcvjU4D14fHTiFpHpkAzEQxNtmHFybqGXgf', '2019-08-16 02:53:11', '2019-08-16 02:53:11'),
+(5, 'mgmg@gmail.com', NULL, '$2y$10$d3t.eN6IbGAf8jtN.VvClezsowARXU5B5OJqmeaOHEkwEOIxw.p2C', 'seafarer', 1, 'k6d4juhygfgvfdnyg4HOP86hAhcvjU4D14fHTiFpHpkAzEQxNtmHFybqGXgf', '2019-08-16 02:58:58', '2019-08-16 02:58:58'),
+(7, 'fdfd@gmail.com', NULL, '$2y$10$tjOeSqOvMdfcRe.Q1FUHl.TENzMHkhzv3WEMI5eUJ7Xd4qWigJ1eG', 'freeman', 2, 'hygtfrdeswzUJwnyg4HOP86hAhcvjU4D14fHTiFpHpkAzEQxNtmHFybqGXgf', '2019-08-17 00:57:36', '2019-08-17 00:57:36'),
+(8, 'google@gmail.com', NULL, '$2y$10$He2dqdI3ABVGlLx6oNmHdeNkpTqHl1CSVBc78wmM7ZQTBjFTLWAdG', 'company', 2, 'k6d4HHZnHCzUJwnyg4HOP86hAhcvjU4D14fHTiFpHpkAzEQxNtmHFybtrgji', '2019-10-13 23:16:24', '2019-10-13 23:16:24'),
+(10, 'apple@gmail.com', NULL, '$2y$10$gBRJn3Kk4NhpOgIpu46fr.NVPUlRvSQDf1ax/YGZONtOyLSr2o2Ba', 'company', 4, 'k6d4HHZnHCzUJwnyg4HOP86hAhcvjU4D14fHTiFpHpkAzEQxNtmHFybqGXgf', '2019-10-14 04:19:33', '2019-10-14 04:19:33'),
+(11, 'eeeee', NULL, '$2y$10$klucFgQ9toN.K/eiAnsIWeZRDbxisYqlJCRWomvbR6BdoV64iF522', 'freeman', 3, 'gWKWdhqk6jtMzygOh69vrXnxDF5LFhtSQ4w2zi2O3w5uTjqZXqRAruc15O1VC67pNbt2j7KLMID9Slie', '2019-10-14 09:08:30', '2019-10-14 09:08:30');
 
 -- --------------------------------------------------------
 
@@ -1203,7 +1215,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `company_photos`
@@ -1245,7 +1257,7 @@ ALTER TABLE `course__course_categories`
 -- AUTO_INCREMENT for table `freemen`
 --
 ALTER TABLE `freemen`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `job_positions`
@@ -1257,7 +1269,7 @@ ALTER TABLE `job_positions`
 -- AUTO_INCREMENT for table `job_posts`
 --
 ALTER TABLE `job_posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1269,7 +1281,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `normal_posts`
 --
 ALTER TABLE `normal_posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `seafarers`
@@ -1305,13 +1317,13 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `training_posts`
 --
 ALTER TABLE `training_posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `vessel_types`

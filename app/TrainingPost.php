@@ -27,7 +27,7 @@ class TrainingPost extends Model
         'benificiary_name',
         'account_number',
         'post_start_date',
-        'end_start_date',
+        'post_end_date',
         'fee_point',
         'status',
     ];

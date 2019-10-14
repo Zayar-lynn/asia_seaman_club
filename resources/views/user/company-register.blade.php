@@ -23,13 +23,13 @@
             <form method="post" action="{{url('api/businessregister')}}" enctype="multipart/form-data">
               {{csrf_field()}}
               <div class="input-wrap">
-                <input type="text" placeholder="Company Name*" required class="form-control" name="companyname">
+                <input type="text" placeholder="Company Name*" required class="form-control" name="company_name">
               </div>
               <div class="input-wrap">
                 <select name="type" class="form-control" required>
                   <option>--Select Type-- </option>
                   <?php
-                    $arr = ['Shipping Company','SRPS/Crewing Company','Maritime Unversity','Maritime Training School','Maritime Training Center','Maritime Organization','Maritime Institute','Customize'];
+                    $arr = ['Shipping Company','SRPS/Crewing Company','Maritime University','Maritime Training School','Maritime Training Center','Maritime Organization','Maritime Institute','Customize'];
                     foreach ($arr as $data) {
                   ?>
                     <option value="{{$data}}">{{$data}}</option>
@@ -60,7 +60,7 @@
                 <input type="text" placeholder="State*" required class="form-control" name="state">
               </div>
               <div class="input-wrap">
-                <select name="country" class="form-control" required>
+                <select name="country_id" class="form-control" required>
                   <option>--Select Country-- </option>
                   <?php
                     foreach ($countries as $country) {

@@ -106,19 +106,12 @@ class CompanyData{
     protected function setCompany_post($company_id)
     {
         
-        $company = $this->getCompany_info();
-        $business_type = $company->business_type;
-        if($business_type == 'Shipping Company'){
-           $post = JobPost::where('company_id',$company_id)->get();
-           //$post="business company";
-        }elseif ($business_type == 'training') {
-            $post = TrainingPost::where('company_id',$company_id)->get();
-            //$post="training";
-        }elseif ($business_type == 'freeman') {
-            $post = JobPost::where('company_id',$company_id)->get();
-            //$post="freeagent";
-        }
-        
-        $this->company_post = $post;
+//        $company = $this->getCompany_info();
+//        $jobpost = JobPost::where('company_id',$company_id)->get();
+//        $trainingpost = TrainingPost::where('company_id',$company_id)->get();
+//
+//
+//
+//        $this->company_post = $post;
     }
 }

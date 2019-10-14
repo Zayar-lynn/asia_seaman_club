@@ -26,7 +26,7 @@
 
           @endif
           <div class="formint conForm">
-            <form action="{{url('api/login')}}" method="post">
+            <form action="{{url('login')}}" method="post">
               {{ csrf_field() }}
 
               @if(!empty($company_id) && !empty($post_id))

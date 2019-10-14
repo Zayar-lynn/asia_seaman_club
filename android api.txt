@@ -1,34 +1,100 @@
 ﻿
-main pages
+business register
 ==========
-//*****************use post's comment => arr['comments'] , don't use arr['comment']************
-newfeeds => http://localhost/asia_seaman_club/public/active_normal_posts
-job post=> http://localhost/asia_seaman_club/public/active_job_posts
-training post => http://localhost/asia_seaman_club/public/active_training_posts
-shipmate => http://localhost/asia_seaman_club/public/shipmate
+all country=>http://aseamenclub.com/get_all_country
+register link=>http://aseamenclub.com/api/businessregister
+type=>['Shipping Company','SRPS/Crewing Company','Maritime Unversity','Maritime Training School','Maritime Training Center','Maritime Organization','Maritime Institute','Customize'];
+method=>post
+parameter=>
+company_name
+contact_person_name
+position
+phone
+email
+type
+address
+street
+city
+state
+country_id
+website_url
+referral_code
+password
+password_confirmation
+device='mobile'
 
-job post detail=> http://localhost/asia_seaman_club/public/job_post_detail/{id}
-training post detail=> http://localhost/asia_seaman_club/public/training_post_detail/{id}
-normal post detail => http://localhost/asia_seaman_club/public/normal_post_detail/{id}
+
+login
+=====
+login link=>http://aseamenclub.com/api/login
+method=>post
+peremeter=>
+email
+password
 
 
-select ads
-========
-newfeed ads=> http://localhost/asia_seaman_club/public/newfeed_ads
-training post ads=> http://localhost/asia_seaman_club/public/training_ads
-job post ads=> http://localhost/asia_seaman_club/public/job_ads
-shipmate post ads=> http://localhost/asia_seaman_club/public/shipmate_ads
+create jobpost
+==========
+
+img upload link=>http://aseamenclub.com/api/upload_training_post_photo
+method=>post
+parameter=>photo
+
+job position=>http://aseamenclub.com/api/get_job_position
+vessel type=> http://aseamenclub.com/api/get_vessel_type
+job post create=> http://aseamenclub.com/api/insert/jobpost
+method=>post
+paramete=>
+job_position_id
+vancant
+salary
+join_date
+contract_duration
+requirement
+vessel_name
+vessel_type_id
+build_year
+dwt
+flage
+main_engine
+crew_onboard
+sailing_area
+description
+english_level
+photo
+device='mobile'
+
+
+
+job post delete=> http://aseamenclub.com/api/delete/jobpost/{id}
+job post update=> http://aseamenclub.com/api/edit/jobpost/{id}
+
+create normal post
+=========
+img upload link=>http://aseamenclub.com/api/upload_normal_post
+method=>post
+parameter=>photo
+
+normal post create=>http://aseamenclub.com/api/insert/seafarer_post
+method=>post
+parameter=>
+title
+photo
+description
+
+normal post delete=>http://aseamenclub.com/api/delete_normal_post/{post_id}
+normal post edit=>http://aseamenclub.com/api/edit_normal_post/{id}
 
 
 
 
 create training post
 =====================
-img upload link=>http://localhost/asia_seaman_club/public/upload_training_post_photo
+img upload link=>http://aseamenclub.com/upload_training_post_photo
 method=>post
 parameter=>photo
 
-jobpost upload link=>http://localhost/asia_seaman_club/public/api/insert/training_post
+training post create=>http://aseamenclub.com/api/insert/training_post
 method=>post
 paramete=>
 title
@@ -52,96 +118,32 @@ post_start_date
 post_end_date
 fee_point
 
+training post delete=>http://aseamenclub.com/api/delete_training_post/{post_id}
+training post edit=>http://aseamenclub.com/api/edit_training_post/{id}
 
 
-comment
-*******
-create comment=>http://localhost/asia_seaman_club/public/api/create_comment
-method => post
-parameter =>post_id,post_type,comment 
-
-edit comment=>http://localhost/asia_seaman_club/public/api/edit_comment/{id}
-method => post
-parameter =>comment
-
-delete comment=>http://localhost/asia_seaman_club/public/delete_comment/{id}
-method => get
 
 
-create jobpost
-==========
-job post link=> http://localhost/asia_seaman_club/public/api/insert/jobpost
-method=>post
-paramete=>
-job_position_id
-vancant
-salary
-join_date
-contract_duration
-requirement
-vessel_name
-vessel_type_id
-build_year
-dwt
-flage
-main_engine
-crew_onboard
-sailing_area
-description
-english_level
-photo
 
 
-job post delete=> http://localhost/asia_seaman_club/public/api/delete/jobpost/{id}
-job post update=> http://localhost/asia_seaman_club/public/api/edit/jobpost/{id}
 
-create normal post
-=========
-img upload link=>http://localhost/asia_seaman_club/public/upload_seafarer_post_photo
-method=>post
-parameter=>photo
-
-normal post create=>http://localhost/asia_seaman_club/public/api/insert/seafarer_post
-method=>post
-parameter=>
-title
-photo
-description
-
-normal post delete=>http://localhost/asia_seaman_club/public/api/delete_normal_post/{post_id}
-normal post edit=>http://localhost/asia_seaman_club/public/api/edit_normal_post/{id}
-
-business register
-===========
-register link=>http://localhost/asia_seaman_club/public/api/businessregister
-method=>post
-parameter=>
-company_name
-contact_person_name
-position
-phone
-email
-business_type
-address
-street
-city
-state
-country_id
-website_url
-referral_code
-password
-password_confirmation
 
 
 freeman register
 ===========
-register link=>http://localhost/asia_seaman_club/public/api/freeagentregister
+img upload link=>http://aseamenclub.com/upload_freeman_photo
+method=>post
+parameter=>photo
+
+
+register link=>http://aseamenclub.com/api/freeagentregister
 method=>post
 parameter=>
-agentcompany
+name
 occupation
 id_card
-photo
+front_photo
+back_photo
 phone
 address
 street
@@ -151,24 +153,61 @@ email
 referral_code
 password
 password_confirmation
+deveice='mobile'
 
 
-img upload link=>http://localhost/asia_seaman_club/public/upload_freeman_photo
-method=>post
-parameter=>photo
 
 
-login
-=====
-login link=>http://localhost/asia_seaman_club/public/api/login
-method=>post
-peremeter=>
-email
-password
+
+
+main pages
+==========
+//*****************use post's comment => arr['comments'] , don't use arr['comment']************
+newfeeds => http://aseamenclub.com/active_normal_posts
+job post=> http://aseamenclub.com/active_job_posts
+training post => http://aseamenclub.com/active_training_posts
+shipmate => http://aseamenclub.com/shipmate
+
+job post detail=> http://aseamenclub.com/job_post_detail/{id}
+training post detail=> http://aseamenclub.com/training_post_detail/{id}
+normal post detail => http://aseamenclub.com/normal_post_detail/{id}
+
+
+
+
+
+
+
+select ads
+========
+newfeed ads=> http://aseamenclub.com/newfeed_ads
+training post ads=> http://aseamenclub.com/training_ads
+job post ads=> http://aseamenclub.com/job_ads
+shipmate post ads=> http://aseamenclub.com/shipmate_ads
+
+
+
+
+
+
+
+comment
+*******
+create comment=>http://aseamenclub.com/api/create_comment
+method => post
+parameter =>post_id,post_type,comment 
+
+edit comment=>http://aseamenclub.com/api/edit_comment/{id}
+method => post
+parameter =>comment
+
+delete comment=>http://aseamenclub.com/delete_comment/{id}
+method => get
+
 
 seafarer requset
 ===========
-seafarer requset link=>http://localhost/asia_seaman_club/public/api/insert/seafarer_request
+seafarer requset link=>http://aseamenclub.com/api/insert/seafarer_request
 method=>post
 parameter=>
 company_id

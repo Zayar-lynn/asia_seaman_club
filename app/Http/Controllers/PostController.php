@@ -60,7 +60,7 @@ class PostController extends Controller
 
     function upload_seafarer_post_photo(Request $request)
     {
-        return ASC::insert_photo_file($request,'upload/normal_post');
+        return ASC::insert_photo_file($request,'upload/post/normal_post');
     }
 
     public function insert_seafarer_post(Request $request)

@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class ASC
 {
-    static public $domain_url="http://www.seamenclub.com.mm/";
+    static public $domain_url="http://aseamenclub.com/";
 
     public static function insert_photo_file(Request $request,$storage_location){
         $photolinks=[];
@@ -24,5 +24,6 @@ class ASC
             array_push($photolinks,$photo_link);
         }
         return $photolinks;
+
     }
 }

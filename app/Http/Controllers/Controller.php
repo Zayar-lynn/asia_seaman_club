@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\CustomClass\CompanyData;
 use App\CustomClass\JobPostData;
 use App\CustomClass\NormalPostData;
+use App\Freeman;
+use App\JobPosition;
+use App\Seafarer;
+use App\VesselType;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -24,10 +29,72 @@ use App\CustomClass\JobData;
 use App\Ads;
 use App\CustomClass\ASC;
 use App\Country;
+use Illuminate\Support\Str;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    /**
+     * Update the authenticated user's API token.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function update_token(Request $request)
+    {
+        $token = Str::random(60);
+
+        $request->user()->forceFill([
+            'api_token' => hash('sha256', $token),
+        ])->save();
+
+        return ['token' => $token];
+    }
+
+    function api_login(Request $request){
+        $email=$request->get('email');
+        $password=$request->get('password');
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            $user=Auth::user();
+            if ($user->type==="company"){
+                $company_obj=new CompanyData($user->data_id);
+                $company=$company_obj->getCompany_info();
+                $name=$company['company_name'];
+                $phone=$company['phone'];
+            }
+            else if ($user->type==="freeman"){
+                $freeman=Freeman::find($user->data_id);
+                $name=$freeman['employee_name'];
+                $phone=$freeman['phone'];
+            }
+            else if ($user->type==="seafarer"){
+                $seafarer=Seafarer::find($user->data_id);
+                $name=$seafarer['employee_name'];
+                $phone=$seafarer['phone'];
+            }
+            $arr=[
+                'email'=>$email,
+                'phone'=>$phone,
+                'name'=>$name,
+                'api_token'=>$user->api_token
+            ];
+            return $arr;
+        }
+        else{
+            return "false";
+        }
+    }
+
+    function get_job_position(){
+        $position=JobPosition::all();
+        return $position;
+    }
+
+    function get_vessel_type(){
+        $type=VesselType::all();
+        return $type;
+    }
 
     function login(Request $request){
     	$email=$request->get('email');
@@ -134,6 +201,10 @@ class Controller extends BaseController
         return view('user/company-register')->with([
             'countries'=>$country
         ]);
+    }
+
+    function get_country_list(){
+        return Country::all();
     }
 
 

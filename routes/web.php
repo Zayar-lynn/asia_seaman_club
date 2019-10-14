@@ -10,7 +10,19 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//testingh
 
+use Illuminate\Http\Request;
+
+Route::middleware('auth:api')->get('/user', function(Request $request) {
+    return $request->user();
+});
+//****************************************
+Route::get('/company-register','Controller@company_register');
+Route::get('get_all_country','Controller@get_country_list');
+Route::post('api/login','Controller@api_login');
+
+//*************************************
 Route::get('/','Controller@index');
 
 Route::get('/about-us', function () {
@@ -42,7 +54,7 @@ Route::get('/contact-us', function () {
 Route::get('/register',function(){
 	return view('user/register');
 });
-Route::get('/company-register','Controller@company_register');
+
 
 Route::get('/employee-register',function(){
 	return view('user/employee-register');
@@ -65,7 +77,7 @@ Route::get('/company_profile/{company_id}','CompanyController@company_profile');
 
 Route::get('/apply/{company_id}/{post_id}','SeafarerController@request');
 
-Route::post('api/login','Controller@login');
+Route::post('login','Controller@login');
 Route::get('/logout','Controller@logout');
 
 Route::post('/teacherregister','RegisterController@teacherregister');
@@ -73,13 +85,13 @@ Route::post('/teacherregister','RegisterController@teacherregister');
 Route::post('/get_all_teacher_acc','RegisterController@get_all_teacher_acc');
 
 Route::post('/delete/teacher_acc/{id}','RegisterController@destroy');
-
+//*****************************************
 Route::post('api/businessregister','RegisterController@businessregister');
 
 Route::post('/seafarerregister','RegisterController@seafarerregister');
 
 Route::post('api/freeagentregister','RegisterController@freeagentregister');
-Route::post('/upload_freeman_photo','RegisterController@upload_freeman_photo');
+Route::post('api/upload_freeman_photo','RegisterController@upload_freeman_photo');
 
 Route::post('/contact','ContactController@store');
 
@@ -202,7 +214,7 @@ Route::post('/delete/pending_post/{id}','PostConfirmController@destroy');
 
 Route::get('/admin/post','PostController@view_admin_post');
 Route::post('/insert/admin_post','PostController@insert_admin_post');
-Route::post('/upload_admin_post_photo','PostController@upload_admin_post_photo');
+Route::post('api/upload_admin_post_photo','PostController@upload_admin_post_photo');
 Route::post('/get_all_admin_post','PostController@get_all_admin_post');
 
 //Company Dashboard
@@ -232,11 +244,21 @@ Route::post('api/edit_training_post/{id}','CompanyController@edit_training_post'
 Route::get('api/confirm_training_post/{post_id}','CompanyController@confirm_training_post');
 Route::get('api/delete_training_post/{post_id}','CompanyController@delete_training_post');
 Route::get('api/pending_training_posts','CompanyController@pending_training_posts');
-Route::post('/upload_training_post_photo','CompanyController@upload_training_post_photo');
+Route::post('api/upload_training_post_photo','CompanyController@upload_training_post_photo');
 Route::get('api/post/{post_id}','CompanyController@post_detail');
 
 // Route::get('api/active_training_posts','CompanyController@active_training_posts');
 //end
+
+// jobpost
+Route::get('/company_dashboard/jobpost','CompanyController@company_jobpost');
+Route::post('api/upload_job_post_photo','CompanyController@upload_job_post_photo');
+Route::post('api/insert/jobpost','CompanyController@insert_jobpost');
+Route::post('/get_all_jobpost','CompanyController@get_all_jobpost');
+Route::get('api/delete/jobpost/{id}','CompanyController@destroy');
+Route::post('api/edit/jobpost/{id}','CompanyController@edit');
+Route::get('api/get_job_position','Controller@get_job_position');
+Route::get('api/get_vessel_type','Controller@get_vessel_type');
 
 //*****************************************
 //*****************************************
@@ -263,17 +285,10 @@ Route::get('training_ads','ApplicationController@training_ads');
 Route::get('job_ads','ApplicationController@jobpost_ads');
 Route::get('shipmate_ads','ApplicationController@shipmate_ads');
 
-// jobpost
-Route::get('/company_dashboard/jobpost','CompanyController@company_jobpost');
-//Route::post('/upload_training_post_photo','CompanyController@upload_training_post_photo');
-Route::post('api/insert/jobpost','CompanyController@insert_jobpost');
-Route::post('/get_all_jobpost','CompanyController@get_all_jobpost');
-Route::post('api/delete/jobpost/{id}','CompanyController@destroy');
-Route::post('api/edit/jobpost/{id}','CompanyController@edit');
 
 // seafarer
-Route::post('/upload_seafarer_post_photo','PostController@upload_seafarer_post_photo');
-Route::post('api/insert/seafarer_post','PostController@insert_seafarer_post');
+Route::post('api/upload_normal_post','PostController@upload_seafarer_post_photo');
+Route::post('api/insert/normal_post','PostController@insert_seafarer_post');
 Route::get('api/delete_normal_post/{post_id}','PostController@delete_normal_post');
 Route::post('api/edit_normal_post/{id}','PostController@edit_normal_post');
 

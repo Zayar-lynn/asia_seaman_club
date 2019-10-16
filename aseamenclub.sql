@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2019 at 05:43 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.3
+-- Generation Time: Oct 16, 2019 at 05:47 PM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,26 +19,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `laravel_ascyyk`
+-- Database: `aseamenclub`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `accounts`
---
-
-CREATE TABLE `accounts` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `data_id` int(11) NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -166,7 +148,8 @@ INSERT INTO `comments` (`id`, `user_id`, `post_id`, `post_type`, `comment`, `cre
 (3, 1, 1, 'normal_post', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, NULL),
 (4, 4, 2, 'normal_post', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, NULL),
 (5, 5, 6, 'normal_post', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, NULL),
-(6, 3, 1, 'job_post', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, NULL);
+(6, 3, 1, 'job_post', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', NULL, NULL),
+(7, 1, 13, 'normal_post', 'hello', '2019-10-14 22:51:45', '2019-10-14 22:51:45');
 
 -- --------------------------------------------------------
 
@@ -200,7 +183,8 @@ CREATE TABLE `companies` (
 INSERT INTO `companies` (`id`, `company_name`, `contact_person_name`, `position`, `phone`, `email`, `business_type`, `address`, `street`, `city`, `state`, `country_id`, `website_url`, `referral_code`, `created_at`, `updated_at`) VALUES
 (1, 'testing', 'zayy', 'testing', '09428766473', 'testing@gmail.com', 'Shipping Company', 'yangon', 'testing', 'testing', 'testing', 152, 'http://www.website.com', '12345', '2019-08-15 01:37:32', '2019-08-15 01:37:32'),
 (2, 'Google', 'Mr.Apple', 'Developer', '09877788888', 'google@gmail.com', 'SRPS/Crewing Company', 'Myitkyina , Myanmar', 'Bla', 'MKN', 'Kachin', 75, 'https://www.joox.com/mm/mymusic/1549075625', '552211', '2019-10-13 23:16:23', '2019-10-13 23:16:23'),
-(4, 'Apple', 'YeYint', 'WebDeveloper', '098776677', 'apple@gmail.com', 'SRPS/Crewing Company', 'Myitkyina', 'test strees', 'mkn', 'kachin', 1, NULL, '1001', '2019-10-14 04:19:33', '2019-10-14 04:19:33');
+(4, 'Apple', 'YeYint', 'WebDeveloper', '098776677', 'apple@gmail.com', 'SRPS/Crewing Company', 'Myitkyina', 'test strees', 'mkn', 'kachin', 1, 'https://www.google.com', '1001', '2019-10-14 04:19:33', '2019-10-14 04:19:33'),
+(5, 'AA', 'BB', 'Department Leader', '09123456789', 'aa@gmail.com', 'Customize', 'yangon', 'baho', 'yangon', 'bama', 152, NULL, '100101', '2019-10-16 08:25:32', '2019-10-16 08:25:32');
 
 -- --------------------------------------------------------
 
@@ -590,7 +574,8 @@ CREATE TABLE `freemen` (
 INSERT INTO `freemen` (`id`, `name`, `occupation`, `id_card`, `front_photo`, `back_photo`, `phone`, `address`, `street`, `city`, `state`, `email`, `referral_code`, `created_at`, `updated_at`) VALUES
 (1, 'testing', 'testing', 'testing123', 'http://localhost/asia_seaman_club/public/upload/freeman_photo/5d5675fe23f2c_Chrysanthemum.jpg', 'http://localhost/asia_seaman_club/public/upload/freeman_photo/5d5675fe242b6_Desert.jpg', '09978699298', 'sasdasdasda', 'testing', 'testing', 'testing', 'lynn9249@gmail.com', '12345', '2019-08-16 02:53:10', '2019-08-16 02:53:10'),
 (2, 'zayy', 'sdasdasd', 'dasd212', 'http://localhost/asia_seaman_club/public/upload/freeman_photo/5d57ac6843835_Desert.jpg', 'http://localhost/asia_seaman_club/public/upload/freeman_photo/5d57ac6843c0d_Desert.jpg', '09978699298', 'sdfsdfsd', 'sdfsdf', 'testing', 'testing', 'fdfd@gmail.com', '12345', '2019-08-17 00:57:36', '2019-08-17 00:57:36'),
-(3, 'YYK', 'aaaaa', 'fdfdfff', 'dsdsd', 'dsdsdsdsd', '45454', 'wwwwww', 'aaaa', 'cccc', 'sssss', 'eeeee', 'rrrr', '2019-10-14 09:08:30', '2019-10-14 09:08:30');
+(3, 'YYK', 'aaaaa', 'fdfdfff', 'dsdsd', 'dsdsdsdsd', '45454', 'wwwwww', 'aaaa', 'cccc', 'sssss', 'eeeee', 'rrrr', '2019-10-14 09:08:30', '2019-10-14 09:08:30'),
+(4, 'freeman AA', 'testing', '11111', 'http://aseamenclub.com/upload/freeman_photo/5da7359c86ea4_bear.png', 'http://aseamenclub.com/upload/freeman_photo/5da7359c8711f_bear_2.png', '09123456789', 'yangon', 'baho', 'yangon', 'bama', 'freemanaa@gmail.com', '100101', '2019-10-16 08:52:04', '2019-10-16 08:52:04');
 
 -- --------------------------------------------------------
 
@@ -924,18 +909,6 @@ CREATE TABLE `training_posts` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `training_posts`
---
-
-INSERT INTO `training_posts` (`id`, `company_id`, `title`, `description`, `training_for`, `requirement`, `duration`, `photo`, `start_date`, `end_date`, `start_time`, `end_time`, `training_fee_amount`, `fee_type`, `enroll_limit`, `contact_no`, `online_banking`, `benificiary_name`, `account_number`, `post_start_date`, `post_end_date`, `fee_point`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'hello', 'blabla', 'std', 'blabla', 'blbbb', 'http:///dfjkfjdkfjk', '2019-08-16', '2019-08-16', '14:52:15', '14:52:15', '11111', 'MMK', '10', '09877778', 'yes', 'kdfjkdjfk', '9898998', '2019-08-16', '2019-12-08', '2', 'active', '2019-08-16 09:39:16', '2019-08-16 09:44:17'),
-(2, 1, 'hello2', 'blabla', 'std', 'blabla', 'blbbb', 'http:///dfjkfjdkfjk', '2019-08-16', '2019-08-16', '14:52:15', '14:52:15', '11111', 'MMK', '10', '09877778', 'yes', 'kdfjkdjfk', '9898998', '2019-08-16', '2019-12-08', '2', 'pending', '2019-08-16 09:39:16', '2019-08-16 09:44:17'),
-(3, 1, 'aaaa', 'bbb', 'ccc', 'dfasdfdsf', 'ddd', 'eeee', '2019-09-08', '2019-09-08', '15:17:19', '15:17:19', '4000', 'card', '33', '09666654', 'eee', 'ssss', '333', '2019-09-08', '2019-12-08', '33', 'pending', '2019-10-14 08:47:21', '2019-10-14 08:47:21'),
-(4, 1, 'aaaa', 'bbb', 'ccc', 'dfasdfdsf', 'ddd', 'eeee', '2019-09-08', '2019-09-08', '15:17:19', '15:17:19', '4000', 'card', '33', '09666654', 'eee', 'ssss', '333', '2019-09-08', '2019-12-08', '33', 'pending', '2019-10-14 08:50:36', '2019-10-14 08:50:36'),
-(5, 1, 'aaaa', 'bbb', 'ccc', 'dfasdfdsf', 'ddd', 'eeee', '2019-09-08', '2019-09-08', '15:17:19', '15:17:19', '4000', 'card', '33', '09666654', 'eee', 'ssss', '333', '2019-09-08', '2019-12-08', '33', 'pending', '2019-10-14 08:52:32', '2019-10-14 08:52:32'),
-(6, 1, 'aaaa', 'bbb', 'ccc', 'dfasdfdsf', 'ddd', 'eeee', '2019-09-08', '2019-09-08', '15:17:19', '15:17:19', '4000', 'card', '33', '09666654', 'eee', 'ssss', '333', '2019-09-08', '2019-12-08', '33', 'pending', '2019-10-14 08:54:33', '2019-10-14 08:54:33');
-
 -- --------------------------------------------------------
 
 --
@@ -966,7 +939,9 @@ INSERT INTO `users` (`id`, `email`, `email_verified_at`, `password`, `type`, `da
 (7, 'fdfd@gmail.com', NULL, '$2y$10$tjOeSqOvMdfcRe.Q1FUHl.TENzMHkhzv3WEMI5eUJ7Xd4qWigJ1eG', 'freeman', 2, 'hygtfrdeswzUJwnyg4HOP86hAhcvjU4D14fHTiFpHpkAzEQxNtmHFybqGXgf', '2019-08-17 00:57:36', '2019-08-17 00:57:36'),
 (8, 'google@gmail.com', NULL, '$2y$10$He2dqdI3ABVGlLx6oNmHdeNkpTqHl1CSVBc78wmM7ZQTBjFTLWAdG', 'company', 2, 'k6d4HHZnHCzUJwnyg4HOP86hAhcvjU4D14fHTiFpHpkAzEQxNtmHFybtrgji', '2019-10-13 23:16:24', '2019-10-13 23:16:24'),
 (10, 'apple@gmail.com', NULL, '$2y$10$gBRJn3Kk4NhpOgIpu46fr.NVPUlRvSQDf1ax/YGZONtOyLSr2o2Ba', 'company', 4, 'k6d4HHZnHCzUJwnyg4HOP86hAhcvjU4D14fHTiFpHpkAzEQxNtmHFybqGXgf', '2019-10-14 04:19:33', '2019-10-14 04:19:33'),
-(11, 'eeeee', NULL, '$2y$10$klucFgQ9toN.K/eiAnsIWeZRDbxisYqlJCRWomvbR6BdoV64iF522', 'freeman', 3, 'gWKWdhqk6jtMzygOh69vrXnxDF5LFhtSQ4w2zi2O3w5uTjqZXqRAruc15O1VC67pNbt2j7KLMID9Slie', '2019-10-14 09:08:30', '2019-10-14 09:08:30');
+(11, 'eeeee', NULL, '$2y$10$klucFgQ9toN.K/eiAnsIWeZRDbxisYqlJCRWomvbR6BdoV64iF522', 'freeman', 3, 'gWKWdhqk6jtMzygOh69vrXnxDF5LFhtSQ4w2zi2O3w5uTjqZXqRAruc15O1VC67pNbt2j7KLMID9Slie', '2019-10-14 09:08:30', '2019-10-14 09:08:30'),
+(12, 'aa@gmail.com', NULL, '$2y$10$dI7SiGMsGGzEB4tXf9ba9ekv4AQx4HPKtdIKzJJPMQFrGFAPz67KK', 'company', 5, 'OWFk94JxFpGpwE0kqw9SweVuwLSJIDmvAnFfFXLnLXQ2eCFu9xtMxOFufOoq', '2019-10-16 08:25:32', '2019-10-16 08:25:32'),
+(13, 'freemanaa@gmail.com', NULL, '$2y$10$c5JM.ytUD.q91nLt..yAv.5UuRH2yZyF7wElOy/KkaVeKABX6Fy.K', 'freeman', 4, 'dQOUHEzLGK5cHa7IxTuyBLa5m12njJwMjSLTFRXcAvZGYj12zp61SslumJHRoy9zmuznaQEfhdMJVfry', '2019-10-16 08:52:04', '2019-10-16 08:52:04');
 
 -- --------------------------------------------------------
 
@@ -1020,12 +995,6 @@ INSERT INTO `webpages` (`id`, `name`, `created_at`, `updated_at`) VALUES
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `accounts`
---
-ALTER TABLE `accounts`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `admin_blogs`
@@ -1182,12 +1151,6 @@ ALTER TABLE `webpages`
 --
 
 --
--- AUTO_INCREMENT for table `accounts`
---
-ALTER TABLE `accounts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `admin_blogs`
 --
 ALTER TABLE `admin_blogs`
@@ -1209,13 +1172,13 @@ ALTER TABLE `ads_webpages`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `company_photos`
@@ -1257,7 +1220,7 @@ ALTER TABLE `course__course_categories`
 -- AUTO_INCREMENT for table `freemen`
 --
 ALTER TABLE `freemen`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `job_positions`
@@ -1317,13 +1280,13 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `training_posts`
 --
 ALTER TABLE `training_posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `vessel_types`

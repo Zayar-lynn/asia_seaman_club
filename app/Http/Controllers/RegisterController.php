@@ -59,7 +59,7 @@ class RegisterController extends Controller
         $city = $request->get('city');
         $state = $request->get('state');
         $country = $request->get('country_id');
-        $website_url = $request->get('website');
+        $website_url = $request->get('website_url');
         $referral_code = $request->get('referral_code');
 
         if($password == $password_confirmation){
@@ -122,8 +122,8 @@ class RegisterController extends Controller
         $agentcompany = $request->get('name');
         $occupation = $request->get('occupation');
         $id_card = $request->get('id_card');
-        $front_photo_link = $request->get('front_photo');
-        $back_photo_link = $request->get('back_photo');
+        $front_photo_link = $request->get('front_photo_link');
+        $back_photo_link = $request->get('back_photo_link');
         $phone = $request->get('phone');
         $address = $request->get('address');
         $street = $request->get('street');

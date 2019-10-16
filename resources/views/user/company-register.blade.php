@@ -72,7 +72,7 @@
                 </select>
               </div>
               <div class="input-wrap">
-                <input type="text" placeholder="Website URL*" required class="form-control" name="website">
+                <input type="text" placeholder="Website URL*" required class="form-control" name="website_url">
               </div>
               <div class="input-wrap">
                 <input type="email" placeholder="Email*" required class="form-control" name="email">

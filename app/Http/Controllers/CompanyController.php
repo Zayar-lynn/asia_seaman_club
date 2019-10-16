@@ -243,8 +243,8 @@ class CompanyController extends Controller
 
     public function insert_jobpost(Request $request){
         $user = Auth::user();
-        //$company_id = $user->data_id;
-        $company_id=1;
+        $company_id = $user->data_id;
+        //$company_id=1;
 
        $arr=array_merge($request->all(),['company_id'=>$company_id]);
        $obj=new JobPostData();

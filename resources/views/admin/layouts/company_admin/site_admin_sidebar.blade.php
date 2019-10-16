@@ -17,7 +17,7 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="nav-item @if($url=="company_profile") active @endif">
+            {{-- <li class="nav-item @if($url=="company_profile") active @endif">
                 <a class="nav-link" href="{{url('company_dashboard/company_profile')}}">
                     <i class="material-icons">person</i>
                     <p>Manage Website</p>
@@ -28,7 +28,7 @@
                     <i class="material-icons">content_paste</i>
                     <p>Company Photo</p>
                 </a>
-            </li>
+            </li> --}}
             {{--  <li class="nav-item @if($url=="company_list") active @endif">
                 <a class="nav-link" href="{{url('company_dashboard/company_list')}}">
                     <i class="material-icons">content_paste</i>

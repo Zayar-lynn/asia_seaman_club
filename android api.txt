@@ -187,15 +187,14 @@ shipmate post ads=> http://aseamenclub.com/shipmate_ads
 
 
 
-
-
-
-
 comment
-*******
+********
+
 create comment=>http://aseamenclub.com/api/create_comment
 method => post
 parameter =>post_id,post_type,comment 
+
+post_type=>normal_post,job_post,training_post
 
 edit comment=>http://aseamenclub.com/api/edit_comment/{id}
 method => post

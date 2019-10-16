@@ -94,13 +94,27 @@
 
                               <div class="row">
                                   <div class="col-sm-4 imgUp">
-                                      <img src="{{asset('images/default.jpg')}}" class="img-thumbnail" id="image" class="imagePreview">
+                                      {{--<img src="{{asset('images/default.jpg')}}" class="img-thumbnail" id="image" class="imagePreview">--}}
+                                      {{--onchange="displaySelectedPhoto('upload_photo','image')"--}}
                                       <label class="btn btn-primary upload_btn">
-                                          Upload<input type="file" onchange="displaySelectedPhoto('upload_photo','image')" id="upload_photo" name="photo" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;" required>
+                                          Upload<input type="file" id="upload_photo" name="photo[]" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;" required multiple>
                                       </label>
                                   </div>
                                   <div class="col-sm-8">
                                       <div class="row">
+                                          <div class="col-md-12">
+                                              <div class="form-group">
+                                                  {{-- <label for="vancant">Vancant</label> --}}
+                                                  <input type="text" name="title" id="title" class="form-control" required placeholder="Title">
+                                              </div>
+                                          </div>
+                                          <div class="col-md-12">
+                                              <div class="form-group">
+                                                  {{-- <label for="vancant">Vancant</label> --}}
+                                                  <input type="text" name="training_for" id="training_for" class="form-control" required placeholder="Training For">
+                                              </div>
+                                          </div>
+
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <select name="position" class="form-control">

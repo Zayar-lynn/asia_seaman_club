@@ -23,7 +23,7 @@
             <form id="insert_freeman" enctype="multipart/form-data">
               {{csrf_field()}}
               <div class="input-wrap">
-                <input type="text" placeholder="Agent Name*" required class="form-control" name="agentcompany">
+                <input type="text" placeholder="Agent Name*" required class="form-control" name="name">
               </div>
               <div class="input-wrap">
                 <input type="text" placeholder="Occupation*" required class="form-control" name="occupation">

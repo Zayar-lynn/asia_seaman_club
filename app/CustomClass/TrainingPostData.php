@@ -35,13 +35,21 @@ class TrainingPostData extends Post
 
     public function delete_post($post_id)
     {
-        $deleted = TrainingPost::find($post_id)->delete();
+        $data = TrainingPost::findorFail($post_id);
+//        foreach ($data['photo'] as $photo){
+//            $image_path=public_path().'/upload/post/training_post/'.$photo;
+//            if(file_exists($image_path)){
+//                unlink($image_path);
+//            }
+//        }
+
+        $deleted=$data->delete();
         return $deleted ? 'success' : 'fail';
     }
 
     public function edit_post($post_id, $post_data)
     {
-        $post = TrainingPost::find($post_id);
+        $post = TrainingPost::findorFail($post_id);
         $updated = $post->update($post_data);
         return $updated ? 'success' : 'fail';
     }

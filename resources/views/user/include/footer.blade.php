@@ -113,7 +113,7 @@
     $.ajax
     ({
         type: "POST",
-        url: "{{url('/upload_freeman_photo')}}",
+        url: "{{url('api/upload_freeman_photo')}}",
         data:alldata,
         cache:false,
         processData: false,

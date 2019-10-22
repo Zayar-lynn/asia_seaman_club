@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2019 at 10:30 AM
+-- Generation Time: Oct 22, 2019 at 11:05 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -663,15 +663,22 @@ CREATE TABLE `job_posts` (
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `english_level` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `photo` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `post_start_date` date NOT NULL,
   `post_end_date` date NOT NULL,
   `post_start_time` time NOT NULL,
   `post_end_time` time NOT NULL,
-  `post_duration_date` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `job_posts`
+--
+
+INSERT INTO `job_posts` (`id`, `company_id`, `job_position_id`, `vancant`, `salary`, `join_date`, `contract_duration`, `requirement`, `vessel_name`, `vessel_type_id`, `build_year`, `dwt`, `flage`, `main_engine`, `crew_onboard`, `sailing_area`, `description`, `english_level`, `photo`, `status`, `post_start_date`, `post_end_date`, `post_start_time`, `post_end_time`, `created_at`, `updated_at`) VALUES
+(13, 5, 1, 'auth test', '2000', '2019-04-15', 'testy ccc', 'teset req', 'vtest vess', 1, 'tesyt buik', 'test dwy', 'test f', 'test me', 'test c', 'test sa', 'test des', 'tesy eng', '[\n    \"5daebbb95b97b_containership-320x195.jpg\"\n]', 'active', '2019-04-15', '2019-11-15', '15:17:19', '15:17:19', '2019-10-22 02:09:31', '2019-10-22 02:09:31'),
+(14, 5, 1, 'esting....t', '2000', '2019-04-15', 'testy ccc', 'teset req', 'vtest vess', 1, 'tesyt buik', 'test dwy', 'test f', 'test me', 'test c', 'test sa', 'test des', 'tesy eng', '[\r\n    \"5daebbb95b97b_containership-320x1955.jpg\"\r\n]', 'active', '2019-04-15', '2019-11-15', '15:17:19', '15:17:19', '2019-10-22 02:11:14', '2019-10-22 02:11:14');
 
 -- --------------------------------------------------------
 
@@ -887,7 +894,6 @@ CREATE TABLE `training_posts` (
   `post_end_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fee_point` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'pending',
-  `post_duration_date` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1215,7 +1221,7 @@ ALTER TABLE `job_positions`
 -- AUTO_INCREMENT for table `job_posts`
 --
 ALTER TABLE `job_posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `migrations`

@@ -237,14 +237,11 @@ class CompanyController extends Controller
         $user=User::findOrfail($user_id);
         $company_id = $user->data_id;
         $photo_link = $request->get('photo');
-        $post_duration=$request->get('post_duration');
-        $post_duration_date=Carbon::now()->addDays($post_duration);
 
 
        $arr=array_merge($request->all(),[
          'company_id'=>$company_id,
          'photo'=>$photo_link,
-           'post_duration_date'=>$post_duration_date
         ]);
        $obj=new JobPostData();
        return $obj->create_post($arr);
@@ -559,13 +556,10 @@ public function insert_training_post(Request $request){
   $company_id=$user->data_id;
   //$company_id=1;
  $photo_link = $request->get('photo');
- $post_duration=$request->get('post_duration');
- $post_duration_date=Carbon::now()->addDays($post_duration);
 
  $arr=array_merge($request->all(),[
    'company_id'=>$company_id,
    'photo'=>$photo_link,
-     'post_duration_date'=>$post_duration_date
   ]);
  $obj=new TrainingPostData();
  return $obj->create_post($arr);

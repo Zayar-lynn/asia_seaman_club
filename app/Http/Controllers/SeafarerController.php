@@ -115,10 +115,8 @@ class SeafarerController extends Controller
     }
 
     public function seafarer_request(Request $request){
-        $user = Auth::user();
-        $user_id=$user->id;
-       
-        $arr=array_merge($request->all(),['user_id'=>$user_id]);
-        Seafarer_request::create($arr);
+        $arr=array_merge($request->all());
+        $enroll=Seafarer_request::create($arr);
+        return $enroll->exists?"success":"fail";
     }
 }

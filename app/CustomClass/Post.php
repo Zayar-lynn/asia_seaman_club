@@ -45,11 +45,11 @@ abstract class Post
         $current_date=Carbon::now()->toDateString();
 
         if($post_type=="training_post"){
-            $posts=TrainingPost::where('status','active')->where('post_duration_date','>=',$current_date)->orderBy('id', 'DESC')->paginate($paginate_count);
+            $posts=TrainingPost::where('status','active')->where('end_date','>=',$current_date)->orderBy('id', 'DESC')->paginate($paginate_count);
             $post_data=TrainingPostData::post_format($posts);
         }
         if($post_type=="job_post"){
-            $posts=JobPost::where('status','active')->where('post_duration_date','>=',$current_date)->orderBy('id', 'DESC')->paginate($paginate_count);
+            $posts=JobPost::where('status','active')->where('post_end_date','>=',$current_date)->orderBy('id', 'DESC')->paginate($paginate_count);
             $post_data=JobPostData::post_format($posts);
         }
         if($post_type=="normal_post"){
@@ -60,9 +60,7 @@ abstract class Post
             'paginate'=>$posts,
             'posts'=>$post_data
         ];
-         $posts=TrainingPost::all();
         return $arr;
-        return $current_date;
     }
 
 

@@ -88,6 +88,7 @@ title
 photo
 description
 user_id
+deveice='mobile'
 
 normal post delete=>http://aseamenclub.com/api/delete_normal_post/{post_id}
 normal post edit=>http://aseamenclub.com/api/edit_normal_post/{id}
@@ -126,6 +127,7 @@ post_end_date
 fee_point
 post_duration
 user_id
+deveice='mobile'
 
 training post delete=>http://aseamenclub.com/api/delete_training_post/{post_id}
 training post edit=>http://aseamenclub.com/api/edit_training_post/{id}

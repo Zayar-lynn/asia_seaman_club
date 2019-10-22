@@ -31,7 +31,6 @@ class JobPost extends Model
         'post_end_date',
         'post_start_time',
         'post_end_time',
-        'post_duration_date'
     ];
 
     public function company(){

@@ -36,12 +36,12 @@ class TrainingPostData extends Post
     public function delete_post($post_id)
     {
         $data = TrainingPost::findorFail($post_id);
-//        foreach ($data['photo'] as $photo){
-//            $image_path=public_path().'/upload/post/training_post/'.$photo;
-//            if(file_exists($image_path)){
-//                unlink($image_path);
-//            }
-//        }
+        foreach ($data['photo'] as $photo){
+            $image_path=public_path().'/upload/post/training_post/'.$photo;
+            if(file_exists($image_path)){
+                unlink($image_path);
+            }
+        }
 
         $deleted=$data->delete();
         return $deleted ? 'success' : 'fail';
@@ -67,7 +67,7 @@ class TrainingPostData extends Post
             'training_for'=>$post->training_for,
             'requirement'=>$post->requirement,
             'duration'=>$post->duration,
-            'photo'=>$post->photo,
+            'photo'=>ASC::$domain_url.'upload/post/training_post/'.$post->photo,
             'start_date'=>$post->start_date,
             'end_date'=>$post->end_date,
             'start_time'=>$post->start_time,

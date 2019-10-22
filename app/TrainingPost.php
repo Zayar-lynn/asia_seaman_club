@@ -30,6 +30,7 @@ class TrainingPost extends Model
         'post_end_date',
         'fee_point',
         'status',
+        'post_duration_date'
     ];
 
     public function company(){

@@ -9,11 +9,31 @@
 namespace App\CustomClass;
 
 
+use App\Company;
+use App\Freeman;
+use App\User;
+
 class UserData
 {
-    function __construct()
-    {
+    static function get_user_info($id){
+        $user=User::findOrFail($id);
+        $type=$user->type;
+        if($type=="company" || $type=="company_staff"){
+            $company=Company::findOrFail($user->data_id);
+            $user['other_info']=$company;
+        }
+        else if($type=="seafarer"){
+//            $company=::findOrFail($user->data_id);
+//            $user['other_info']=$company;
+        }
+        else if($type=="freeman"){
+            $company=Freeman::findOrFail($user->data_id);
+            $user['other_info']=$company;
+        }
+        else if($type=="admin"){
+
+        }
+        return $user;
 
     }
-
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
 use App\CustomClass\ASC;
+use App\CustomClass\CompanyData;
 use App\CustomClass\NormalPostData;
 use App\NormalPost;
 use Illuminate\Http\Request;
@@ -30,7 +32,7 @@ class PostController extends Controller
 
         $title = $request->get('title');
         $description = $request->get('description');
-        $photo_link = $request->get('photo_link');
+        $photo_link = $request->get('photo');
 
         //return $user_id;
 
@@ -65,10 +67,13 @@ class PostController extends Controller
 
     public function insert_seafarer_post(Request $request)
     {
-        $user = Auth::user();
-//        $user_id=$user->id;
-        $user_id=1;
-        $arr=array_merge($request->all(),['user_id'=>$user_id]);
+        $user_id=$request->get('user_id');
+        //$user_id=1;
+        $photo_link = $request->get('photo');
+        $arr=array_merge($request->all(),[
+            'user_id'=>$user_id,
+            'photo'=>$photo_link
+        ]);
         $obj=new NormalPostData();
         return $obj->create_post($arr);
     }
@@ -79,9 +84,24 @@ class PostController extends Controller
     }
 
     function edit_normal_post(Request $request,$id){
-        $company_id=1; //to change auth
-        $new_post_data=$request->all()+['company_id'=>$company_id];
+        $new_post_data=$request->all();
        $obj=new NormalPostData();
        return $obj->edit_post($id,$new_post_data);
+    }
+
+    public function company_normalpost()
+    {
+        $user = Auth::user();
+        $account_id = $user->data_id;
+        $account_data = Company::where('id',$account_id)->get();
+        foreach ($account_data as $data){
+            $job_data=new CompanyData($data->id);
+            $account_name = $job_data->getCompany_info();
+        }
+        
+        return view('admin.company_admin.normal_post')->with([
+            'url'=>'normal_post',
+            'company_name'=>$account_name->company_name
+        ]);
     }
 }

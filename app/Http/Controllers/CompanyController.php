@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\CustomClass\CompanyData;
@@ -79,18 +80,8 @@ class CompanyController extends Controller
      */
     public function edit(Request $request,$id)
     {
-        // $data = JobPost::find($id);
-        // $data['photo_url']=ASC::$domain_url."upload/post/".$data->photo;
-        // return json_encode($data);
-
-        // $obj=new JobData($id);
-        // $jobpost_obj = $obj->getJobData();
-        // return json_encode($jobpost_obj);
-
-        $company_id=1; //to change auth
-        $new_post_data=$request->all()+['company_id'=>$company_id];
         $obj=new JobPostData();
-        return $obj->edit_post($id,$new_post_data);
+        return $obj->edit_post($id,$request->all());
     }
 
     /**
@@ -140,7 +131,7 @@ class CompanyController extends Controller
     public function destroy($id)
     {
         $obj=new JobPostData();
-        // $image_path=public_path().'/upload/post/'.$obj->photo;
+        // $image_path=public_path().'/upload/post/job_post/'.$obj->photo;
         // if(file_exists($image_path)){
         //     unlink($image_path);
         // }
@@ -242,13 +233,22 @@ class CompanyController extends Controller
     }
 
     public function insert_jobpost(Request $request){
-        $user = Auth::user();
+        $user_id=$request->get('user_id');
+        $user=User::findOrfail($user_id);
         $company_id = $user->data_id;
-        //$company_id=1;
+        $photo_link = $request->get('photo');
+        $post_duration=$request->get('post_duration');
+        $post_duration_date=Carbon::now()->addDays($post_duration);
 
-       $arr=array_merge($request->all(),['company_id'=>$company_id]);
+
+       $arr=array_merge($request->all(),[
+         'company_id'=>$company_id,
+         'photo'=>$photo_link,
+           'post_duration_date'=>$post_duration_date
+        ]);
        $obj=new JobPostData();
        return $obj->create_post($arr);
+//        return $request->all();
     }
 
     public function company_profile($company_id){
@@ -536,11 +536,37 @@ function upload_job_post_photo(Request $request){
     return ASC::insert_photo_file($request,'upload/post/job_post');
 }
 
+public function company_training_post()
+{
+  $user = Auth::user();
+    $account_id = $user->data_id;
+    $account_data = Company::where('id',$account_id)->get();
+    foreach ($account_data as $data){
+        $job_data=new CompanyData($data->id);
+        $account_name = $job_data->getCompany_info();
+    }
+    
+    return view('admin.company_admin.training_post')->with([
+        'url'=>'training_post',
+        'company_name'=>$account_name->company_name
+    ]);
+}
+
 public function insert_training_post(Request $request){
-  $user= Auth::user();
-  //$company_id=$user->data_id;
-  $company_id=1;
- $arr=array_merge($request->all(),['company_id'=>$company_id]);
+//  $user= Auth::user();
+    $user_id=$request->get('user_id');
+    $user=User::findOrFail($user_id);
+  $company_id=$user->data_id;
+  //$company_id=1;
+ $photo_link = $request->get('photo');
+ $post_duration=$request->get('post_duration');
+ $post_duration_date=Carbon::now()->addDays($post_duration);
+
+ $arr=array_merge($request->all(),[
+   'company_id'=>$company_id,
+   'photo'=>$photo_link,
+     'post_duration_date'=>$post_duration_date
+  ]);
  $obj=new TrainingPostData();
  return $obj->create_post($arr);
 }
@@ -556,8 +582,9 @@ function delete_training_post($id){
 }
 
 function edit_training_post(Request $request,$id){
-  $company_id=1; //to change auth
-  $new_post_data=$request->all()+['company_id'=>$company_id];
+//    $user_id=$request->get('')
+//  $company_id=1; //to change auth
+  $new_post_data=$request->all();
  $obj=new TrainingPostData();
  return $obj->edit_post($id,$new_post_data);
 }

@@ -91,7 +91,7 @@
                     <div class="modal-body">
                       <form id="insert_jobpost" enctype="multipart/form-data" class="md-form">
                               {{csrf_field()}}
-
+                          <input type="hidden" name="user_id" value="{{\Illuminate\Support\Facades\Auth::id()}}">
                               <div class="row">
                                   <div class="col-sm-4 imgUp">
                                       {{--<img src="{{asset('images/default.jpg')}}" class="img-thumbnail" id="image" class="imagePreview">--}}
@@ -102,31 +102,19 @@
                                   </div>
                                   <div class="col-sm-8">
                                       <div class="row">
-                                          <div class="col-md-12">
-                                              <div class="form-group">
-                                                  {{-- <label for="vancant">Vancant</label> --}}
-                                                  <input type="text" name="title" id="title" class="form-control" required placeholder="Title">
-                                              </div>
-                                          </div>
-                                          <div class="col-md-12">
-                                              <div class="form-group">
-                                                  {{-- <label for="vancant">Vancant</label> --}}
-                                                  <input type="text" name="training_for" id="training_for" class="form-control" required placeholder="Training For">
-                                              </div>
-                                          </div>
 
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <select name="position" class="form-control">
+                                                <label for="">Select Jobpostion</label>
+                                                <select name="job_position_id" class="form-control">
                                                     <optgroup label="DECK">
-                                                        <option value="" id="update_position"></option>
                                                     @foreach ($deck_positions as $deck_position)
                                                         <option value="{{$deck_position->id}}">{{$deck_position->position_name}}</option>
                                                     @endforeach
                                                     </optgroup>
                                                     <optgroup label="ENGINE">
                                                         @foreach ($engine_positions as $engine_position)
-                                                            <option value="{{$deck_position->id}}">{{$engine_position->position_name}}</option>
+                                                            <option value="{{$engine_position->id}}">{{$engine_position->position_name}}</option>
                                                         @endforeach
                                                     </optgroup>
                                                 </select>
@@ -192,7 +180,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <select name="vessel_type" class="form-control">
+                                        <select name="vessel_type_id" class="form-control">
                                             <optgroup label="BULK CARRIERS">
                                             @foreach ($bulk_vesseltypes as $bulk_vesseltype)
                                                 <option value="{{$bulk_vesseltype->id}}">{{$bulk_vesseltype->vessel_name}}</option>
@@ -246,7 +234,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <input type="hidden" name="photo_link" id="photo_link" value="">
                               <button type="submit" class="btn btn-primary pull-right" id="btn_submit">Create</button>
                               <div class="clearfix"></div>
                           </form>
@@ -490,19 +478,36 @@
                 {
                     e.preventDefault();
                     var alldata = new FormData(this);
+                    
                     $.ajax
                     ({
                         type: "POST",
-                        url: "{{url('api/insert/jobpost')}}",
+                        url: "{{url('api/upload_job_post_photo')}}",
                         data:alldata,
                         cache:false,
                         processData: false,
                         contentType: false,
                         success: function(data){
-                            console.log(data);
-                            $('#modalBox').modal('hide');
-                            toastr.success('Insert data successful');
-                            load();
+//                        //console.log(data);
+//                        $('#photo_link').val(data);
+                        alldata.append('photo',data);
+//                        console.log(alldata);
+                        $.ajax
+                        ({
+                            type: "POST",
+                            url: "{{url('api/insert/jobpost')}}",
+                            data:alldata,
+                            cache:false,
+                            processData: false,
+                            contentType: false,
+                            success: function(data){
+                                //console.log(data);
+                                $('#modalBox').modal('hide');
+                                toastr.success('Insert data successful');
+                                load();
+                        }
+                        });
+                        
                     }
                     });
                     return false;
@@ -511,7 +516,7 @@
                 delete_data=function(id){
                     if(confirm('Are you sure You want to delete!')==true){
                         $.ajax({
-                            type: "POST",
+                            type: "GET",
                             url: "../api/delete/jobpost/"+id,
 
                             cache: false,

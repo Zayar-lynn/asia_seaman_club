@@ -239,6 +239,7 @@ Route::post('/update/company_photo','CompanyController@update_companyphoto');
 //*****************************************
 // TrainingPost*******************************
 //start training post
+Route::get('/company_dashboard/training_post','CompanyController@company_training_post');
 Route::post('api/insert/training_post','CompanyController@insert_training_post');
 Route::post('api/edit_training_post/{id}','CompanyController@edit_training_post');
 Route::get('api/confirm_training_post/{post_id}','CompanyController@confirm_training_post');
@@ -287,6 +288,7 @@ Route::get('shipmate_ads','ApplicationController@shipmate_ads');
 
 
 // seafarer
+Route::get('/company_dashboard/normalpost','PostController@company_normalpost');
 Route::post('api/upload_normal_post','PostController@upload_seafarer_post_photo');
 Route::post('api/insert/normal_post','PostController@insert_seafarer_post');
 Route::get('api/delete_normal_post/{post_id}','PostController@delete_normal_post');

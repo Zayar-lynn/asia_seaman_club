@@ -59,6 +59,18 @@
                     <p>Job Post</p>
                 </a>
             </li>
+            <li class="nav-item @if($url=="normal_post") active @endif">
+                <a class="nav-link" href="{{url('company_dashboard/normalpost')}}">
+                    <i class="material-icons">location_ons</i>
+                    <p>Normal Post</p>
+                </a>
+            </li>
+            <li class="nav-item @if($url=="training_post") active @endif">
+                <a class="nav-link" href="{{url('company_dashboard/training_post')}}">
+                    <i class="material-icons">location_ons</i>
+                    <p>Training Post</p>
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{url('logout')}}">
                     <i class="material-icons">notifications</i>

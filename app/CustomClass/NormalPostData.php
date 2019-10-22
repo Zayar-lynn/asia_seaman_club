@@ -31,8 +31,15 @@ class NormalPostData extends Post
 
     public function delete_post($post_id)
     {
-        $deleted=NormalPost::find($post_id)->delete();
-        return $deleted?'success':'fail';
+        $data=NormalPost::find($post_id);
+        foreach ($data['photo'] as $photo){
+            $image_path=public_path().'/upload/post/normal_post/'.$photo;
+            if(file_exists($image_path)){
+                unlink($image_path);
+            }
+        }
+        $deleted=$data->delete();
+        return $deleted ? 'success' : 'fail';
     }
 
     public function edit_post($post_id, $post_data)
@@ -46,6 +53,7 @@ class NormalPostData extends Post
     {
         $post=NormalPost::find($post_id);
         $post['user']=$post->user;
+        $post['photo']=ASC::$domain_url.'upload/post/normal_post/'.$post->photo;
         $post['comments']=CommentData::Comment($post->comment);
         return $post;
         //       return $post->user

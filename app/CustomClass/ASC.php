@@ -20,8 +20,8 @@ class ASC
         foreach ($photos as $photo){
             $photo_name = uniqid().'_'.$photo->getClientOriginalName();
             $photo->move(public_path($storage_location),$photo_name);
-            $photo_link = ASC::$domain_url.$storage_location.'/'.$photo_name;
-            array_push($photolinks,$photo_link);
+
+            array_push($photolinks,$photo_name);
         }
         return $photolinks;
 

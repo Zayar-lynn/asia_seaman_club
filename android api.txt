@@ -36,7 +36,7 @@ password
 create jobpost
 ==========
 
-img upload link=>http://aseamenclub.com/api/upload_training_post_photo
+img upload link=>http://aseamenclub.com/api/upload_job_post_photo
 method=>post
 parameter=>photo
 
@@ -63,6 +63,12 @@ description
 english_level
 photo
 device='mobile'
+user_id
+post_duration
+post_start_date
+post_end_date
+post_start_time
+post_end_time
 
 
 
@@ -75,12 +81,13 @@ img upload link=>http://aseamenclub.com/api/upload_normal_post
 method=>post
 parameter=>photo
 
-normal post create=>http://aseamenclub.com/api/insert/seafarer_post
+normal post create=>http://aseamenclub.com/api/insert/normal_post
 method=>post
 parameter=>
 title
 photo
 description
+user_id
 
 normal post delete=>http://aseamenclub.com/api/delete_normal_post/{post_id}
 normal post edit=>http://aseamenclub.com/api/edit_normal_post/{id}
@@ -90,7 +97,7 @@ normal post edit=>http://aseamenclub.com/api/edit_normal_post/{id}
 
 create training post
 =====================
-img upload link=>http://aseamenclub.com/upload_training_post_photo
+img upload link=>http://aseamenclub.com/api/upload_training_post_photo
 method=>post
 parameter=>photo
 
@@ -117,6 +124,8 @@ account_number
 post_start_date
 post_end_date
 fee_point
+post_duration
+user_id
 
 training post delete=>http://aseamenclub.com/api/delete_training_post/{post_id}
 training post edit=>http://aseamenclub.com/api/edit_training_post/{id}
@@ -142,8 +151,8 @@ parameter=>
 name
 occupation
 id_card
-front_photo
-back_photo
+front_photo_link
+back_photo_link
 phone
 address
 street

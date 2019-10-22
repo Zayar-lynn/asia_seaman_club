@@ -26,7 +26,12 @@ class JobPost extends Model
         'description',
         'english_level',
         'photo',
-        'status'
+        'status',
+        'post_start_date',
+        'post_end_date',
+        'post_start_time',
+        'post_end_time',
+        'post_duration_date'
     ];
 
     public function company(){

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2019 at 05:47 PM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 7.2.8
+-- Generation Time: Oct 22, 2019 at 10:30 AM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -184,7 +184,7 @@ INSERT INTO `companies` (`id`, `company_name`, `contact_person_name`, `position`
 (1, 'testing', 'zayy', 'testing', '09428766473', 'testing@gmail.com', 'Shipping Company', 'yangon', 'testing', 'testing', 'testing', 152, 'http://www.website.com', '12345', '2019-08-15 01:37:32', '2019-08-15 01:37:32'),
 (2, 'Google', 'Mr.Apple', 'Developer', '09877788888', 'google@gmail.com', 'SRPS/Crewing Company', 'Myitkyina , Myanmar', 'Bla', 'MKN', 'Kachin', 75, 'https://www.joox.com/mm/mymusic/1549075625', '552211', '2019-10-13 23:16:23', '2019-10-13 23:16:23'),
 (4, 'Apple', 'YeYint', 'WebDeveloper', '098776677', 'apple@gmail.com', 'SRPS/Crewing Company', 'Myitkyina', 'test strees', 'mkn', 'kachin', 1, 'https://www.google.com', '1001', '2019-10-14 04:19:33', '2019-10-14 04:19:33'),
-(5, 'AA', 'BB', 'Department Leader', '09123456789', 'aa@gmail.com', 'Customize', 'yangon', 'baho', 'yangon', 'bama', 152, NULL, '100101', '2019-10-16 08:25:32', '2019-10-16 08:25:32');
+(5, 'AA', 'BB', 'Department Leader', '09123456789', 'aa@gmail.com', 'Customize', 'yangon', 'baho', 'yangon', 'bama', 152, 'https://www.google.com', '100101', '2019-10-16 08:25:32', '2019-10-16 08:25:32');
 
 -- --------------------------------------------------------
 
@@ -664,17 +664,14 @@ CREATE TABLE `job_posts` (
   `english_level` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `photo` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `post_start_date` date NOT NULL,
+  `post_end_date` date NOT NULL,
+  `post_start_time` time NOT NULL,
+  `post_end_time` time NOT NULL,
+  `post_duration_date` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `job_posts`
---
-
-INSERT INTO `job_posts` (`id`, `company_id`, `job_position_id`, `vancant`, `salary`, `join_date`, `contract_duration`, `requirement`, `vessel_name`, `vessel_type_id`, `build_year`, `dwt`, `flage`, `main_engine`, `crew_onboard`, `sailing_area`, `description`, `english_level`, `photo`, `status`, `created_at`, `updated_at`) VALUES
-(3, 1, 1, 'test vancant', '2000', '2019-04-15', 'testy ccc', 'teset req', 'vtest vess', 1, 'tesyt buik', 'test dwy', 'test f', 'test me', 'test c', 'test sa', 'test des', 'tesy eng', 'https://scontent.fmdl2-1.fna.fbcdn.net/v/t1.0-9/70069000_682004325609106_8158005278822891520_n.jpg?_nc_cat=106&_nc_oc=AQkvMH_Ii57T2uF-eOJIdVgmcK3HTuel2KTqLx5I14ipcpbhxzu44yd2DuaVR5lLucI&_nc_ht=scontent.fmdl2-1.fna&oh=b0b568afa0a275c92e0f4e01b254f96c&oe=5E0EB3D4', 'active', '2019-09-08 08:47:19', '2019-09-08 08:47:19'),
-(5, 1, 1, 'test vancant', '2000', '2019-04-15', 'testy ccc', 'teset req', 'vtest vess', 1, 'tesyt buik', 'test dwy', 'test f', 'test me', 'test c', 'test sa', 'test des', 'tesy eng', 'https://scontent.fmdl2-1.fna.fbcdn.net/v/t1.0-9/70069000_682004325609106_8158005278822891520_n.jpg?_nc_cat=106&_nc_oc=AQkvMH_Ii57T2uF-eOJIdVgmcK3HTuel2KTqLx5I14ipcpbhxzu44yd2DuaVR5lLucI&_nc_ht=scontent.fmdl2-1.fna&oh=b0b568afa0a275c92e0f4e01b254f96c&oe=5E0EB3D4', 'pending', '2019-10-14 08:40:41', '2019-10-14 08:40:41');
 
 -- --------------------------------------------------------
 
@@ -739,21 +736,6 @@ CREATE TABLE `normal_posts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `normal_posts`
---
-
-INSERT INTO `normal_posts` (`id`, `user_id`, `title`, `photo`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(13, 1, 'Stranded cruise ship passengers and crew all safe', 'http://www.seamenclub.com.mm/upload/normal_post/5d75147551b4a_apm-terminals-gothenburg-320x219.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:17:17', '2019-09-08 08:17:17'),
-(14, 1, 'passage, and going through the cites of the word in classica', 'http://www.seamenclub.com.mm/upload/normal_post/5d75148e2e9df_car-carrier-320x219.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:17:42', '2019-09-08 08:17:42'),
-(15, 1, 'passage, and going through the cites of the word in classica', 'http://www.seamenclub.com.mm/upload/normal_post/5d75149996cc3_containership-320x195.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:17:53', '2019-09-08 08:17:53'),
-(16, 1, 'BIMCO: Tariffs Affect 27.4 Mn Tonnes of US Imports', 'http://www.seamenclub.com.mm/upload/normal_post/5d7514a46621f_flex-lng-to-buy-five-lng-newbuildings-300x160.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:18:04', '2019-09-08 08:18:04'),
-(17, 1, 'ne of the more obscure Latin words, consectetur, from', 'http://www.seamenclub.com.mm/upload/normal_post/5d7514bb96b86_img34_o-1024x683-1-320x213.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:18:27', '2019-09-08 08:18:27'),
-(18, 1, 'ne of the more obscure Latin words, consectetur, from', 'http://www.seamenclub.com.mm/upload/normal_post/5d7514c749ad4_jms1947-768x513-1-320x214.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:18:39', '2019-09-08 08:18:39'),
-(19, 1, 'doubtable source. Lorem Ipsum comes from sections 1.10.32 and', 'http://www.seamenclub.com.mm/upload/normal_post/5d75150b5a93f_seafarers-320x221.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:19:47', '2019-09-08 08:19:47'),
-(20, 1, 'doubtable source. Lorem Ipsum comes from sections 1.10.32 and', 'http://www.seamenclub.com.mm/upload/normal_post/5d7515167d085_stolt-nielsen-foresees-impact-from-houston-ship-channel-fire-320x205.jpg', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'active', '2019-09-08 08:19:58', '2019-09-08 08:19:58'),
-(21, 1, 'hello', 'C:\\xampp\\tmp\\phpA989.tmp', 'between trains and ships, as well as more ocean-going vessels calling the port.\\r\\n\\r\\n“Via The Gothenburg Gateway it should take a maximum of 24 hours to reach Gothenburg by freight train, and a maximum of 48 hours in total to place a container on an ocean-going vessel,” Henrik Kristensen, CEO APM Terminals Gothenburg, said.\\r\\n\\r\\nAsian markets one week closer\\r\\n\\r\\n“We analyzed how long it takes for a container to reach Shanghai – an important Asian market for Sweden. The Gothenburg Gateway will help reduce this time by at least one week, as well as offering an efficient and climate-smart solution.”\\r\\n\\r\\nIn the future, APM Terminals wants to service Sweden with three ocea', 'pending', '2019-10-14 08:14:08', '2019-10-14 08:14:08');
 
 -- --------------------------------------------------------
 
@@ -905,6 +887,7 @@ CREATE TABLE `training_posts` (
   `post_end_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fee_point` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'pending',
+  `post_duration_date` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1232,7 +1215,7 @@ ALTER TABLE `job_positions`
 -- AUTO_INCREMENT for table `job_posts`
 --
 ALTER TABLE `job_posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1244,7 +1227,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `normal_posts`
 --
 ALTER TABLE `normal_posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `seafarers`
@@ -1280,7 +1263,7 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `training_posts`
 --
 ALTER TABLE `training_posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`

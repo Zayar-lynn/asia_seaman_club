@@ -31,8 +31,15 @@ class JobPostData extends Post
 
     public function delete_post($post_id)
     {
-        $deleted=JobPost::find($post_id)->delete();
-        return $deleted?'success':'fail';
+        $data=JobPost::find($post_id)->delete();
+        foreach ($data['photo'] as $photo){
+            $image_path=public_path().'/upload/post/job_post/'.$photo;
+            if(file_exists($image_path)){
+                unlink($image_path);
+            }
+        }
+        $deleted=$data->delete();
+        return $deleted ? 'success' : 'fail';
     }
 
     public function edit_post($post_id, $post_data)
@@ -48,6 +55,7 @@ class JobPostData extends Post
        $post['company']=$post->company;
        $post['vessel_type']=$post->vessel_type;
        $post['job_position']=$post->job_position;
+       $post['photo']=ASC::$domain_url.'upload/post/job_post/'.$post->photo;
        $post['comments']=CommentData::Comment($post->comment);
 
        return $post;

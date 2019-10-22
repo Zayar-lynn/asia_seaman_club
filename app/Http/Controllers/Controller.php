@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CustomClass\CompanyData;
 use App\CustomClass\JobPostData;
 use App\CustomClass\NormalPostData;
+use App\CustomClass\UserData;
 use App\Freeman;
 use App\JobPosition;
 use App\Seafarer;
@@ -57,28 +58,29 @@ class Controller extends BaseController
         $password=$request->get('password');
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             $user=Auth::user();
-            if ($user->type==="company"){
-                $company_obj=new CompanyData($user->data_id);
-                $company=$company_obj->getCompany_info();
-                $name=$company['company_name'];
-                $phone=$company['phone'];
-            }
-            else if ($user->type==="freeman"){
-                $freeman=Freeman::find($user->data_id);
-                $name=$freeman['employee_name'];
-                $phone=$freeman['phone'];
-            }
-            else if ($user->type==="seafarer"){
-                $seafarer=Seafarer::find($user->data_id);
-                $name=$seafarer['employee_name'];
-                $phone=$seafarer['phone'];
-            }
-            $arr=[
-                'email'=>$email,
-                'phone'=>$phone,
-                'name'=>$name,
-                'api_token'=>$user->api_token
-            ];
+            $arr=UserData::get_user_info($user->id);
+//            if ($user->type==="company"){
+//                $company_obj=new CompanyData($user->data_id);
+//                $company=$company_obj->getCompany_info();
+//                $name=$company['company_name'];
+//                $phone=$company['phone'];
+//            }
+//            else if ($user->type==="freeman"){
+//                $freeman=Freeman::find($user->data_id);
+//                $name=$freeman['employee_name'];
+//                $phone=$freeman['phone'];
+//            }
+//            else if ($user->type==="seafarer"){
+//                $seafarer=Seafarer::find($user->data_id);
+//                $name=$seafarer['employee_name'];
+//                $phone=$seafarer['phone'];
+//            }
+//            $arr=[
+//                'email'=>$email,
+//                'phone'=>$phone,
+//                'name'=>$name,
+//                'api_token'=>$user->api_token
+//            ];
             return $arr;
         }
         else{

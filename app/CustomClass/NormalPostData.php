@@ -32,7 +32,9 @@ class NormalPostData extends Post
     public function delete_post($post_id)
     {
         $data=NormalPost::find($post_id);
-        foreach ($data['photo'] as $photo){
+        
+        $arr=json_decode($data['photo']);
+        foreach ($arr as $photo){
             $image_path=public_path().'/upload/post/normal_post/'.$photo;
             if(file_exists($image_path)){
                 unlink($image_path);
@@ -45,7 +47,23 @@ class NormalPostData extends Post
     public function edit_post($post_id, $post_data)
     {
         $post=NormalPost::find($post_id);
-        $updated=$post->update($post_data);
+        //$updated=$post->update($post_data);
+        $arr = [
+            'title'=>$post_data['title'],
+            'description'=>$post_data['description']
+        ];
+        if(!empty($post_data['photo_url'])){
+            $arr = array_merge($arr,['photo'=>$post_data['photo_url']]);
+        }
+        $post_photos=json_decode($post->photo);
+        foreach ($post_photos as $post_photo) {
+            $image_path=public_path().'/upload/post/normal_post/'.$post_photo;
+            if(file_exists($image_path)){
+                unlink($image_path);
+            }
+        }
+        $updated = $post->update($arr);
+
         return $updated?'success':'fail';
     }
 

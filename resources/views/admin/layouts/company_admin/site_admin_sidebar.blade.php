@@ -71,6 +71,18 @@
                     <p>Training Post</p>
                 </a>
             </li>
+            <li class="nav-item @if($url=="gallery") active @endif">
+                <a class="nav-link" href="{{url('company_dashboard/gallery')}}">
+                    <i class="material-icons">location_ons</i>
+                    <p>Gallery</p>
+                </a>
+            </li>
+            <li class="nav-item @if($url=="sub_company") active @endif">
+                <a class="nav-link" href="{{url('company_dashboard/sub_company')}}">
+                    <i class="material-icons">location_ons</i>
+                    <p>Sub Company</p>
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{url('logout')}}">
                     <i class="material-icons">notifications</i>

@@ -12,7 +12,8 @@ use Illuminate\Http\Request;
 
 class ASC
 {
-    static public $domain_url="http://aseamenclub.com/";
+    //static public $domain_url="http://aseamenclub.com/";
+    static public $domain_url="http://localhost/asia_seaman_club/public/";
 
     public static function insert_photo_file(Request $request,$storage_location){
         $photolinks=[];

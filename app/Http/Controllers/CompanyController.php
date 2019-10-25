@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Album;
+use App\Gallery;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,11 +18,14 @@ use App\TrainingPost;
 use App\Company;
 use App\CustomClass\JobPostData;
 use App\CustomClass\TrainingPostData;
+use App\GalleryPhoto;
 use App\JobPosition;
 use App\User;
 use App\Seafarer_request;
 use App\VesselType;
+use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Support\Str;
 class CompanyController extends Controller
 {
     /**
@@ -82,6 +87,7 @@ class CompanyController extends Controller
     {
         $obj=new JobPostData();
         return $obj->edit_post($id,$request->all());
+        //return $request->all();
     }
 
     /**
@@ -598,6 +604,99 @@ function pending_training_posts(){
 function post_detail($id){
     $obj=new TrainingPostData();
     return $obj->post_detail($id);
+}
+
+function show_gallery()
+{
+  $user = Auth::user();
+    $account_id = $user->data_id;
+    $job_data=new CompanyData($account_id);
+    $company_info = $job_data->getCompany_info();
+
+    $album = Album::all();
+
+    return view('admin.company_admin.gallery')->with([
+        'url'=>'gallery',
+        'company_name'=>$company_info['company_name'],
+        'albums'=>$album
+    ]);
+}
+
+function insert_album(Request $request)
+{
+  Album::create($request->all());
+}
+
+function insert_gallery(Request $request)
+{
+  $photos = $request->file('photo');
+  $album_id = $request->get('album_id');
+  $description = $request->get('description');
+  $galllery_id = Gallery::create([
+    'album_id'=>$album_id,
+    'description'=>$description
+  ])->id;
+  foreach($photos as $photo){
+    $photoName = uniqid() . '_' . $photo->getClientOriginalName();
+    $photo->move(public_path() . '/upload/gallery/', $photoName);
+    $inserted = GalleryPhoto::create([
+      'gallery_id'=>$galllery_id,
+      'photo'=>$photoName
+    ]);
+  }
+  return $inserted?'success':'fail';
+}
+
+function delete_gallery($gallery_id)
+{
+  $gallery=Gallery::find($gallery_id);
+  $gallery_photo = GalleryPhoto::where('gallery_id',$gallery['id'])->get();
+
+  foreach ($gallery_photo as $key) {
+    $image_path=public_path().'/upload/gallery/'.$key->photo;
+    if(file_exists($image_path)){
+        unlink($image_path);
+    }
+    $key->delete();
+  }
+  //$gallery_photo->delete();
+  $gallery->delete();
+  return $gallery?'success':'fail';
+}
+
+function show_sub_company()
+{
+  $user = Auth::user();
+  $account_id = $user->data_id;
+  $job_data=new CompanyData($account_id);
+  $company_info = $job_data->getCompany_info();
+  return view('admin.company_admin.sub_company')->with([
+      'url'=>'sub_company',
+      'company_name'=>$company_info['company_name']
+  ]);
+}
+
+function insert_company_staff(Request $request)
+{
+  if ($request->get('password') == $request->get('comfirm_password')) {
+      $new_user=User::create([
+        'email' => $request->get('email'),
+        'password' => Hash::make($request->get('password')),
+        'type' => 'company_staff',
+        'data_id' =>User::findOrFail($request->get('user_id'))->data_id,
+        'api_token'=>Str::random(80)
+    ]);
+    return $new_user;
+  }else{
+    return 'no';
+  }
+}
+
+function get_all_staff($user_id)
+{
+  $data_id = User::findOrFail($user_id)->data_id;
+  $user = User::where('type','company_staff')->where('data_id',$data_id)->get();
+  return $user;
 }
 
 

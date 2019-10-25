@@ -36,7 +36,9 @@ class TrainingPostData extends Post
     public function delete_post($post_id)
     {
         $data = TrainingPost::findorFail($post_id);
-        foreach ($data['photo'] as $photo){
+        
+        $arr=json_decode($data['photo']);
+        foreach ($arr as $photo){
             $image_path=public_path().'/upload/post/training_post/'.$photo;
             if(file_exists($image_path)){
                 unlink($image_path);
@@ -50,7 +52,40 @@ class TrainingPostData extends Post
     public function edit_post($post_id, $post_data)
     {
         $post = TrainingPost::findorFail($post_id);
-        $updated = $post->update($post_data);
+        //$updated = $post->update($post_data);
+        $arr = [
+            'title'=>$post_data['title'],
+            'training_for'=>$post_data['training_for'],
+            'requirement'=>$post_data['requirement'],
+            'duration'=>$post_data['duration'],
+            'start_date'=>$post_data['start_date'],
+            'end_date'=>$post_data['end_date'],
+            'start_time'=>$post_data['start_time'],
+            'end_time'=>$post_data['end_time'],
+            'training_fee_amount'=>$post_data['training_fee_amount'],
+            'fee_type'=>$post_data['fee_type'],
+            'enroll_limit'=>$post_data['enroll_limit'],
+            'contact_no'=>$post_data['contact_no'],
+            'online_banking'=>$post_data['online_banking'],
+            'benificiary_name'=>$post_data['benificiary_name'],
+            'description'=>$post_data['description'],
+            'account_number'=>$post_data['account_number'],
+            'post_start_date'=>$post_data['post_start_date'],
+            'post_end_date'=>$post_data['post_end_date'],
+            'fee_point'=>$post_data['fee_point']
+        ];
+        if(!empty($post_data['photo_url'])){
+            $arr = array_merge($arr,['photo'=>$post_data['photo_url']]);
+        }
+        $post_photos=json_decode($post->photo);
+        foreach ($post_photos as $post_photo) {
+            $image_path=public_path().'/upload/post/training_post/'.$post_photo;
+            if(file_exists($image_path)){
+                unlink($image_path);
+            }
+        }
+        $updated = $post->update($arr);
+
         return $updated ? 'success' : 'fail';
     }
 

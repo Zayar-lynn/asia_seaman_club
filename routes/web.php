@@ -261,6 +261,22 @@ Route::post('api/edit/jobpost/{id}','CompanyController@edit');
 Route::get('api/get_job_position','Controller@get_job_position');
 Route::get('api/get_vessel_type','Controller@get_vessel_type');
 
+Route::get('/company_dashboard/test',function(){
+    return view('admin.company_admin.test');
+});
+
+// gallery
+Route::get('company_dashboard/gallery','CompanyController@show_gallery');
+Route::post('api/insert_album','CompanyController@insert_album');
+Route::post('api/insert/gallery','CompanyController@insert_gallery');
+Route::post('api/delete/gallery/{id}','CompanyController@delete_gallery');
+
+// subcompany account
+Route::get('company_dashboard/sub_company','CompanyController@show_sub_company');
+Route::post('api/insert/staff','CompanyController@insert_company_staff');
+Route::post('api/get_all_staff/{id}','CompanyController@get_all_staff');
+
+
 //*****************************************
 //*****************************************
 //*****************************************
@@ -434,4 +450,5 @@ Route::get('api/{ascandroid}/blog_detail/{blog_id}','AdminBlogController@blog_de
 
 
 
-Route::get('test','ApplicationController@active_training_posts');
+Route::get('api/test','Controller@test');
+

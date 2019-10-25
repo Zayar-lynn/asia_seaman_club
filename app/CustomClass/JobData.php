@@ -30,7 +30,7 @@ class JobData {
          $company = Company::findOrFail($company_id);
           $this->job_data['company_name']=$company->company_name;
           $this->job_data['company_address']=$company->address;
-          $this->job_data['photo_url']=ASC::$domain_url.'upload/post/'.$this->job_data['photo'];
+          $this->job_data['photo_url']=ASC::$domain_url.'upload/post/job_post/'.$this->job_data['photo'];
 
           $job_id = $this->job_data['job_position_id'];
           $job_position = JobPosition::findOrFail($job_id);

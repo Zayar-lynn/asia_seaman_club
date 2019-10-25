@@ -225,6 +225,30 @@
                                         </datalist>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Post Start Date</label>
+                                        <input type="date" name="post_start_date" id="post_start_date" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Post End Date</label>
+                                        <input type="date" name="post_end_date" id="post_end_date" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Post Start Time</label>
+                                        <input type="time" name="post_start_time" id="post_start_time" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Post End Time</label>
+                                        <input type="time" name="post_end_time" id="post_end_time" class="form-control" required>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -259,16 +283,16 @@
                                     <input type="hidden" name="id" class="form-control" id="id_edit" value="">
                                     <div class="row">
                                         <div class="col-sm-4 imgUp">
-                                            <img src="" class="img-thumbnail" id="imgs" class="imagePreview">
+                                            <img src="{{asset('images/default.jpg')}}" class="img-thumbnail" id="imgs" class="imagePreview">
                                             <label class="btn btn-primary upload_btn">
-                                                Upload<input type="file" onchange="displaySelectedPhoto('update_upload_photo','imgs')" id="update_upload_photo" name="photo" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;" required>
+                                                Upload<input type="file" onchange="displaySelectedPhoto('update_upload_photo','imgs')" id="update_upload_photo" name="photo[]" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
                                             </label>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <select name="position" class="form-control" value="">
+                                                        <select name="job_position_id" class="form-control" value="">
                                                                 <option value="" id="update_position"></option>
                                                             <optgroup label="DECK">
                                                             @foreach ($deck_positions as $deck_position)
@@ -343,7 +367,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <select name="vessel_type" class="form-control">
+                                                <select name="vessel_type_id" class="form-control">
                                                     <optgroup label="BULK CARRIERS">
                                                     @foreach ($bulk_vesseltypes as $bulk_vesseltype)
                                                         <option value="{{$bulk_vesseltype->id}}">{{$bulk_vesseltype->vessel_name}}</option>
@@ -386,6 +410,30 @@
                                                     <option value="International">
                                                     <option value="Worldwide">
                                                 </datalist>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Post Start Date</label>
+                                                <input type="date" name="post_start_date" id="update_post_start_date" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Post End Date</label>
+                                                <input type="date" name="post_end_date" id="update_post_end_date" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Post Start Time</label>
+                                                <input type="time" name="post_start_time" id="update_post_start_time" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Post End Time</label>
+                                                <input type="time" name="post_end_time" id="update_post_end_time" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
@@ -488,10 +536,12 @@
                         processData: false,
                         contentType: false,
                         success: function(data){
-//                        //console.log(data);
+                            var photo_str=JSON.stringify(data);
+                    //    console.log(typeof data);
 //                        $('#photo_link').val(data);
-                        alldata.append('photo',data);
-//                        console.log(alldata);
+                            
+                        alldata.append('photo',photo_str);
+                       console.log(alldata.get('photo'));
                         $.ajax
                         ({
                             type: "POST",
@@ -501,7 +551,7 @@
                             processData: false,
                             contentType: false,
                             success: function(data){
-                                //console.log(data);
+                                console.log(data);
                                 $('#modalBox').modal('hide');
                                 toastr.success('Insert data successful');
                                 load();
@@ -533,20 +583,23 @@
                 edit_data=function(id){
 
                     $.ajax({
-                      type: "POST",
-                      url: "../edit/jobpost/"+id,
+                      type: "GET",
+                      //url: "../edit/jobpost/"+id,
+                      url: "../job_post_detail/"+id,
 
                       cache: false,
                       success: function(data){
                         reset();
-                        var jobpost=JSON.parse(data);
+                        // var jobpost=JSON.parse(data);
+                        var jobpost=data;
 
-                        //console.log(jobpost['photo']);
+                        console.log(jobpost);
                         $("#imgs").attr("src", jobpost['photo_url']);
                         $('#id_edit').val(jobpost['id']);
-                        $('#update_position').val(jobpost['position_name']);
+                        $('#update_position').val(jobpost['job_position']['id']);
+                        $('#update_position').html(jobpost['job_position']['position_name']);
                         $('#update_vancant').val(jobpost['vancant']);
-                        $('#update_salary').val(jobpost['position_name']);
+                        $('#update_salary').val(jobpost['salary']);
                         $('#update_join_date').val(jobpost['join_date']);
                         $('#update_contract_duration').val(jobpost['contract_duration']);
                         $('#update_requirement').val(jobpost['requirement']);
@@ -558,6 +611,10 @@
                         $('#update_main_engine').val(jobpost['main_engine']);
                         $('#update_crew_onboard').val(jobpost['crew_onboard']);
                         $('#update_sailing_area').val(jobpost['sailing_area']);
+                        $('#update_post_start_date').val(jobpost['post_start_date']);
+                        $('#update_post_end_date').val(jobpost['post_end_date']);
+                        $('#update_post_start_time').val(jobpost['post_start_time']);
+                        $('#update_post_end_time').val(jobpost['post_end_time']);
                         $('#update_description').val(jobpost['description']);
                         $('#update_english_level').val(jobpost['english_level']);
 
@@ -568,25 +625,60 @@
 
                 $('#update_data').on('submit',function (e)
                 {
-                e.preventDefault();
-                var updateData = new FormData(this);
-                $.ajax
-		        ({
-		            type: 'POST',
-		            url: "{{url('update/jobpost')}}",
-		            data:updateData,
-		            cache:false,
-		            processData: false,
-    				contentType: false,
-		            success: function(data){
-                    console.log(data);
-                    //alert(data);
-		            $('#edit_modalBox').modal('hide');
-				  	load();
-				  }
-		        });
-		        return false;
-            });
+                    e.preventDefault();
+                    var updateData = new FormData(this);
+                    var id = $('#id_edit').val();
+                    var update_photo = $('#update_upload_photo').val();
+                    if(update_photo){
+                        $.ajax
+                        ({
+                            type: "POST",
+                            url: "{{url('api/upload_job_post_photo')}}",
+                            data:updateData,
+                            cache:false,
+                            processData: false,
+                            contentType: false,
+                            success: function(data){
+                                var photo_str=JSON.stringify(data);
+                                updateData.append('photo_url',photo_str);
+                                console.log(updateData.get('photo_url'));
+                                $.ajax
+                                ({
+                                    type: 'POST',
+                                    url: "../api/edit/jobpost/"+id,
+                                    data:updateData,
+                                    cache:false,
+                                    processData: false,
+                                    contentType: false,
+                                    success: function(data){
+                                        console.log(data);
+                                        //alert(data);
+                                        $('#edit_modalBox').modal('hide');
+                                        load();
+                                    }
+                                });
+                            }
+                        });
+                    }else{
+                        $.ajax
+                        ({
+                            type: 'POST',
+                            url: "../api/edit/jobpost/"+id,
+                            data:updateData,
+                            cache:false,
+                            processData: false,
+                            contentType: false,
+                            success: function(data){
+                                console.log(data);
+                                //alert(data);
+                                $('#edit_modalBox').modal('hide');
+                                load();
+                            }
+                        });
+                    }
+
+                    return false;
+                });
             });
     </script>
 

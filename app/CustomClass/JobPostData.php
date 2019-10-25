@@ -31,8 +31,10 @@ class JobPostData extends Post
 
     public function delete_post($post_id)
     {
-        $data=JobPost::find($post_id)->delete();
-        foreach ($data['photo'] as $photo){
+        $data=JobPost::find($post_id);
+        // gettype($data);
+        $arr=json_decode($data['photo']);
+        foreach ($arr as $photo){
             $image_path=public_path().'/upload/post/job_post/'.$photo;
             if(file_exists($image_path)){
                 unlink($image_path);
@@ -45,8 +47,45 @@ class JobPostData extends Post
     public function edit_post($post_id, $post_data)
     {
         $post=JobPost::find($post_id);
-        $updated=$post->update($post_data);
+        //$updated=$post->update($post_data);
+        $arr = [
+            'job_position_id'=>$post_data['job_position_id'],
+            'vancant'=>$post_data['vancant'],
+            'salary'=>$post_data['salary'],
+            'join_date'=>$post_data['join_date'],
+            'contract_duration'=>$post_data['contract_duration'],
+            'requirement'=>$post_data['requirement'],
+            'vessel_name'=>$post_data['vessel_name'],
+            'vessel_type_id'=>$post_data['vessel_type_id'],
+            'build_year'=>$post_data['build_year'],
+            'dwt'=>$post_data['dwt'],
+            'flage'=>$post_data['flage'],
+            'main_engine'=>$post_data['main_engine'],
+            'crew_onboard'=>$post_data['crew_onboard'],
+            'sailing_area'=>$post_data['sailing_area'],
+            'description'=>$post_data['description'],
+            'english_level'=>$post_data['english_level'],
+            'post_start_date'=>$post_data['post_start_date'],
+            'post_end_date'=>$post_data['post_end_date'],
+            'post_start_time'=>$post_data['post_start_time'],
+            'post_end_time'=>$post_data['post_end_time']
+        ];
+        if(!empty($post_data['photo_url'])){
+            $arr = array_merge($arr,['photo'=>$post_data['photo_url']]);
+        }
+        $post_photos=json_decode($post->photo);
+        foreach ($post_photos as $post_photo) {
+            $image_path=public_path().'/upload/post/job_post/'.$post_photo;
+            if(file_exists($image_path)){
+                unlink($image_path);
+            }
+        }
+        $updated = $post->update($arr);
+        
         return $updated?'success':'fail';
+        //return $post_data;
+        // return gettype($post['photo']);
+        
     }
 
     public function post_detail($post_id)

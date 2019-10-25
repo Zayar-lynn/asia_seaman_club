@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2019 at 11:05 AM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.3
+-- Generation Time: Oct 25, 2019 at 10:23 AM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -122,6 +122,27 @@ INSERT INTO `ads_webpages` (`id`, `webpage_id`, `ads_id`, `created_at`, `updated
 (36, 2, 12, '2019-04-14 11:09:45', '2019-04-14 11:09:45'),
 (37, 3, 12, '2019-04-14 11:09:45', '2019-04-14 11:09:45'),
 (38, 4, 12, '2019-04-14 11:09:45', '2019-04-14 11:09:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `albums`
+--
+
+CREATE TABLE `albums` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `albums`
+--
+
+INSERT INTO `albums` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'testing', '2019-10-24 19:55:15', '2019-10-24 19:55:15'),
+(2, 'testing 1', '2019-10-24 19:55:51', '2019-10-24 19:55:51');
 
 -- --------------------------------------------------------
 
@@ -546,6 +567,18 @@ CREATE TABLE `course__course_categories` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `finished_students`
+--
+
+CREATE TABLE `finished_students` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `freemen`
 --
 
@@ -576,6 +609,34 @@ INSERT INTO `freemen` (`id`, `name`, `occupation`, `id_card`, `front_photo`, `ba
 (2, 'zayy', 'sdasdasd', 'dasd212', 'http://localhost/asia_seaman_club/public/upload/freeman_photo/5d57ac6843835_Desert.jpg', 'http://localhost/asia_seaman_club/public/upload/freeman_photo/5d57ac6843c0d_Desert.jpg', '09978699298', 'sdfsdfsd', 'sdfsdf', 'testing', 'testing', 'fdfd@gmail.com', '12345', '2019-08-17 00:57:36', '2019-08-17 00:57:36'),
 (3, 'YYK', 'aaaaa', 'fdfdfff', 'dsdsd', 'dsdsdsdsd', '45454', 'wwwwww', 'aaaa', 'cccc', 'sssss', 'eeeee', 'rrrr', '2019-10-14 09:08:30', '2019-10-14 09:08:30'),
 (4, 'freeman AA', 'testing', '11111', 'http://aseamenclub.com/upload/freeman_photo/5da7359c86ea4_bear.png', 'http://aseamenclub.com/upload/freeman_photo/5da7359c8711f_bear_2.png', '09123456789', 'yangon', 'baho', 'yangon', 'bama', 'freemanaa@gmail.com', '100101', '2019-10-16 08:52:04', '2019-10-16 08:52:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `galleries`
+--
+
+CREATE TABLE `galleries` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `album_id` int(11) NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gallery_photos`
+--
+
+CREATE TABLE `gallery_photos` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `gallery_id` int(11) NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -677,8 +738,7 @@ CREATE TABLE `job_posts` (
 --
 
 INSERT INTO `job_posts` (`id`, `company_id`, `job_position_id`, `vancant`, `salary`, `join_date`, `contract_duration`, `requirement`, `vessel_name`, `vessel_type_id`, `build_year`, `dwt`, `flage`, `main_engine`, `crew_onboard`, `sailing_area`, `description`, `english_level`, `photo`, `status`, `post_start_date`, `post_end_date`, `post_start_time`, `post_end_time`, `created_at`, `updated_at`) VALUES
-(13, 5, 1, 'auth test', '2000', '2019-04-15', 'testy ccc', 'teset req', 'vtest vess', 1, 'tesyt buik', 'test dwy', 'test f', 'test me', 'test c', 'test sa', 'test des', 'tesy eng', '[\n    \"5daebbb95b97b_containership-320x195.jpg\"\n]', 'active', '2019-04-15', '2019-11-15', '15:17:19', '15:17:19', '2019-10-22 02:09:31', '2019-10-22 02:09:31'),
-(14, 5, 1, 'esting....t', '2000', '2019-04-15', 'testy ccc', 'teset req', 'vtest vess', 1, 'tesyt buik', 'test dwy', 'test f', 'test me', 'test c', 'test sa', 'test des', 'tesy eng', '[\r\n    \"5daebbb95b97b_containership-320x1955.jpg\"\r\n]', 'active', '2019-04-15', '2019-11-15', '15:17:19', '15:17:19', '2019-10-22 02:11:14', '2019-10-22 02:11:14');
+(1, 5, 2, 'testing', '10000', 'Urgent', '1year', 'testing required', 'testing aa', 1, '2019', '11111', 'testing aa', 'testing aa', 'testing aa', 'Coastal', 'testing description aa', 'Elementary', '[\"5db1b5caeb8d7_bull.png\"]', 'active', '2019-10-24', '2019-10-30', '11:11:00', '14:22:00', '2019-10-23 02:24:14', '2019-10-24 08:01:39');
 
 -- --------------------------------------------------------
 
@@ -725,7 +785,16 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (26, '2019_08_16_074818_create_normal_posts_table', 21),
 (27, '2019_08_16_154932_create_training_posts_table', 22),
 (28, '2019_08_16_155540_create_training_posts_table', 23),
-(29, '2019_08_16_180655_create_comments_table', 24);
+(29, '2019_08_16_180655_create_comments_table', 24),
+(30, '2016_06_01_000001_create_oauth_auth_codes_table', 25),
+(31, '2016_06_01_000002_create_oauth_access_tokens_table', 25),
+(32, '2016_06_01_000003_create_oauth_refresh_tokens_table', 25),
+(33, '2016_06_01_000004_create_oauth_clients_table', 25),
+(34, '2016_06_01_000005_create_oauth_personal_access_clients_table', 25),
+(35, '2019_08_22_044826_create_finished_students_table', 25),
+(36, '2019_10_24_170613_create_galleries_table', 25),
+(37, '2019_10_24_171450_create_albums_table', 26),
+(38, '2019_10_25_040735_create_gallery_photos_table', 27);
 
 -- --------------------------------------------------------
 
@@ -739,9 +808,94 @@ CREATE TABLE `normal_posts` (
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `photo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `normal_posts`
+--
+
+INSERT INTO `normal_posts` (`id`, `user_id`, `title`, `photo`, `description`, `status`, `created_at`, `updated_at`) VALUES
+(2, 12, 'testing BB', '[\"5db1bc34c5400_bird_3.png\"]', 'testing description', 'active', '2019-10-24 06:35:11', '2019-10-24 08:29:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_access_tokens`
+--
+
+CREATE TABLE `oauth_access_tokens` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  `client_id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `scopes` text COLLATE utf8mb4_unicode_ci,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `expires_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_auth_codes`
+--
+
+CREATE TABLE `oauth_auth_codes` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `client_id` int(10) UNSIGNED NOT NULL,
+  `scopes` text COLLATE utf8mb4_unicode_ci,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_clients`
+--
+
+CREATE TABLE `oauth_clients` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `secret` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `redirect` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `personal_access_client` tinyint(1) NOT NULL,
+  `password_client` tinyint(1) NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_personal_access_clients`
+--
+
+CREATE TABLE `oauth_personal_access_clients` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `client_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oauth_refresh_tokens`
+--
+
+CREATE TABLE `oauth_refresh_tokens` (
+  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `access_token_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `revoked` tinyint(1) NOT NULL,
+  `expires_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -893,10 +1047,17 @@ CREATE TABLE `training_posts` (
   `post_start_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `post_end_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fee_point` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'pending',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'active',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `training_posts`
+--
+
+INSERT INTO `training_posts` (`id`, `company_id`, `title`, `description`, `training_for`, `requirement`, `duration`, `photo`, `start_date`, `end_date`, `start_time`, `end_time`, `training_fee_amount`, `fee_type`, `enroll_limit`, `contact_no`, `online_banking`, `benificiary_name`, `account_number`, `post_start_date`, `post_end_date`, `fee_point`, `status`, `created_at`, `updated_at`) VALUES
+(1, 5, 'testing BBB', 'testing description', 'testing training', 'testing required', '1 year', '[\"5db1d571909f3_monkey.png\"]', '2019-10-24', '2019-10-29', '11:11', '14:22', '1111', 'testing fee', '10', '09123456789', 'testing banking', 'testing', '11212121', '2019-10-28', '2019-10-31', '11', 'active', '2019-10-23 01:16:39', '2019-10-24 10:16:41');
 
 -- --------------------------------------------------------
 
@@ -930,7 +1091,8 @@ INSERT INTO `users` (`id`, `email`, `email_verified_at`, `password`, `type`, `da
 (10, 'apple@gmail.com', NULL, '$2y$10$gBRJn3Kk4NhpOgIpu46fr.NVPUlRvSQDf1ax/YGZONtOyLSr2o2Ba', 'company', 4, 'k6d4HHZnHCzUJwnyg4HOP86hAhcvjU4D14fHTiFpHpkAzEQxNtmHFybqGXgf', '2019-10-14 04:19:33', '2019-10-14 04:19:33'),
 (11, 'eeeee', NULL, '$2y$10$klucFgQ9toN.K/eiAnsIWeZRDbxisYqlJCRWomvbR6BdoV64iF522', 'freeman', 3, 'gWKWdhqk6jtMzygOh69vrXnxDF5LFhtSQ4w2zi2O3w5uTjqZXqRAruc15O1VC67pNbt2j7KLMID9Slie', '2019-10-14 09:08:30', '2019-10-14 09:08:30'),
 (12, 'aa@gmail.com', NULL, '$2y$10$dI7SiGMsGGzEB4tXf9ba9ekv4AQx4HPKtdIKzJJPMQFrGFAPz67KK', 'company', 5, 'OWFk94JxFpGpwE0kqw9SweVuwLSJIDmvAnFfFXLnLXQ2eCFu9xtMxOFufOoq', '2019-10-16 08:25:32', '2019-10-16 08:25:32'),
-(13, 'freemanaa@gmail.com', NULL, '$2y$10$c5JM.ytUD.q91nLt..yAv.5UuRH2yZyF7wElOy/KkaVeKABX6Fy.K', 'freeman', 4, 'dQOUHEzLGK5cHa7IxTuyBLa5m12njJwMjSLTFRXcAvZGYj12zp61SslumJHRoy9zmuznaQEfhdMJVfry', '2019-10-16 08:52:04', '2019-10-16 08:52:04');
+(13, 'freemanaa@gmail.com', NULL, '$2y$10$c5JM.ytUD.q91nLt..yAv.5UuRH2yZyF7wElOy/KkaVeKABX6Fy.K', 'freeman', 4, 'dQOUHEzLGK5cHa7IxTuyBLa5m12njJwMjSLTFRXcAvZGYj12zp61SslumJHRoy9zmuznaQEfhdMJVfry', '2019-10-16 08:52:04', '2019-10-16 08:52:04'),
+(14, 'aastaff@gmail.com', NULL, '$2y$10$HzPQ4E6ytSF.orlBZIg1puLNd4qzHtfvWCxU2GrU/OVgJTxXRC3Pa', 'company_staff', 5, 'qMKKeOdLV8l4OdIFV3M9z2VFmFY3DcVbJv0bxtjVheq6DVDQeW7w8ugEHUzHXu5sYSbjf9dPZucUMyzd', '2019-10-25 01:17:20', '2019-10-25 01:17:20');
 
 -- --------------------------------------------------------
 
@@ -1004,6 +1166,12 @@ ALTER TABLE `ads_webpages`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `albums`
+--
+ALTER TABLE `albums`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `comments`
 --
 ALTER TABLE `comments`
@@ -1052,9 +1220,27 @@ ALTER TABLE `course__course_categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `finished_students`
+--
+ALTER TABLE `finished_students`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `freemen`
 --
 ALTER TABLE `freemen`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `galleries`
+--
+ALTER TABLE `galleries`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `gallery_photos`
+--
+ALTER TABLE `gallery_photos`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1080,6 +1266,40 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `normal_posts`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `oauth_access_tokens`
+--
+ALTER TABLE `oauth_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_access_tokens_user_id_index` (`user_id`);
+
+--
+-- Indexes for table `oauth_auth_codes`
+--
+ALTER TABLE `oauth_auth_codes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `oauth_clients`
+--
+ALTER TABLE `oauth_clients`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_clients_user_id_index` (`user_id`);
+
+--
+-- Indexes for table `oauth_personal_access_clients`
+--
+ALTER TABLE `oauth_personal_access_clients`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_personal_access_clients_client_id_index` (`client_id`);
+
+--
+-- Indexes for table `oauth_refresh_tokens`
+--
+ALTER TABLE `oauth_refresh_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `oauth_refresh_tokens_access_token_id_index` (`access_token_id`);
 
 --
 -- Indexes for table `seafarers`
@@ -1158,6 +1378,12 @@ ALTER TABLE `ads_webpages`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
+-- AUTO_INCREMENT for table `albums`
+--
+ALTER TABLE `albums`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
@@ -1206,10 +1432,28 @@ ALTER TABLE `course__course_categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `finished_students`
+--
+ALTER TABLE `finished_students`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `freemen`
 --
 ALTER TABLE `freemen`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `galleries`
+--
+ALTER TABLE `galleries`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `gallery_photos`
+--
+ALTER TABLE `gallery_photos`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `job_positions`
@@ -1221,19 +1465,31 @@ ALTER TABLE `job_positions`
 -- AUTO_INCREMENT for table `job_posts`
 --
 ALTER TABLE `job_posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `normal_posts`
 --
 ALTER TABLE `normal_posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `oauth_clients`
+--
+ALTER TABLE `oauth_clients`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `oauth_personal_access_clients`
+--
+ALTER TABLE `oauth_personal_access_clients`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `seafarers`
@@ -1269,13 +1525,13 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `training_posts`
 --
 ALTER TABLE `training_posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `vessel_types`

@@ -30,7 +30,7 @@
     </style>
     @endsection
 @section('nav_bar_text')
-    Manage Normal Post
+    Manage Gallery
 @endsection
 @section('content')
     <div class="content">
@@ -52,7 +52,7 @@
                                             Photo
                                         </th>
                                         <th>
-                                            Title
+                                            Album Name
                                         </th>
                                         <th>
                                             Description
@@ -80,24 +80,31 @@
                         <button data-dismiss="modal" class="close">&times;</button>
                     </div>
                     <div class="modal-body">
-                      <form id="insert_normalpost" enctype="multipart/form-data" class="md-form">
+                      <form id="insert_gallery" enctype="multipart/form-data" class="md-form">
                               {{csrf_field()}}
-                            <input type="hidden" name="user_id" value="{{\Illuminate\Support\Facades\Auth::id()}}">
+                            {{-- <input type="hidden" name="user_id" value="{{\Illuminate\Support\Facades\Auth::id()}}"> --}}
                               <div class="row">
                                   <div class="col-sm-4 imgUp">
                                       <img src="{{asset('images/default.jpg')}}" class="img-thumbnail" id="image" class="imagePreview">
                                       <label class="btn btn-primary upload_btn">
-                                          Upload<input type="file" onchange="displaySelectedPhoto('upload_photo','image')" id="upload_photo" name="photo[]" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;" required>
+                                          Upload<input type="file" onchange="displaySelectedPhoto('upload_photo','image')" id="upload_photo" name="photo[]" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;" required multiple>
                                       </label>
                                   </div>
                                   <div class="col-sm-8">
                                       <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                {{-- <label for="vancant">Vancant</label> --}}
-                                                <input type="text" name="title" id="title" class="form-control" required placeholder="Title">
+                                                <label for="">Album Name</label>
+                                                <select name="album_id" class="form-control">
+                                                    @foreach ($albums as $album)
+                                                        <option value="{{$album['id']}}">{{$album['name']}}</option>
+                                                    @endforeach
+                                                 </select>
                                             </div>
+                                            <button type="button" name="button" class="btn btn-success pull-right" data-target="#album_modalBox" data-toggle="modal" data-keyboard="false" data-backdrop="static">Add New Abum</button>
                                         </div>
+                                        
+                                        
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 {{-- <label for="des">Description</label> --}}
@@ -107,7 +114,35 @@
                                         </div>
                                     </div>
                                 </div>
-                                <input type="hidden" name="photo_link" id="photo_link" value="">
+
+                              <button type="submit" class="btn btn-primary pull-right" id="btn_submit">Create</button>
+                              <div class="clearfix"></div>
+                          </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- album_model --}}
+        <div class="modal fade" id="album_modalBox">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Insert Form</h4>
+                        <button data-dismiss="modal" class="close">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="insert_album" enctype="multipart/form-data" class="md-form">
+                              {{csrf_field()}}
+                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {{-- <label for="vancant">Vancant</label> --}}
+                                        <input type="text" name="name" id="name" class="form-control" required placeholder="Album Name">
+                                    </div>
+                                </div>
+                            </div>
 
                               <button type="submit" class="btn btn-primary pull-right" id="btn_submit">Create</button>
                               <div class="clearfix"></div>
@@ -220,7 +255,7 @@
                         ] ).draw( false );
                     }
 
-                      $('#insert_normalpost')[0].reset();
+                      $('#insert_album')[0].reset();
                       $('#image').attr('src','http://localhost/asia_seaman_club/public/images/default.jpg');
 
                   }
@@ -272,42 +307,26 @@
                 });
             }
 
-            $('#insert_normalpost').on('submit',function (e)
+            $('#insert_gallery').on('submit',function (e)
             {
                 e.preventDefault();
                 var alldata = new FormData(this);
                 $.ajax
-                ({
-                    type: "POST",
-                    url: "{{url('api/upload_normal_post')}}",
-                    data:alldata,
-                    cache:false,
-                    processData: false,
-                    contentType: false,
-                    success: function(data){
-                        // var photo = data['0'];
-                        // $('#photo_link').val(photo);
-                        var photo_str=JSON.stringify(data);
-                        alldata.append('photo',photo_str);
-
-                    $.ajax
-                        ({
+                    ({
                             type: "POST",
-                            url: "{{url('api/insert/normal_post')}}",
+                            url: "{{url('api/insert/gallery')}}",
                             data:alldata,
                             cache:false,
                             processData: false,
                             contentType: false,
                             success: function(data){
-                            //console.log(data);
-                            $('#insert_normalpost')[0].reset();
-                            $('#modalBox').modal('hide');
-                            toastr.success('Insert data successful');
-                            load();
-                        }
-                        });
-                  }
-                });
+                                console.log(data);
+                                $('#insert_gallery')[0].reset();
+                                $('#modalBox').modal('hide');
+                                toastr.success('Insert data successful');
+                                load();
+                            }
+                    });
                 return false;
             });
             
@@ -365,6 +384,28 @@
                         });
                     }
 		        return false;
+            });
+
+            $('#insert_album').on('submit',function (e)
+            {
+                e.preventDefault();
+                var alldata = new FormData(this);
+                $.ajax
+                ({
+                    type: "POST",
+                    url: "{{url('api/insert_album')}}",
+                    data:alldata,
+                    cache:false,
+                    processData: false,
+                    contentType: false,
+                    success: function(data){
+                        $('#insert_album')[0].reset();
+                        $('#album_modalBox').modal('hide');
+                        toastr.success('Insert data successful');
+                        load();
+                  }
+                });
+                return false;
             });
 
         });

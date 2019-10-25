@@ -30,7 +30,7 @@
     </style>
     @endsection
 @section('nav_bar_text')
-    Manage Normal Post
+    Manage Sub Company Account
 @endsection
 @section('content')
     <div class="content">
@@ -49,13 +49,10 @@
                                             No
                                         </th>
                                         <th>
-                                            Photo
+                                            Email
                                         </th>
                                         <th>
-                                            Title
-                                        </th>
-                                        <th>
-                                            Description
+                                            Type
                                         </th>
                                         <th></th>
                                         <th></th>
@@ -73,41 +70,37 @@
 
         {{-- insert_model --}}
         <div class="modal fade" id="modalBox">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-md">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Insert Form</h4>
                         <button data-dismiss="modal" class="close">&times;</button>
                     </div>
                     <div class="modal-body">
-                      <form id="insert_normalpost" enctype="multipart/form-data" class="md-form">
+                      <form id="insert_account" enctype="multipart/form-data" class="md-form">
                               {{csrf_field()}}
                             <input type="hidden" name="user_id" value="{{\Illuminate\Support\Facades\Auth::id()}}">
-                              <div class="row">
-                                  <div class="col-sm-4 imgUp">
-                                      <img src="{{asset('images/default.jpg')}}" class="img-thumbnail" id="image" class="imagePreview">
-                                      <label class="btn btn-primary upload_btn">
-                                          Upload<input type="file" onchange="displaySelectedPhoto('upload_photo','image')" id="upload_photo" name="photo[]" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;" required>
-                                      </label>
-                                  </div>
-                                  <div class="col-sm-8">
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                {{-- <label for="vancant">Vancant</label> --}}
-                                                <input type="text" name="title" id="title" class="form-control" required placeholder="Title">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                {{-- <label for="des">Description</label> --}}
-                                                <textarea name="description" rows="8" class="form-control" id="description" required placeholder="Description"></textarea>
-                                            </div>
-                                            </div>
-                                        </div>
+                                  
+                                <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {{-- <label for="vancant">Vancant</label> --}}
+                                        <input type="email" name="email" id="email" class="form-control" required placeholder="Email">
                                     </div>
                                 </div>
-                                <input type="hidden" name="photo_link" id="photo_link" value="">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {{-- <label for="vancant">Vancant</label> --}}
+                                        <input type="password" name="password" id="password" class="form-control" required placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {{-- <label for="vancant">Vancant</label> --}}
+                                        <input type="password" name="comfirm_password" id="comfirm_password" class="form-control" required placeholder="Comfirm password">
+                                    </div>
+                                </div>
+                                </div>
 
                               <button type="submit" class="btn btn-primary pull-right" id="btn_submit">Create</button>
                               <div class="clearfix"></div>
@@ -199,28 +192,28 @@
             load();
 
             function load(){
+                let id={{Auth::id()}}
                 $.ajax({
                   type: "POST",
-                  url: "{{url('get_all_admin_post')}}",
+                  url: "{{url('api/get_all_staff')}}"+"/"+id,
                   
                   cache: false,
                   success: function(data){
-                    var data_return=JSON.parse(data);
+                    //var data_return=JSON.parse(data);
                     console.log(data);
                     dt.clear();
                     var no = 1;                   
-                    for(var i = 0;i<data_return.length;i++){
+                    for(var i = 0;i<data.length;i++){
                         dt.row.add( [
                             no++,
-                            '<img src="'+data_return[i]['photo_url']+'" alt="" style="width:100px;height:100px">',
-                            data_return[i]['title'],
-                            data_return[i]['description'].substr(0,100),
-                            '<button class="btn btn-danger btn-sm" onclick="delete_data('+data_return[i]['id']+')">Delete</button>',
-                            '<button class="btn btn-info btn-sm" onclick="edit_data('+data_return[i]['id']+')">Edit</button>'
+                            data[i]['email'],
+                            data[i]['type'],
+                            '<button class="btn btn-danger btn-sm" onclick="delete_data('+data[i]['id']+')">Delete</button>',
+                            '<button class="btn btn-info btn-sm" onclick="edit_data('+data[i]['id']+')">Edit</button>'
                         ] ).draw( false );
                     }
 
-                      $('#insert_normalpost')[0].reset();
+                      $('#insert_account')[0].reset();
                       $('#image').attr('src','http://localhost/asia_seaman_club/public/images/default.jpg');
 
                   }
@@ -272,42 +265,26 @@
                 });
             }
 
-            $('#insert_normalpost').on('submit',function (e)
+            $('#insert_account').on('submit',function (e)
             {
                 e.preventDefault();
                 var alldata = new FormData(this);
                 $.ajax
-                ({
-                    type: "POST",
-                    url: "{{url('api/upload_normal_post')}}",
-                    data:alldata,
-                    cache:false,
-                    processData: false,
-                    contentType: false,
-                    success: function(data){
-                        // var photo = data['0'];
-                        // $('#photo_link').val(photo);
-                        var photo_str=JSON.stringify(data);
-                        alldata.append('photo',photo_str);
-
-                    $.ajax
                         ({
                             type: "POST",
-                            url: "{{url('api/insert/normal_post')}}",
+                            url: "{{url('api/insert/staff')}}",
                             data:alldata,
                             cache:false,
                             processData: false,
                             contentType: false,
                             success: function(data){
-                            //console.log(data);
-                            $('#insert_normalpost')[0].reset();
-                            $('#modalBox').modal('hide');
-                            toastr.success('Insert data successful');
-                            load();
-                        }
+                                console.log(data);
+                                $('#insert_account')[0].reset();
+                                $('#modalBox').modal('hide');
+                                toastr.success('Insert data successful');
+                                load();
+                            }
                         });
-                  }
-                });
                 return false;
             });
             

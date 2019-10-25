@@ -212,8 +212,7 @@ class Controller extends BaseController
 
 
 
-    function test(){
-        $post=new NormalPostData();
-        return $post->post_detail(1);
+    function test(Request $request){
+        return $request->get('aa');
     }
 }

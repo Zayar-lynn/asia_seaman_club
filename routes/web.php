@@ -304,11 +304,44 @@ Route::get('shipmate_ads','ApplicationController@shipmate_ads');
 
 
 // seafarer
+
+
 Route::get('/company_dashboard/normalpost','PostController@company_normalpost');
+
+Route::post('api/upload_seafarer_photo','SeafarerController@upload_seafarer_photo');
+Route::post('api/insert/seafarer','SeafarerController@store');
+Route::post('api/update/seafarer/{id}','SeafarerController@update');
+Route::get('api/seafarer/{id}','SeafarerController@show');
+Route::get('api/seafarer/delete/{id}','SeafarerController@destroy');
+
 Route::post('api/upload_normal_post','PostController@upload_seafarer_post_photo');
 Route::post('api/insert/normal_post','PostController@insert_seafarer_post');
 Route::get('api/delete_normal_post/{post_id}','PostController@delete_normal_post');
 Route::post('api/edit_normal_post/{id}','PostController@edit_normal_post');
+
+//sea service manage
+Route::post('api/upload_sea_service_photo','SeafarerController@upload_sea_service_photo');
+Route::post('api/insert/sea_service','SeafarerController@sea_service_store');
+Route::post('api/update/sea_service/{id}','SeafarerController@sea_service_update');
+Route::get('api/sea_service/{id}','SeafarerController@sea_service_show');
+Route::get('api/sea_service/delete/{id}','SeafarerController@sea_service_destroy');
+
+//document
+Route::post('api/upload_document_photo','SeafarerController@upload_document_photo');
+Route::post('api/insert/document','SeafarerController@document_store');
+Route::post('api/update/document/{id}','SeafarerController@document_update');
+Route::get('api/document/{id}','SeafarerController@document_show');
+Route::get('api/document/delete/{id}','SeafarerController@document_destroy');
+
+//competency
+//document
+Route::post('api/upload_competency_photo','SeafarerController@upload_competency_photo');
+Route::post('api/insert/competency','SeafarerController@competency_store');
+Route::post('api/update/competency/{id}','SeafarerController@competency_update');
+Route::get('api/competency/{id}','SeafarerController@competency_show');
+Route::get('api/competency/delete/{id}','SeafarerController@competency_destroy');
+
+
 
 Route::post('api/insert/seafarer_request','SeafarerController@seafarer_request');
 //Route::post('/update/jobpost','CompanyController@update');

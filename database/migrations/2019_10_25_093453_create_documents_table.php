@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSeafarerRequestsTable extends Migration
+class CreateDocumentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateSeafarerRequestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('seafarer_requests', function (Blueprint $table) {
+        Schema::create('documents', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('company_id');
             $table->integer('seafarer_id');
-            $table->integer('post_id');
+            $table->string('document_name');
+            $table->integer('issuing_country_id');
+            $table->integer('number');
+            $table->date('issuing_date');
+            $table->date('expires_date');
+            $table->string('document_photo');
             $table->timestamps();
         });
     }
@@ -29,6 +33,6 @@ class CreateSeafarerRequestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('seafarer_requests');
+        Schema::dropIfExists('documents');
     }
 }

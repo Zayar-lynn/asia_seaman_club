@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2019 at 10:23 AM
+-- Generation Time: Oct 25, 2019 at 04:08 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -221,6 +221,32 @@ CREATE TABLE `company_photos` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `competencies`
+--
+
+CREATE TABLE `competencies` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `seafarer_id` int(11) NOT NULL,
+  `rank` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `issuing_country` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `number` int(11) NOT NULL,
+  `issuing_date` date NOT NULL,
+  `expires_date` date NOT NULL,
+  `competency_photo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `competencies`
+--
+
+INSERT INTO `competencies` (`id`, `seafarer_id`, `rank`, `issuing_country`, `number`, `issuing_date`, `expires_date`, `competency_photo`, `created_at`, `updated_at`) VALUES
+(1, 11, 'abb', 'sasa', 11, '2019-01-10', '2019-01-20', '[\n    \"5db2fd75371c2_phys.png\"\n]', '2019-10-25 07:24:05', '2019-10-25 07:31:21');
 
 -- --------------------------------------------------------
 
@@ -567,6 +593,32 @@ CREATE TABLE `course__course_categories` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `documents`
+--
+
+CREATE TABLE `documents` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `seafarer_id` int(11) NOT NULL,
+  `document_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `issuing_country_id` int(11) NOT NULL,
+  `number` int(11) NOT NULL,
+  `issuing_date` date NOT NULL,
+  `expires_date` date NOT NULL,
+  `document_photo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `documents`
+--
+
+INSERT INTO `documents` (`id`, `seafarer_id`, `document_name`, `issuing_country_id`, `number`, `issuing_date`, `expires_date`, `document_photo`, `created_at`, `updated_at`) VALUES
+(2, 11, 'testing', 5, 11, '2019-10-01', '2019-10-12', '[\n    \"5db2f9ddbbb60_phys.png\"\n]', '2019-10-25 07:04:31', '2019-10-25 07:15:31');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `finished_students`
 --
 
@@ -794,7 +846,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (35, '2019_08_22_044826_create_finished_students_table', 25),
 (36, '2019_10_24_170613_create_galleries_table', 25),
 (37, '2019_10_24_171450_create_albums_table', 26),
-(38, '2019_10_25_040735_create_gallery_photos_table', 27);
+(38, '2019_10_25_040735_create_gallery_photos_table', 27),
+(39, '2019_10_25_085951_create_seafarers_table', 28),
+(40, '2019_10_25_091308_create_sea_services_table', 28),
+(41, '2019_10_25_093453_create_documents_table', 28),
+(42, '2019_10_25_093910_create_competencies_table', 28),
+(43, '2019_10_25_100253_create_shipmates_table', 28);
 
 -- --------------------------------------------------------
 
@@ -906,18 +963,32 @@ CREATE TABLE `oauth_refresh_tokens` (
 
 CREATE TABLE `seafarers` (
   `id` int(10) UNSIGNED NOT NULL,
-  `employee_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `desired_salary` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `citizanship` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `seafarer_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `english_level` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `rank` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `birthday` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `place_of_birth` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country_of_residence` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci,
+  `photo` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `location` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gender` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dob` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `citizenship` int(11) DEFAULT NULL,
+  `rank` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `additional_rank1` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `additional_rank2` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contact_phone` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contact_email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address_country_id` int(11) DEFAULT NULL,
+  `address_city` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address_zip` int(11) DEFAULT NULL,
+  `address_home_airport` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `english_level` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `english_certificate` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `height` int(11) DEFAULT NULL,
+  `eye_color` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `boiler_suit_size` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `weight` int(11) DEFAULT NULL,
+  `hair_color` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `boot_size` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `resume_file` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -926,8 +997,8 @@ CREATE TABLE `seafarers` (
 -- Dumping data for table `seafarers`
 --
 
-INSERT INTO `seafarers` (`id`, `employee_name`, `desired_salary`, `citizanship`, `phone`, `email`, `seafarer_type`, `english_level`, `rank`, `birthday`, `place_of_birth`, `country_of_residence`, `address`, `created_at`, `updated_at`) VALUES
-(1, 'Mg Mg', NULL, NULL, '09978699298', 'mgmg@gmail.com', 'seafarer', NULL, NULL, NULL, NULL, NULL, NULL, '2019-08-16 02:58:58', '2019-08-16 02:58:58');
+INSERT INTO `seafarers` (`id`, `photo`, `email`, `phone`, `location`, `name`, `gender`, `dob`, `citizenship`, `rank`, `additional_rank1`, `additional_rank2`, `contact_phone`, `contact_email`, `address_country_id`, `address_city`, `address_zip`, `address_home_airport`, `english_level`, `english_certificate`, `height`, `eye_color`, `boiler_suit_size`, `weight`, `hair_color`, `boot_size`, `resume_file`, `created_at`, `updated_at`) VALUES
+(11, '[\n    \"5db2f938021d3_rocket.png\"\n]', 'yeyintko.mkn@gmail.com', '09888878', 'mkn', 'Ye Yint Ko', 'male', 'djfjjfdj', 2, 'bla', 'bla bal', 'bla bla bla', '09888899', 'kokp@gamil.com', 3, 'mkn', 8888, 'sddfdfdfd', 'beginner', '[\n    \"5db2f94b92e76_rocket.png\"\n]', 33, 'red', '33', 33, 'blue', '33', '[\n    \"5db2f954a2e61_rocket.png\"\n]', '2019-10-25 07:02:45', '2019-10-25 07:02:45');
 
 -- --------------------------------------------------------
 
@@ -951,6 +1022,46 @@ CREATE TABLE `seafarer_requests` (
 
 INSERT INTO `seafarer_requests` (`id`, `company_id`, `seafarer_id`, `post_id`, `post_type`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 3, 'job_post', '2019-08-17 01:44:37', '2019-08-17 01:44:37');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sea_services`
+--
+
+CREATE TABLE `sea_services` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `seafarer_id` int(11) NOT NULL,
+  `vessel_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `imo_number` int(11) NOT NULL,
+  `vessel_type_id` int(11) NOT NULL,
+  `flag` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sign_on_date` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sign_off_date` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sign_off_reason` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `crewing_company_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `crewing_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `crewing_email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `crewing_phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `seaservice_confirm_photo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shipmates`
+--
+
+CREATE TABLE `shipmates` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `seafarer_id` int(11) NOT NULL,
+  `friend_seafarer_id` int(11) NOT NULL,
+  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1190,6 +1301,12 @@ ALTER TABLE `company_photos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `competencies`
+--
+ALTER TABLE `competencies`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `contacts`
 --
 ALTER TABLE `contacts`
@@ -1217,6 +1334,12 @@ ALTER TABLE `course_categories`
 -- Indexes for table `course__course_categories`
 --
 ALTER TABLE `course__course_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `documents`
+--
+ALTER TABLE `documents`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1305,12 +1428,25 @@ ALTER TABLE `oauth_refresh_tokens`
 -- Indexes for table `seafarers`
 --
 ALTER TABLE `seafarers`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `seafarers_email_unique` (`email`);
 
 --
 -- Indexes for table `seafarer_requests`
 --
 ALTER TABLE `seafarer_requests`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sea_services`
+--
+ALTER TABLE `sea_services`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `shipmates`
+--
+ALTER TABLE `shipmates`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1402,6 +1538,12 @@ ALTER TABLE `company_photos`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `competencies`
+--
+ALTER TABLE `competencies`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `contacts`
 --
 ALTER TABLE `contacts`
@@ -1430,6 +1572,12 @@ ALTER TABLE `course_categories`
 --
 ALTER TABLE `course__course_categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `documents`
+--
+ALTER TABLE `documents`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `finished_students`
@@ -1471,7 +1619,7 @@ ALTER TABLE `job_posts`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `normal_posts`
@@ -1495,13 +1643,25 @@ ALTER TABLE `oauth_personal_access_clients`
 -- AUTO_INCREMENT for table `seafarers`
 --
 ALTER TABLE `seafarers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `seafarer_requests`
 --
 ALTER TABLE `seafarer_requests`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `sea_services`
+--
+ALTER TABLE `sea_services`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `shipmates`
+--
+ALTER TABLE `shipmates`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `ship_types`

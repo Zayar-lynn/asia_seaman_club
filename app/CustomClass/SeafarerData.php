@@ -12,14 +12,33 @@ namespace App\CustomClass;
 use App\Competency;
 use App\Document;
 use App\Seafarer;
+use App\Seafarer_request;
 use App\SeaService;
+use App\Shipmate;
+use App\User;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+
 
 class SeafarerData
 {
     public function create_seafarer($seafarer_data)
     {
-        $post=Seafarer::create($seafarer_data);
-        return $post->exists?"success":"fail";
+        if($seafarer_data['password']==$seafarer_data['confirm_password']){
+            $post=Seafarer::create([
+                'email'=>$seafarer_data['email']
+            ]);
+
+            $user=User::create([
+                'email'=>$post['email'],
+                'password'=>Hash::make($seafarer_data['password']),
+                'type'=>'seafarer',
+                'data_id'=>$post['id'],
+                'api_token'=>Str::random(80)
+            ]);
+            return $user->exists?"success":"fail";
+        }
+
     }
 
 //    public function confirm_post($post_id)
@@ -30,6 +49,8 @@ class SeafarerData
 //        ]);
 //        return $post->status=='active'?'success':'fail';
 //    }
+
+
 
     public function delete_seafarer($id)
     {
@@ -63,14 +84,15 @@ class SeafarerData
             $obj=new CompetencyData();
             $obj->delete($sea['id']);
         }
-
+        Seafarer_request::where('seafarer_id',$id)->delete();
+        User::where('data_id',$id)->delete();
         $deleted=$data->delete();
         return $deleted ? 'success' : 'fail';
     }
 
-    public function edit_seafarer($post_id, $new_data)
+    public function edit_seafarer($seafarer_id, $new_data)
     {
-        $post=Seafarer::findOrFail($post_id);
+        $post=Seafarer::findOrFail($seafarer_id);
 
         if(!empty($new_data['photo_url'])){
             $new_data = array_merge($new_data,['photo'=>$new_data['photo_url']]);
@@ -81,16 +103,22 @@ class SeafarerData
         if(!empty($new_data['resume_url'])){
             $new_data = array_merge($new_data,['resume_file'=>$new_data['resume_url']]);
         }
-        $post_photos=json_decode($post->photo);
-        foreach ($post_photos as $post_photo) {
-            $image_path=public_path().'/upload/seafarer/photo/'.$post_photo;
-            if(file_exists($image_path)){
-                unlink($image_path);
+        if ($post->photo!=null){
+            $post_photos=json_decode($post->photo);
+            foreach ($post_photos as $post_photo) {
+                $image_path=public_path().'/upload/seafarer/photo/'.$post_photo;
+                if(file_exists($image_path)){
+                    unlink($image_path);
+                }
             }
         }
-        $updated = $post->update($new_data);
 
-        return $updated?'success':'fail';
+        $updated = $post->update($new_data);
+        $user_updated=User::where('data_id',$seafarer_id)->where('type','seafarer')->update([
+            "email"=>$new_data['email']
+        ]);
+
+        return $user_updated?'success':'fail';
     }
 
     public function seafarer_detail($id)
@@ -99,18 +127,25 @@ class SeafarerData
         $photo_arr=[];
         $english_certificate_arr=[];
         $resume_file_arr=[];
-        foreach (json_decode($item->photo) as $data){
-            array_push($photo_arr,ASC::$domain_url.'upload/seafarer/photo/'.$data);
+        if ($item->photo!=null){
+            foreach (json_decode($item->photo) as $data){
+                array_push($photo_arr,ASC::$domain_url.'upload/seafarer/photo/'.$data);
+            }
+            $item['photo']=$photo_arr;
         }
-        foreach (json_decode($item->english_certificate) as $data){
-            array_push($english_certificate_arr,ASC::$domain_url.'upload/seafarer/photo/'.$data);
+        if ($item->english_certificate!=null){
+            foreach (json_decode($item->english_certificate) as $data){
+                array_push($english_certificate_arr,ASC::$domain_url.'upload/seafarer/photo/'.$data);
+            }
+            $item['english_certificate']=$english_certificate_arr;
         }
-        foreach (json_decode($item->resume_file) as $data){
-            array_push($resume_file_arr,ASC::$domain_url.'upload/seafarer/photo/'.$data);
+        if ($item->resume_file!=null) {
+            foreach (json_decode($item->resume_file) as $data) {
+                array_push($resume_file_arr, ASC::$domain_url . 'upload/seafarer/photo/' . $data);
+            }
+            $item['resume_file'] = $resume_file_arr;
+
         }
-        $item['photo']=$photo_arr;
-        $item['english_certificate']=$english_certificate_arr;
-        $item['resume_file']=$resume_file_arr;
         return $item;
         //       return $post->user
     }
@@ -125,4 +160,34 @@ class SeafarerData
         return $temp_arr;
 
     }
+//----------------------------
+
+    public function add_friend($arr){
+        $data=Shipmate::create($arr);
+        return $data->exits?'success':'fail';
+    }
+
+    public function friend_list($seafarer_id){
+        $seafarer_arr=[];
+        $arr=Shipmate::where('seafarer_id',$seafarer_id)->where('status','friend')->get();
+        foreach ($arr as $seafarer){
+            $obj=new SeafarerData();
+            $seafarer=$obj->seafarer_detail($seafarer['friend_seafarer_id']);
+            array_push($seafarer_arr,$seafarer);
+        }
+        return $seafarer_arr;
+    }
+
+    public function request_list($seafarer_id){
+        $seafarer_arr=[];
+        $arr=Shipmate::where('seafarer_id',$seafarer_id)->where('status','request')->get();
+        foreach ($arr as $seafarer){
+            $obj=new SeafarerData();
+            $seafarer=$obj->seafarer_detail($seafarer['friend_seafarer_id']);
+            array_push($seafarer_arr,$seafarer);
+        }
+        return $seafarer_arr;
+    }
+
+
 }

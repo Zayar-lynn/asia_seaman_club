@@ -341,9 +341,15 @@ Route::post('api/update/competency/{id}','SeafarerController@competency_update')
 Route::get('api/competency/{id}','SeafarerController@competency_show');
 Route::get('api/competency/delete/{id}','SeafarerController@competency_destroy');
 
-
-
+//shipmate
+Route::post('api/shipmate/add_friend','SeafarerController@add_friend');
+Route::get('api/shipmate/friend_list/{id}','SeafarerController@friend_list');
+Route::get('api/shipmate/request_list/{id}','SeafarerController@request_list');
+Route::get('api/shipmate/confirm/{shipmate_id}','SeafarerController@confirm');
+Route::get('api/shipmate/delete/{shipmate_id}','SeafarerController@delete_shipmate');
+//enroll training & job post
 Route::post('api/insert/seafarer_request','SeafarerController@seafarer_request');
+Route::get('api/post_enroll_list/{user_id}','SeafarerController@post_enroll_list');
 //Route::post('/update/jobpost','CompanyController@update');
 //*****************************************
 //comment

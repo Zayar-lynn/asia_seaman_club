@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\CustomClass\ASC;
 use App\CustomClass\CompetencyData;
 use App\CustomClass\DocumentData;
+use App\CustomClass\JobPostData;
 use App\CustomClass\SeafarerData;
 use App\CustomClass\SeaServiceData;
+use App\CustomClass\TrainingPostData;
 use App\Document;
+use App\Seafarer;
+use App\Shipmate;
+use App\User;
 use Illuminate\Http\Request;
 use App\CustomClass\CompanyData;
 use Illuminate\Support\Facades\Auth;
@@ -142,4 +147,73 @@ class SeafarerController extends Controller
         $enroll=Seafarer_request::create($arr);
         return $enroll->exists?"success":"fail";
     }
+
+    public function add_friend(Request $request){
+        $obj=new SeafarerData();
+        $arr=[
+            'seafarer_id'=>$request->get('seafarer_id'),
+            'friend_seafarer_id'=>$request->get('friend_seafarer_id'),
+            'status'=>'request'
+        ];
+        $obj->add_friend($arr);
+    }
+
+    public function confirm($shipmate_id){
+        Shipmate::findOrFail($shipmate_id)->update([
+            'status'=>'friend',
+        ]);
+    }
+
+    public function delete_shipmate($shipmate_id){
+        $deleted=Shipmate::findOrFail($shipmate_id)->delete();
+        return $deleted?'success':'false';
+    }
+
+    function friend_list($seafarer_id){
+        $obj=new SeafarerData();
+        return $obj->friend_list($seafarer_id);
+    }
+
+    function request_list($seafarer_id){
+        $obj=new SeafarerData();
+        return $obj->request_list($seafarer_id);
+    }
+
+    function post_enroll_list($user_id){
+        $user=User::findOrFail($user_id);
+        $user_type=$user['type'];
+        $post=[];
+        if ($user_type=='company' || $user_type=='company_staff'){
+            $post=Seafarer_request::where('company_id',$user['data_id'])->get();
+        }
+        else if ($user_type=='seafarer'){
+            $post=Seafarer_request::where('seafarer_id',$user['data_id'])->get();
+        }
+        $s_obj=new SeafarerData();
+        $post_arr=[];
+        $t_post=new TrainingPostData();
+        $j_obj=new JobPostData();
+        foreach ($post as $data){
+            if ($data['post_type']=='job_post'){
+                $post_data=$j_obj->post_detail($data['post_id']);
+            }
+            else if ($data['post_type']=='training_post'){
+                $post_data=$t_post->post_detail($data['post_id']);
+            }
+            $arr=[
+                'id'=>$data['id'],
+                'seafarer'=>$s_obj->seafarer_detail($data['seafarer_id']),
+                'post_type'=>$data['post_type'],
+                'post'=>$post_data
+            ];
+            array_push($post_arr,$arr);
+        }
+
+
+
+        return $post_arr;
+    }
+
+
+
 }

@@ -1,0 +1,173 @@
+seafarer create
+----------------------
+img upload link => http://localhost/asia_seaman_club/public/api/upload_seafarer_photo
+method=>post
+parameter=>photo
+
+seafarer create => http://localhost/asia_seaman_club/public/api/insert/seafarer
+method=>post
+parameter=>
+email
+password
+confirm_password
+
+seafarer update => http://localhost/asia_seaman_club/public/api/update/seafarer/{id}
+method => post
+parameter => 
+photo_url
+email
+phone
+location
+name
+gender
+dob
+citizenship
+rank
+additional_rank1
+additional_rank2
+contact_phone
+contact_email
+address_country_id
+address_city
+address_zip
+address_home_airport
+english_level
+english_certificate_url
+height
+eye_color
+boiler_suit_size
+weight
+hair_color
+boot_size
+resume_url
+
+seafarer detail => http://localhost/asia_seaman_club/public/api/seafarer/{id}
+seafarer delete => http://localhost/asia_seaman_club/public/api/seafarer/delete/{id}
+
+---------------------------------------------------------------------------------
+Seaservice create
+----------------------
+img upload link => http://localhost/asia_seaman_club/public/api/upload_sea_service_photo
+method=>post
+parameter=>photo
+
+seaservice create => http://localhost/asia_seaman_club/public/api/insert/sea_service
+method=>post
+parameter=>
+seafarer_id
+vessel_name
+imo_number
+vessel_type_id
+flag
+sign_on_date
+sign_off_date
+sign_off_reason
+crewing_company_name
+crewing_name
+crewing_email
+crewing_phone
+seaservice_confirm_photo
+
+seaservice update => http://localhost/asia_seaman_club/public/api/update/sea_service/{id}
+method => post
+parameter => 
+seafarer_id
+vessel_name
+imo_number
+vessel_type_id
+flag
+sign_on_date
+sign_off_date
+sign_off_reason
+crewing_company_name
+crewing_name
+crewing_email
+crewing_phone
+seaservice_confirm_photo
+
+seaservice detail => http://localhost/asia_seaman_club/public/api/sea_service/{id}
+seaservice delete => http://localhost/asia_seaman_club/public/api/sea_service/delete/{id}
+-----------------------------------------------------------------------------------------------------------------------------
+
+Document create
+----------------------
+img upload link => http://localhost/asia_seaman_club/public/api/upload_document_photo
+method=>post
+parameter=>photo
+
+document create => http://localhost/asia_seaman_club/public/api/insert/document
+method=>post
+parameter=>
+seafarer_id
+document_name
+issuing_country_id
+number
+issuing_date
+expries_date
+document_photo
+
+document update => http://localhost/asia_seaman_club/public/api/update/document/{id}
+method => post
+parameter => 
+seafarer_id
+document_name
+issuing_country_id
+number
+issuing_date
+expries_date
+document_photo
+
+document detail => http://localhost/asia_seaman_club/public/api/document/{id}
+document delete => http://localhost/asia_seaman_club/public/api/document/delete/{id}
+-----------------------------------------------------------------------------------------------------------------------------
+
+
+Competency create
+----------------------
+img upload link => http://localhost/asia_seaman_club/public/api/upload_competency_photo
+method=>post
+parameter=>photo
+
+competency create => http://localhost/asia_seaman_club/public/api/insert/competency
+method=>post
+parameter=>
+seafarer_id
+rank
+issuing_country
+number
+issuing_date
+expries_date
+competency_photo
+
+competency update => http://localhost/asia_seaman_club/public/api/update/competency/{id}
+method => post
+parameter => 
+seafarer_id
+rank
+issuing_country
+number
+issuing_date
+expries_date
+competency_photo
+
+competency detail => http://localhost/asia_seaman_club/public/api/competency/{id}
+competency delete => http://localhost/asia_seaman_club/public/api/competency/delete/{id}
+-----------------------------------------------------------------------------------------------------------------------------
+
+Shipmate create
+----------------------
+
+shipmate create => http://localhost/asia_seaman_club/public/api/shipmate/add_friend
+method=>post
+parameter=>
+seafarer_id
+friend_seafarer_id
+
+friend list => http://localhost/asia_seaman_club/public/api/shipmate/friend_list//{id}
+
+request list => http://localhost/asia_seaman_club/public/api/shipmate/request_list/{id}
+confirm => http://localhost/asia_seaman_club/public/api/shipmate/confirm/{id}
+delete => http://localhost/asia_seaman_club/public/api/competency/delete/{id}
+-----------------------------------------------------------------------------------------------------------------------------
+
+post enroll list => http://localhost/asia_seaman_club/public/api/post_enroll_list/{id}

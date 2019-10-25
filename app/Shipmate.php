@@ -8,7 +8,7 @@ class Shipmate extends Model
 {
     protected $fillable=[
         'seafarer_id',
-        'seafarer_friend_id',
+        'friend_seafarer_id',
         'status'
     ];
 }
